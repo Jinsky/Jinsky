@@ -1,58 +1,110 @@
 <?php
 require_once 'includes/functions.php';
+$page_title = "Katalog Penyakit";
 include 'includes/header.php';
 
 $penyakit_list = get_all_penyakit($pdo);
 ?>
 
-<main class="pt-28 pb-20 px-8 max-w-screen-2xl mx-auto">
-    <!-- Hero & Search Section -->
-    <section class="mb-16">
-        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-end">
-            <div class="space-y-6">
-                <span class="inline-block px-4 py-1 rounded-full bg-primary-container text-on-primary-container text-xs font-bold tracking-widest uppercase">Clinical Database</span>
-                <h1 class="text-5xl md:text-6xl font-headline font-black text-primary tracking-tight leading-[1.1]">
-                    Avian Pathogen <br/><span class="text-on-surface-variant font-light italic">Catalog</span>
-                </h1>
-                <p class="text-lg text-on-surface-variant max-w-xl leading-relaxed">
-                    Akses data klinis presisi tentang penyakit merpati yang umum. Database kami yang diverifikasi pakar menyediakan gejala, protokol pencegahan, dan indikator perawatan darurat.
+<main class="bg-surface text-on-surface selection:bg-primary-fixed-dim min-h-screen">
+    <!-- Hero / Header Section -->
+    <header class="pt-32 pb-16 px-8 max-w-7xl mx-auto">
+        <div class="flex flex-col md:flex-row md:items-end justify-between gap-8">
+            <div class="max-w-2xl">
+                <span class="text-primary font-bold tracking-widest text-xs uppercase mb-4 block">Arsip Diagnostik</span>
+                <h1 class="text-5xl md:text-6xl font-headline font-bold text-primary mb-6 -tracking-tighter">Katalog Penyakit Avian</h1>
+                <p class="text-lg text-on-surface-variant leading-relaxed opacity-80">
+                    Database komprehensif mengenai kondisi kesehatan merpati, gejala klinis, dan langkah pencegahan awal untuk pemeliharaan yang profesional.
                 </p>
             </div>
-            <div class="relative group">
-                <div class="absolute inset-y-0 left-4 flex items-center pointer-events-none">
-                    <span class="material-symbols-outlined text-primary/60">search</span>
+            <!-- Search Interface -->
+            <div class="w-full md:w-96">
+                <div class="relative group">
+                    <span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-outline-variant group-focus-within:text-primary transition-colors">search</span>
+                    <input id="diseaseSearch" class="w-full pl-12 pr-4 py-4 bg-surface-container-highest border-none rounded-xl focus:ring-2 focus:ring-primary-fixed transition-all text-on-surface placeholder:text-outline" placeholder="Cari nama penyakit..." type="text"/>
                 </div>
-                <input id="diseaseSearch" class="w-full bg-surface-container-highest border-none rounded-xl pl-12 pr-6 py-5 text-on-surface focus:ring-0 focus:border-b-2 focus:border-primary transition-all font-body placeholder:text-outline-variant" placeholder="Cari berdasarkan nama penyakit..." type="text"/>
             </div>
         </div>
-    </section>
+    </header>
 
-    <!-- Catalog Grid -->
-    <div id="catalogGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-        <?php foreach ($penyakit_list as $p): ?>
-        <article class="disease-card flex flex-col bg-surface-container-low rounded-xl overflow-hidden shadow-[0_12px_32px_rgba(80,101,42,0.04)] group" data-name="<?= strtolower($p['nama']) ?>">
-            <div class="relative h-56 overflow-hidden">
-                <img alt="<?= $p['nama'] ?>" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBno_GorHUOZCbEhfr7Lo1uhdJq-SLT0TnvxLQX_RE9aOmb8ElqYi2x2btsTRsJVQlRNKj-_v0u3wuFq8K2o6bUWbxl2qr8MBmfK9YSXqsrVMOYEnsnkcq4Et6VHsvZCdHLiLOr-tSuAcYhI2ppdyOKu6_w9d4Bikb_1EJoSzv0oTxi-0SSnW-SvC7-vDQTvLImEF0J6skzmx8JQgdHTcR4bkIaFssEHJEp3IhnmUL1F6aPB_bs6obK3huT2LnbO3KxJ_WMODJesB2A"/>
-            </div>
-            <div class="p-6 flex flex-col flex-grow bg-surface-container-lowest mx-3 -mt-8 relative rounded-xl shadow-sm">
-                <h3 class="text-xl font-headline font-extrabold text-primary mb-2"><?= $p['nama'] ?></h3>
-                <p class="text-sm text-on-surface-variant line-clamp-3 mb-6 leading-relaxed">
+    <!-- Main Content: Disease Catalog -->
+    <main class="px-8 pb-24 max-w-7xl mx-auto">
+        <!-- Filter Tabs -->
+        <div class="flex gap-4 mb-12 overflow-x-auto no-scrollbar pb-2">
+            <button class="px-6 py-2 bg-primary text-on-primary rounded-full text-sm font-semibold whitespace-nowrap">Semua Kategori</button>
+            <button class="px-6 py-2 bg-surface-container hover:bg-surface-container-high transition-colors rounded-full text-sm font-medium whitespace-nowrap">Infeksi Bakteri</button>
+            <button class="px-6 py-2 bg-surface-container hover:bg-surface-container-high transition-colors rounded-full text-sm font-medium whitespace-nowrap">Virus</button>
+            <button class="px-6 py-2 bg-surface-container hover:bg-surface-container-high transition-colors rounded-full text-sm font-medium whitespace-nowrap">Parasit</button>
+        </div>
+
+        <!-- Disease Grid -->
+        <div id="catalogGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <?php foreach ($penyakit_list as $p): ?>
+            <article class="disease-card bg-surface-container-lowest rounded-xl p-8 flex flex-col relative overflow-hidden group shadow-sm shadow-cyan-900/5" data-name="<?= strtolower($p['nama']) ?>">
+                <div class="absolute top-0 left-0 w-1 h-full bg-secondary"></div>
+                <div class="flex justify-between items-start mb-6">
+                    <span class="px-3 py-1 bg-secondary-container text-on-secondary-container rounded-full text-xs font-bold tracking-wide">Info Penyakit</span>
+                    <span class="material-symbols-outlined text-outline-variant">microbiology</span>
+                </div>
+                <h3 class="text-2xl font-headline font-bold text-primary mb-3"><?= $p['nama'] ?></h3>
+                <p class="text-on-surface-variant text-sm leading-relaxed mb-6 flex-grow">
                     <?= $p['deskripsi'] ?>
                 </p>
-                <div class="mt-auto pt-4 border-t border-surface-container-high">
-                    <h4 class="text-xs font-bold text-primary uppercase mb-2">Solusi:</h4>
-                    <p class="text-xs text-on-surface-variant line-clamp-2 mb-4"><?= $p['solusi'] ?></p>
-                    <div class="flex justify-between items-center">
-                        <span class="text-[10px] font-bold text-outline uppercase tracking-tighter italic">ID: <?= $p['id'] ?></span>
-                        <button onclick="alert('Detail: <?= addslashes($p['deskripsi']) ?>\n\nPencegahan:\n<?= addslashes($p['pencegahan']) ?>')" class="text-primary font-headline font-bold text-sm flex items-center gap-1 hover:gap-2 transition-all">
-                            Lihat Selengkapnya <span class="material-symbols-outlined text-base">arrow_forward</span>
-                        </button>
+                <div class="space-y-3 mb-8">
+                    <div class="flex items-start gap-3">
+                        <span class="material-symbols-outlined text-secondary text-sm mt-0.5">check_circle</span>
+                        <span class="text-xs text-on-surface font-medium"><?= substr($p['solusi'], 0, 50) ?>...</span>
+                    </div>
+                </div>
+                <button onclick="alert('Deskripsi:\n<?= addslashes($p['deskripsi']) ?>\n\nSolusi:\n<?= addslashes($p['solusi']) ?>\n\nPencegahan:\n<?= addslashes($p['pencegahan']) ?>')" class="flex items-center gap-2 text-primary font-bold text-sm group-hover:gap-4 transition-all">
+                    Baca Selengkapnya
+                    <span class="material-symbols-outlined text-sm">arrow_forward</span>
+                </button>
+            </article>
+            <?php endforeach; ?>
+        </div>
+    </main>
+
+    <!-- Professional Support Section -->
+    <section class="bg-surface-container py-24">
+        <div class="max-w-7xl mx-auto px-8 grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
+            <div class="relative">
+                <div class="aspect-[4/5] bg-surface-container-highest rounded-2xl overflow-hidden shadow-2xl">
+                    <img alt="Laboratory research" class="w-full h-full object-cover grayscale mix-blend-multiply opacity-80" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDHUrfQM2NJzzNNAvpFYZU5ypsPRMWdvYGS2rTbzA4WDtfrHM3GDZIvjJ5q-m4vYZE82bMJsibH0sCs1EpWc5MnS0t8dKvrpBZzvVJZyhAM4if4SkiJJBSKvdiqNG3x9BVTRyGu6BFJU8NYxJVoOG_yXXsA8jZQP5S9hNwWRWa4b5JpLYXg4AHljdMS1enbjTHNCmIgNLItNcn0hUzx4EFLj7KPm8WYqlL3w8ZmFBDZu2jR14Ynf-enw9OmAPFeLIr2LEuse-dWQqBZ"/>
+                </div>
+                <div class="absolute -bottom-8 -right-8 p-8 bg-primary rounded-2xl text-on-primary max-w-xs shadow-xl">
+                    <p class="font-headline italic text-lg leading-snug">"Deteksi dini adalah kunci keselamatan koloni merpati Anda."</p>
+                    <p class="mt-4 text-xs font-bold uppercase tracking-widest opacity-70">— Dr. Hendrik, Spesialis Avian</p>
+                </div>
+            </div>
+            <div class="space-y-8">
+                <h2 class="text-4xl font-headline font-bold text-primary">Butuh Diagnosa Profesional?</h2>
+                <p class="text-lg text-on-surface-variant leading-relaxed">
+                    Katalog ini hanyalah referensi awal. Untuk akurasi medis yang tepat, kami menyarankan konsultasi langsung dengan dokter hewan spesialis burung.
+                </p>
+                <div class="flex flex-col gap-4">
+                    <div class="p-6 bg-surface-container-lowest rounded-xl flex items-center gap-6 group hover:bg-primary transition-all cursor-pointer">
+                        <div class="w-12 h-12 bg-secondary-container rounded-full flex items-center justify-center group-hover:bg-on-primary">
+                            <span class="material-symbols-outlined text-on-secondary-container group-hover:text-primary">video_call</span>
+                        </div>
+                        <div>
+                            <h4 class="font-bold group-hover:text-on-primary">Telekonsultasi Cepat</h4>
+                            <p class="text-sm text-on-surface-variant group-hover:text-on-primary/80">Hubungi dokter dalam 15 menit melalui video.</p>
+                        </div>
+                    </div>
+                    <div class="p-6 bg-surface-container-lowest rounded-xl flex items-center gap-6 group hover:bg-primary transition-all cursor-pointer">
+                        <div class="w-12 h-12 bg-tertiary-fixed rounded-full flex items-center justify-center group-hover:bg-on-primary">
+                            <span class="material-symbols-outlined text-on-tertiary-fixed-variant group-hover:text-primary">lab_research</span>
+                        </div>
+                        <div>
+                            <h4 class="font-bold group-hover:text-on-primary">Analisis Lab Mandiri</h4>
+                            <p class="text-sm text-on-surface-variant group-hover:text-on-primary/80">Kirim sampel kotoran untuk pengujian PCR.</p>
+                        </div>
                     </div>
                 </div>
             </div>
-        </article>
-        <?php endforeach; ?>
-    </div>
+        </div>
+    </section>
 </main>
 
 <script>
