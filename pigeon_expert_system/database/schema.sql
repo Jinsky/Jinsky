@@ -23,6 +23,7 @@ CREATE TABLE aturan (
 CREATE TABLE aturan_detail (
     id_aturan VARCHAR(5),
     id_gejala VARCHAR(5),
+    persentase INT DEFAULT 0,
     PRIMARY KEY (id_aturan, id_gejala),
     FOREIGN KEY (id_aturan) REFERENCES aturan(id),
     FOREIGN KEY (id_gejala) REFERENCES gejala(id)
@@ -37,6 +38,15 @@ CREATE TABLE diagnosa (
     tanggal TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (id_penyakit) REFERENCES penyakit(id)
 );
+
+CREATE TABLE admin (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    username VARCHAR(50) NOT NULL,
+    password VARCHAR(255) NOT NULL
+);
+
+-- Default admin: admin / admin123
+INSERT INTO admin (username, password) VALUES ('admin', '$2y$10$8W3n.yQvRkH.LqY6mR.eueGZ1v1o/vHlKkYjQz.aFvXhZ9IqKxX3O');
 
 -- Insert Gejala
 INSERT INTO gejala (id, nama) VALUES
@@ -123,7 +133,7 @@ INSERT INTO penyakit (id, nama, deskripsi, solusi, pencegahan) VALUES
 '1. Berikan antibiotik yang sensitif terhadap bakteri gram negatif seperti Oxytetracycline, Erythromycin, atau Enrofloxacin.\n2. Bersihkan cairan yang keluar dari hidung dan mata secara rutin menggunakan kapas basah hangat.\n3. Lakukan uap panas (vapor therapy) sederhana untuk membantu burung melegakan pernapasan.\n4. Isolasi burung sakit agar tidak menulari burung lain melalui kontak langsung atau air minum.\n5. Tambahkan vitamin ke dalam air minum untuk membantu proses pemulihan daya tahan tubuh.',
 '1. Jaga agar kondisi kandang tetap kering dan tidak lembap, terutama saat musim hujan.\n2. Hindari arus angin yang bertiup kencang langsung ke arah burung (draft) di malam hari.\n3. Pastikan ventilasi udara lancar sehingga tidak terjadi penumpukan gas amonia dari kotoran.\n4. Berikan pakan tambahan dan vitamin secara rutin untuk menjaga stamina burung.\n5. Jangan mencampur burung dari berbagai usia dalam satu kandang yang sempit.');
 
--- Insert Aturan and Aturan Detail
+-- Insert Aturan and Aturan Detail with Percentages
 INSERT INTO aturan (id, id_penyakit) VALUES
 ('R01', 'P01'), ('R02', 'P01'), ('R03', 'P01'),
 ('R04', 'P02'), ('R05', 'P02'), ('R06', 'P02'),
@@ -136,34 +146,34 @@ INSERT INTO aturan (id, id_penyakit) VALUES
 ('R25', 'P09'), ('R26', 'P09'), ('R27', 'P09'),
 ('R28', 'P10'), ('R29', 'P10'), ('R30', 'P10');
 
-INSERT INTO aturan_detail (id_aturan, id_gejala) VALUES
-('R01', 'G14'), ('R01', 'G15'), ('R01', 'G16'),
-('R02', 'G14'), ('R02', 'G16'), ('R02', 'G17'),
-('R03', 'G15'), ('R03', 'G16'), ('R03', 'G17'),
-('R04', 'G19'), ('R04', 'G20'), ('R04', 'G21'),
-('R05', 'G19'), ('R05', 'G21'), ('R05', 'G01'),
-('R06', 'G20'), ('R06', 'G21'), ('R06', 'G25'),
-('R07', 'G03'), ('R07', 'G04'), ('R07', 'G05'),
-('R08', 'G03'), ('R08', 'G05'), ('R08', 'G23'),
-('R09', 'G04'), ('R09', 'G05'), ('R09', 'G25'),
-('R10', 'G03'), ('R10', 'G05'), ('R10', 'G24'),
-('R11', 'G03'), ('R11', 'G02'), ('R11', 'G24'),
-('R12', 'G05'), ('R12', 'G24'), ('R12', 'G25'),
-('R13', 'G07'), ('R13', 'G08'), ('R13', 'G09'),
-('R14', 'G08'), ('R14', 'G09'), ('R14', 'G10'),
-('R15', 'G09'), ('R15', 'G10'), ('R15', 'G11'),
-('R16', 'G11'), ('R16', 'G12'), ('R16', 'G13'),
-('R17', 'G12'), ('R17', 'G13'), ('R17', 'G22'),
-('R18', 'G11'), ('R18', 'G13'), ('R18', 'G26'),
-('R19', 'G18'), ('R19', 'G06'), ('R19', 'G28'),
-('R20', 'G18'), ('R20', 'G06'), ('R20', 'G02'),
-('R21', 'G18'), ('R21', 'G28'), ('R21', 'G22'),
-('R22', 'G01'), ('R22', 'G03'), ('R22', 'G05'),
-('R23', 'G03'), ('R23', 'G23'), ('R23', 'G27'),
-('R24', 'G05'), ('R24', 'G25'), ('R24', 'G27'),
-('R25', 'G02'), ('R25', 'G22'), ('R25', 'G25'),
-('R26', 'G01'), ('R26', 'G02'), ('R26', 'G30'),
-('R27', 'G22'), ('R27', 'G25'), ('R27', 'G30'),
-('R28', 'G07'), ('R28', 'G08'), ('R28', 'G09'),
-('R29', 'G08'), ('R29', 'G09'), ('R29', 'G10'),
-('R30', 'G09'), ('R30', 'G10'), ('R30', 'G12');
+INSERT INTO aturan_detail (id_aturan, id_gejala, persentase) VALUES
+('R01', 'G14', 30), ('R01', 'G15', 30), ('R01', 'G16', 40),
+('R02', 'G14', 30), ('R02', 'G16', 30), ('R02', 'G17', 40),
+('R03', 'G15', 30), ('R03', 'G16', 30), ('R03', 'G17', 40),
+('R04', 'G19', 30), ('R04', 'G20', 30), ('R04', 'G21', 40),
+('R05', 'G19', 30), ('R05', 'G21', 30), ('R05', 'G01', 40),
+('R06', 'G20', 30), ('R06', 'G21', 30), ('R06', 'G25', 40),
+('R07', 'G03', 30), ('R07', 'G04', 30), ('R07', 'G05', 40),
+('R08', 'G03', 30), ('R08', 'G05', 30), ('R08', 'G23', 40),
+('R09', 'G04', 30), ('R09', 'G05', 30), ('R09', 'G25', 40),
+('R10', 'G03', 30), ('R10', 'G05', 30), ('R10', 'G24', 40),
+('R11', 'G03', 30), ('R11', 'G02', 30), ('R11', 'G24', 40),
+('R12', 'G05', 30), ('R12', 'G24', 30), ('R12', 'G25', 40),
+('R13', 'G07', 30), ('R13', 'G08', 30), ('R13', 'G09', 40),
+('R14', 'G08', 30), ('R14', 'G09', 30), ('R14', 'G10', 40),
+('R15', 'G09', 30), ('R15', 'G10', 30), ('R15', 'G11', 40),
+('R16', 'G11', 30), ('R16', 'G12', 30), ('R16', 'G13', 40),
+('R17', 'G12', 30), ('R17', 'G13', 30), ('R17', 'G22', 40),
+('R18', 'G11', 30), ('R18', 'G13', 30), ('R18', 'G26', 40),
+('R19', 'G18', 30), ('R19', 'G06', 30), ('R19', 'G28', 40),
+('R20', 'G18', 30), ('R20', 'G06', 30), ('R20', 'G02', 40),
+('R21', 'G18', 30), ('R21', 'G28', 30), ('R21', 'G22', 40),
+('R22', 'G01', 30), ('R22', 'G03', 30), ('R22', 'G05', 40),
+('R23', 'G03', 30), ('R23', 'G23', 30), ('R23', 'G27', 40),
+('R24', 'G05', 30), ('R24', 'G25', 30), ('R24', 'G27', 40),
+('R25', 'G02', 30), ('R25', 'G22', 30), ('R25', 'G25', 40),
+('R26', 'G01', 30), ('R26', 'G02', 30), ('R26', 'G30', 40),
+('R27', 'G22', 30), ('R27', 'G25', 30), ('R27', 'G30', 40),
+('R28', 'G07', 30), ('R28', 'G08', 30), ('R28', 'G09', 40),
+('R29', 'G08', 30), ('R29', 'G09', 30), ('R29', 'G10', 40),
+('R30', 'G09', 30), ('R30', 'G10', 30), ('R30', 'G12', 40);

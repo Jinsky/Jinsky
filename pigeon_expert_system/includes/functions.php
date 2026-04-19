@@ -68,12 +68,26 @@ function get_diagnosa($pdo, $selected_gejala) {
     }
 
     // Fetch all rules and their associated symptoms with percentages
-    $stmt = $pdo->query("
-        SELECT a.id as id_aturan, a.id_penyakit, ad.id_gejala, ad.persentase
-        FROM aturan a
-        JOIN aturan_detail ad ON a.id = ad.id_aturan
-    ");
-    $rules_raw = $stmt->fetchAll();
+    // Wrapped in try-catch to handle cases where schema update might not have been applied yet in a real DB
+    try {
+        $stmt = $pdo->query("
+            SELECT a.id as id_aturan, a.id_penyakit, ad.id_gejala, ad.persentase
+            FROM aturan a
+            JOIN aturan_detail ad ON a.id = ad.id_aturan
+        ");
+        $rules_raw = $stmt->fetchAll();
+    } catch (PDOException $e) {
+        // Fallback for missing 'persentase' column if DB not yet updated
+        $stmt = $pdo->query("
+            SELECT a.id as id_aturan, a.id_penyakit, ad.id_gejala
+            FROM aturan a
+            JOIN aturan_detail ad ON a.id = ad.id_aturan
+        ");
+        $rules_raw = $stmt->fetchAll();
+        foreach ($rules_raw as &$row) {
+            $row['persentase'] = 0; // Default to 0 or some logic
+        }
+    }
 
     $scores = []; // [id_penyakit => score]
 
@@ -82,7 +96,7 @@ function get_diagnosa($pdo, $selected_gejala) {
             if (!isset($scores[$row['id_penyakit']])) {
                 $scores[$row['id_penyakit']] = 0;
             }
-            $scores[$row['id_penyakit']] += (int)$row['persentase'];
+            $scores[$row['id_penyakit']] += (isset($row['persentase']) ? (int)$row['persentase'] : 0);
         }
     }
 
@@ -95,6 +109,7 @@ function get_diagnosa($pdo, $selected_gejala) {
 
     // Limit confidence to 100%
     if ($max_score > 100) $max_score = 100;
+    if ($max_score == 0) return null; // No meaningful match if all weights are 0
 
     $stmt = $pdo->prepare("SELECT * FROM penyakit WHERE id = ?");
     $stmt->execute([$best_penyakit_id]);

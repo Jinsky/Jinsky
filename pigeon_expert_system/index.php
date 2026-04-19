@@ -9,13 +9,13 @@ include 'includes/header.php';
         <div class="max-w-7xl mx-auto px-8 grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
             <div class="lg:col-span-7 z-10">
                 <span class="inline-block px-4 py-1.5 mb-6 rounded-full bg-secondary-container text-on-secondary-container text-sm font-bold tracking-wider uppercase font-label">
-                    Expert Avian Diagnostics
+                    Diagnosa Avian Pakar
                 </span>
                 <h1 class="text-6xl lg:text-7xl font-bold leading-[1.1] text-primary mb-8 -tracking-tight font-headline">
-                    Precision Care for Your <span class="italic text-primary-container">Avian Companions.</span>
+                    Perawatan Presisi untuk <span class="italic text-primary-container">Teman Avian Anda.</span>
                 </h1>
                 <p class="text-xl text-on-surface-variant max-w-xl mb-10 leading-relaxed font-body">
-                    Combining high-end clinical research with organic warmth to provide the most accurate health assessment for your pigeons. Because every wingbeat matters.
+                    Menggabungkan riset klinis tingkat tinggi dengan pendekatan yang ramah untuk memberikan penilaian kesehatan paling akurat bagi merpati Anda. Karena setiap detak sayap sangat berarti.
                 </p>
                 <div class="flex flex-wrap gap-4">
                     <a href="konsultasi.php" class="px-8 py-4 rounded-xl bg-gradient-to-br from-primary to-primary-container text-white font-bold text-lg shadow-lg shadow-primary/20 hover:scale-[1.02] transition-transform font-label text-center">
@@ -38,8 +38,8 @@ include 'includes/header.php';
                             <span class="material-symbols-outlined text-secondary">monitor_heart</span>
                         </div>
                         <div>
-                            <p class="text-xs font-bold text-on-surface-variant font-label">VITAL STATUS</p>
-                            <p class="text-sm font-bold text-primary font-body">Optimal Health</p>
+                            <p class="text-xs font-bold text-on-surface-variant font-label">STATUS VITAL</p>
+                            <p class="text-sm font-bold text-primary font-body">Kesehatan Optimal</p>
                         </div>
                     </div>
                     <div class="w-full h-2 bg-surface-container rounded-full overflow-hidden">
@@ -89,7 +89,7 @@ include 'includes/header.php';
                         </p>
                     </div>
                     <div class="mt-8 pt-8 border-t border-primary-container">
-                        <p class="text-sm font-label opacity-60 uppercase tracking-widest mb-2">Success Rate</p>
+                        <p class="text-sm font-label opacity-60 uppercase tracking-widest mb-2">Tingkat Keberhasilan</p>
                         <p class="text-4xl font-headline font-bold">98.4%</p>
                     </div>
                 </div>
@@ -124,21 +124,21 @@ include 'includes/header.php';
                     <div class="p-6 rounded-2xl bg-surface-container hover:bg-surface-container-high transition-colors flex items-center gap-6">
                         <div class="w-4 h-16 bg-tertiary rounded-full"></div>
                         <div>
-                            <h4 class="text-xl font-bold text-primary mb-1 font-headline">Respiratory Issues</h4>
+                            <h4 class="text-xl font-bold text-primary mb-1 font-headline">Masalah Pernapasan</h4>
                             <p class="text-on-surface-variant font-body">Analisis mendalam gejala pilek, sesak nafas, dan asma pada burung dara.</p>
                         </div>
                     </div>
                     <div class="p-6 rounded-2xl bg-surface-container hover:bg-surface-container-high transition-colors flex items-center gap-6">
                         <div class="w-4 h-16 bg-secondary rounded-full"></div>
                         <div>
-                            <h4 class="text-xl font-bold text-primary mb-1 font-headline">Digestive Disorders</h4>
+                            <h4 class="text-xl font-bold text-primary mb-1 font-headline">Gangguan Pencernaan</h4>
                             <p class="text-on-surface-variant font-body">Pemantauan kesehatan pencernaan melalui observasi feses dan pola makan.</p>
                         </div>
                     </div>
                     <div class="p-6 rounded-2xl bg-surface-container hover:bg-surface-container-high transition-colors flex items-center gap-6">
                         <div class="w-4 h-16 bg-primary-container rounded-full"></div>
                         <div>
-                            <h4 class="text-xl font-bold text-primary mb-1 font-headline">Feather & Skin Health</h4>
+                            <h4 class="text-xl font-bold text-primary mb-1 font-headline">Kesehatan Bulu & Kulit</h4>
                             <p class="text-on-surface-variant font-body">Identifikasi parasit kulit dan masalah kerontokan bulu yang abnormal.</p>
                         </div>
                     </div>
