@@ -45,73 +45,63 @@ function get_all_gejala($pdo) {
 }
 
 /**
- * Forward Chaining Algorithm
+ * Weighted Diagnostic Algorithm
  * Returns the matched disease based on selected symptoms
  */
 function get_diagnosa($pdo, $selected_gejala) {
+    if (count($selected_gejala) < 2) return null;
+
     if (!$pdo) {
         // Mock logic for demo if DB is missing
-        // P01: G14, G15, G16
-        if (in_array('G14', $selected_gejala) && in_array('G15', $selected_gejala) && in_array('G16', $selected_gejala)) {
-            return [
+        if (in_array('G14', $selected_gejala) && in_array('G15', $selected_gejala)) {
+            $penyakit = [
                 'id' => 'P01',
                 'nama' => 'Newcastle Disease',
                 'deskripsi' => 'Penyakit Newcastle (ND) atau yang dikenal dengan nama Tetelo adalah penyakit viral yang sangat menular pada unggas. Gejala yang paling khas adalah gangguan saraf seperti leher berputar (tortikolis) dan kelumpuhan.',
                 'solusi' => '1. Isolasi segera burung.\n2. Berikan dukungan vitamin B Kompleks.\n3. Desinfeksi kandang.',
                 'pencegahan' => '1. Vaksinasi rutin.\n2. Biosekuriti ketat.',
-                'confidence' => 100
+                'confidence' => 85
             ];
+            return $penyakit;
         }
         return null;
     }
-    if (empty($selected_gejala)) return null;
 
-    // Fetch all rules and their associated symptoms
+    // Fetch all rules and their associated symptoms with percentages
     $stmt = $pdo->query("
-        SELECT a.id as id_aturan, a.id_penyakit, ad.id_gejala
+        SELECT a.id as id_aturan, a.id_penyakit, ad.id_gejala, ad.persentase
         FROM aturan a
         JOIN aturan_detail ad ON a.id = ad.id_aturan
     ");
     $rules_raw = $stmt->fetchAll();
 
-    // Group rules by id_aturan
-    $rules = [];
+    $scores = []; // [id_penyakit => score]
+
     foreach ($rules_raw as $row) {
-        $rules[$row['id_aturan']]['id_penyakit'] = $row['id_penyakit'];
-        $rules[$row['id_aturan']]['gejala'][] = $row['id_gejala'];
-    }
-
-    $best_match = null;
-    $max_match_count = 0;
-
-    foreach ($rules as $rule_id => $rule_data) {
-        $rule_gejala = $rule_data['gejala'];
-
-        // Count how many symptoms of this rule are present in the selected symptoms
-        $intersection = array_intersect($rule_gejala, $selected_gejala);
-        $match_count = count($intersection);
-        $total_rule_gejala = count($rule_gejala);
-
-        // Forward Chaining condition: all symptoms in the rule must be present
-        if ($match_count === $total_rule_gejala) {
-            // If multiple rules match, we can return the one with the most symptoms (more specific)
-            // or just the first one found.
-            if ($match_count > $max_match_count) {
-                $max_match_count = $match_count;
-                $best_match = $rule_data['id_penyakit'];
+        if (in_array($row['id_gejala'], $selected_gejala)) {
+            if (!isset($scores[$row['id_penyakit']])) {
+                $scores[$row['id_penyakit']] = 0;
             }
+            $scores[$row['id_penyakit']] += (int)$row['persentase'];
         }
     }
 
-    if ($best_match) {
-        $stmt = $pdo->prepare("SELECT * FROM penyakit WHERE id = ?");
-        $stmt->execute([$best_match]);
-        $penyakit = $stmt->fetch();
+    if (empty($scores)) return null;
 
-        // Calculate a simple confidence score
-        // In forward chaining, if the rule triggers, it's 100% based on the logic,
-        // but we can simulate confidence based on how many symptoms were selected vs matched.
-        $penyakit['confidence'] = 100;
+    // Sort by score descending
+    arsort($scores);
+    $best_penyakit_id = key($scores);
+    $max_score = current($scores);
+
+    // Limit confidence to 100%
+    if ($max_score > 100) $max_score = 100;
+
+    $stmt = $pdo->prepare("SELECT * FROM penyakit WHERE id = ?");
+    $stmt->execute([$best_penyakit_id]);
+    $penyakit = $stmt->fetch();
+
+    if ($penyakit) {
+        $penyakit['confidence'] = $max_score;
         return $penyakit;
     }
 

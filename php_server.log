@@ -1,0 +1,13 @@
+[Sun Apr 19 05:50:07 2026] PHP 8.3.6 Development Server (http://localhost:8000) started
+[Sun Apr 19 05:50:10 2026] [::1]:49004 Accepted
+[Sun Apr 19 05:50:10 2026] [::1]:49004 [200]: GET /
+[Sun Apr 19 05:50:10 2026] [::1]:49004 Closing
+[Sun Apr 19 05:50:13 2026] [::1]:49008 Accepted
+[Sun Apr 19 05:50:13 2026] [::1]:49008 [200]: GET /konsultasi.php
+[Sun Apr 19 05:50:13 2026] [::1]:49008 Closing
+[Sun Apr 19 05:50:15 2026] [::1]:34216 Accepted
+[Sun Apr 19 05:50:15 2026] [::1]:34216 [200]: POST /hasil.php
+[Sun Apr 19 05:50:15 2026] [::1]:34216 Closing
+[Sun Apr 19 05:50:17 2026] [::1]:34232 Accepted
+[Sun Apr 19 05:50:17 2026] [::1]:34232 [200]: GET /admin/login.php
+[Sun Apr 19 05:50:17 2026] [::1]:34232 Closing
