@@ -22,29 +22,29 @@ $total_diagnosa = count($riwayat);
         </div>
         <nav class="flex-1 space-y-1">
             <a class="flex items-center text-[#171c1f]/60 dark:text-[#ffffff]/60 px-8 py-3 hover:bg-[#f6fafe]/50 dark:hover:bg-[#ffffff]/10 transition-all font-manrope text-sm font-medium" href="index.php">
-                <span class="material-symbols-outlined mr-3">grid_view</span> Overview
+                <span class="material-symbols-outlined mr-3">grid_view</span> Beranda
             </a>
             <a class="flex items-center text-[#171c1f]/60 dark:text-[#ffffff]/60 px-8 py-3 hover:bg-[#f6fafe]/50 dark:hover:bg-[#ffffff]/10 transition-all font-manrope text-sm font-medium" href="katalog.php">
-                <span class="material-symbols-outlined mr-3">flutter_dash</span> Avian Profiles
+                <span class="material-symbols-outlined mr-3">flutter_dash</span> Profil Avian
             </a>
             <a class="flex items-center text-[#171c1f]/60 dark:text-[#ffffff]/60 px-8 py-3 hover:bg-[#f6fafe]/50 dark:hover:bg-[#ffffff]/10 transition-all font-manrope text-sm font-medium" href="konsultasi.php">
-                <span class="material-symbols-outlined mr-3">biotech</span> Lab Results
+                <span class="material-symbols-outlined mr-3">biotech</span> Hasil Lab
             </a>
             <a class="flex items-center bg-[#ffffff] dark:bg-[#2a6069] text-[#005C97] dark:text-white rounded-l-full ml-4 pl-4 py-3 shadow-sm font-manrope text-sm font-medium translate-x-1 duration-200" href="riwayat.php">
                 <span class="material-symbols-outlined mr-3">history</span> Riwayat
             </a>
             <a class="flex items-center text-[#171c1f]/60 dark:text-[#ffffff]/60 px-8 py-3 hover:bg-[#f6fafe]/50 dark:hover:bg-[#ffffff]/10 transition-all font-manrope text-sm font-medium" href="tentang.php">
-                <span class="material-symbols-outlined mr-3">settings</span> Settings
+                <span class="material-symbols-outlined mr-3">settings</span> Pengaturan
             </a>
         </nav>
         <div class="px-8 mt-auto pt-6 border-t border-outline-variant/10">
             <div class="flex items-center gap-3">
                 <div class="w-10 h-10 rounded-xl overflow-hidden bg-surface-container">
-                    <img alt="Dr. Pigeon" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDGqtDDBuS7lzEngXy9IeeaaKGr7hfKdjj4UBf2cIffBXY76U_pLzxCHMTHG7MbeypMyXoKgpzam_F5cEh4MWB5YLchwTTZlIy3Oj8UxMdeoZD2EMeEhEI13I6-43kGCFnWs6MPfhDxACmHzzIGyKFsP5WgiYrasHtxenqDBhuTIa5MtBQRjbvRBlAuHaciEhfkAUp9rPzAzIc8K1b3sEJpUOqGOH5qDyz_A-8bayhY3oZoFhZwl_2TgjrTjCHyLL1R6tyqfiVWqKl0"/>
+                    <img alt="Dr. Merpati" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDGqtDDBuS7lzEngXy9IeeaaKGr7hfKdjj4UBf2cIffBXY76U_pLzxCHMTHG7MbeypMyXoKgpzam_F5cEh4MWB5YLchwTTZlIy3Oj8UxMdeoZD2EMeEhEI13I6-43kGCFnWs6MPfhDxACmHzzIGyKFsP5WgiYrasHtxenqDBhuTIa5MtBQRjbvRBlAuHaciEhfkAUp9rPzAzIc8K1b3sEJpUOqGOH5qDyz_A-8bayhY3oZoFhZwl_2TgjrTjCHyLL1R6tyqfiVWqKl0"/>
                 </div>
                 <div class="overflow-hidden">
-                    <p class="text-sm font-bold truncate">Dr. Pigeon</p>
-                    <p class="text-xs text-on-surface-variant">Avian Specialist</p>
+                    <p class="text-sm font-bold truncate">Dr. Merpati</p>
+                    <p class="text-xs text-on-surface-variant">Spesialis Avian</p>
                 </div>
             </div>
         </div>
@@ -94,7 +94,7 @@ $total_diagnosa = count($riwayat);
                     <div class="bg-surface-container-lowest rounded-xl p-6 flex flex-col lg:flex-row lg:items-center gap-6 transition-all hover:bg-surface-container-low/50 relative overflow-hidden">
                         <div class="absolute left-0 top-0 bottom-0 w-1 <?= $r['id_penyakit'] ? 'bg-tertiary' : 'bg-secondary' ?>"></div>
                         <div class="lg:w-48">
-                            <p class="text-[10px] text-on-surface-variant font-bold uppercase tracking-tighter mb-1">Tanggal Assessment</p>
+                            <p class="text-[10px] text-on-surface-variant font-bold uppercase tracking-tighter mb-1">Tanggal Pemeriksaan</p>
                             <p class="text-on-surface font-bold"><?= date('d M Y', strtotime($r['tanggal'])) ?></p>
                             <p class="text-xs text-on-surface-variant"><?= date('H:i', strtotime($r['tanggal'])) ?> WIB</p>
                         </div>
@@ -111,7 +111,7 @@ $total_diagnosa = count($riwayat);
                             <p class="text-[10px] text-on-surface-variant font-bold uppercase tracking-tighter mb-1">Hasil Diagnosa</p>
                             <div class="flex items-center gap-3">
                                 <span class="text-lg font-headline font-bold text-primary"><?= $r['nama_penyakit'] ?? 'Tidak Terdeteksi' ?></span>
-                                <span class="bg-<?= $r['id_penyakit'] ? 'error' : 'secondary' ?>-container text-on-<?= $r['id_penyakit'] ? 'error' : 'secondary' ?>-container text-[10px] font-bold px-2 py-0.5 rounded-full"><?= $r['confidence'] ?>% Match</span>
+                                <span class="bg-<?= $r['id_penyakit'] ? 'error' : 'secondary' ?>-container text-on-<?= $r['id_penyakit'] ? 'error' : 'secondary' ?>-container text-[10px] font-bold px-2 py-0.5 rounded-full"><?= $r['confidence'] ?>% Cocok</span>
                             </div>
                         </div>
                         <div class="flex justify-end lg:w-40">

@@ -102,9 +102,6 @@
                 <a class="font-headline text-lg tracking-tight <?= basename($_SERVER['PHP_SELF']) == 'tentang.php' ? 'text-cyan-700 dark:text-cyan-300 border-b-2 border-cyan-700 font-bold pb-1' : 'text-slate-600 dark:text-slate-400 hover:text-cyan-800 transition-colors' ?>" href="tentang.php">Tentang</a>
             </div>
             <div class="flex items-center gap-4">
-                <button class="px-6 py-2 rounded-lg bg-primary text-on-primary font-bold hover:bg-primary-container transition-all duration-300">
-                    Sign In
-                </button>
             </div>
         </div>
     </nav>

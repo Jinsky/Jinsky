@@ -8,12 +8,12 @@ include 'includes/header.php';
     <section class="relative min-h-[716px] flex items-center overflow-hidden bg-surface py-20">
         <div class="max-w-7xl mx-auto px-8 grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
             <div class="z-10">
-                <span class="text-secondary font-bold tracking-widest text-xs uppercase mb-4 block">Avian Research Initiative</span>
+                <span class="text-secondary font-bold tracking-widest text-xs uppercase mb-4 block">Inisiatif Riset Avian</span>
                 <h1 class="font-headline text-6xl md:text-7xl text-primary leading-tight mb-8 tracking-tighter">
-                    Merging Science <br/>with <span class="italic text-primary-container">Avian Vitality.</span>
+                    Menggabungkan Sains <br/>dengan <span class="italic text-primary-container">Vitalitas Avian.</span>
                 </h1>
                 <p class="text-on-surface-variant text-xl max-w-xl leading-relaxed font-body">
-                    Clinical Vitality represents a paradigm shift in pigeon healthcare, utilizing advanced diagnostic logic to provide breeders and veterinarians with immediate, research-backed insights.
+                    Clinical Vitality mewakili pergeseran paradigma dalam perawatan kesehatan merpati, menggunakan logika diagnostik tingkat lanjut untuk memberikan wawasan berbasis riset yang instan bagi peternak dan dokter hewan.
                 </p>
             </div>
             <div class="relative">
@@ -32,17 +32,17 @@ include 'includes/header.php';
         <div class="max-w-7xl mx-auto px-8">
             <div class="grid grid-cols-1 md:grid-cols-12 gap-8">
                 <div class="md:col-span-7 bg-surface-container-lowest p-12 rounded-xl shadow-sm">
-                    <h2 class="font-headline text-4xl text-primary mb-6">Our Mission</h2>
+                    <h2 class="font-headline text-4xl text-primary mb-6">Misi Kami</h2>
                     <p class="text-on-surface-variant text-lg leading-relaxed mb-6">
-                        To empower pigeon enthusiasts and clinical researchers with an intelligent diagnostic platform that bridges the gap between observation and clinical action. We strive to reduce avian mortality rates through early detection and precise symptomatic analysis.
+                        Memberdayakan penggemar merpati dan peneliti klinis dengan platform diagnostik cerdas yang menjembatani kesenjangan antara observasi dan tindakan klinis. Kami berupaya mengurangi tingkat kematian burung melalui deteksi dini dan analisis gejala yang tepat.
                     </p>
                     <div class="h-1 w-24 bg-secondary-container rounded-full"></div>
                 </div>
                 <div class="md:col-span-5 flex items-end">
                     <div class="bg-primary p-12 rounded-xl text-on-primary shadow-xl">
-                        <h2 class="font-headline text-3xl mb-4">The Vision</h2>
+                        <h2 class="font-headline text-3xl mb-4">Visi</h2>
                         <p class="opacity-90 leading-relaxed">
-                            A world where every bird owner has access to professional-grade diagnostic logic, fostering a community of informed caretakers dedicated to the highest standards of avian welfare.
+                            Dunia di mana setiap pemilik burung memiliki akses ke logika diagnostik tingkat profesional, membina komunitas perawat yang terinformasi dan berdedikasi pada standar kesejahteraan unggas tertinggi.
                         </p>
                     </div>
                 </div>
@@ -54,8 +54,8 @@ include 'includes/header.php';
     <section class="py-24 bg-surface">
         <div class="max-w-7xl mx-auto px-8">
             <div class="text-center mb-16">
-                <h2 class="font-headline text-5xl text-primary mb-4">Diagnostic Rigor</h2>
-                <p class="text-on-surface-variant text-lg">The scientific engine powering Clinical Vitality</p>
+                <h2 class="font-headline text-5xl text-primary mb-4">Ketelitian Diagnostik</h2>
+                <p class="text-on-surface-variant text-lg">Mesin ilmiah yang menggerakkan Clinical Vitality</p>
             </div>
             <div class="grid grid-cols-1 lg:grid-cols-3 gap-12">
                 <div class="group">
@@ -97,11 +97,11 @@ include 'includes/header.php';
         <div class="max-w-7xl mx-auto px-8">
             <div class="flex flex-col md:flex-row justify-between items-end mb-16 gap-8">
                 <div class="max-w-2xl">
-                    <h2 class="font-headline text-5xl text-primary mb-6">Scientific Council</h2>
-                    <p class="text-on-surface-variant text-xl">Our research is led by specialists in avian pathology and veterinary informatics, ensuring every line of code serves a biological purpose.</p>
+                    <h2 class="font-headline text-5xl text-primary mb-6">Dewan Ilmiah</h2>
+                    <p class="text-on-surface-variant text-xl">Riset kami dipimpin oleh spesialis dalam patologi avian dan informatika veteriner, memastikan setiap baris kode melayani tujuan biologis.</p>
                 </div>
                 <button class="text-primary font-bold flex items-center gap-2 group">
-                    Meet the Full Research Team
+                    Temui Seluruh Tim Riset
                     <span class="material-symbols-outlined group-hover:translate-x-1 transition-transform">arrow_forward</span>
                 </button>
             </div>
@@ -111,21 +111,21 @@ include 'includes/header.php';
                         <img class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500" alt="Dr. Elena Vos" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAmz0Yx7aaOM3voGbj9JqfkJGi30tISk8AST7a0iUsXVdAaOH-oA--NzaZgTzdsgNQR_B1-XfIN2XzYBiAdS_1g5CJvqpIij7sVnU9H3C5Smd2saIwldA-JQhVvjxlE-bEi_GpUIs2HTYKT9J_TrOp8JG_CmtIN0hW85z-GtMC-tJOg9qVOdaPKQrdchcKkksGXeRDaG_WZCGyMR7-qzjvfPkJ248a7RJZ8ksxkwR5bCZNRMfyDD2BxcJNluHKqvVlBI7N32aeWt4Zs"/>
                     </div>
                     <h4 class="font-headline text-xl text-primary">Dr. Elena Vos</h4>
-                    <p class="text-secondary font-medium text-sm uppercase tracking-wide">Chief Pathologist</p>
+                    <p class="text-secondary font-medium text-sm uppercase tracking-wide">Ketua Patologi</p>
                 </div>
                 <div class="group pt-12 md:pt-24">
                     <div class="aspect-[3/4] rounded-xl overflow-hidden mb-6 bg-surface-container">
                         <img class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500" alt="Dr. Marcus Thorne" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCqKThEy81wMuT9nDVacQK4q72L8hUjxPOYATx9-RG-bsrfWKRRFJH6miqjPtEvLtZjww2WJ5Oc6rzKG7AOr6j86g-H4PCpUVSytfH4aWzDByMUxtSXZoVJ5ZFmovmsOxh3reCEE6lBnXkSTU-1d35BFlabe-MGbdqmLDc7QIA9JuAOo0ZNca6Rs44FkdhdGJhRX8iPcMHZDbs-PYHYiYbaw_PZ_aEuHVL0HNvoRdhkPC6IfO7wBl75mNbdWA2C0GKOu-elyg1oE71U"/>
                     </div>
                     <h4 class="font-headline text-xl text-primary">Dr. Marcus Thorne</h4>
-                    <p class="text-secondary font-medium text-sm uppercase tracking-wide">Informatics Lead</p>
+                    <p class="text-secondary font-medium text-sm uppercase tracking-wide">Kepala Informatika</p>
                 </div>
                 <div class="group pt-0 md:pt-12">
                     <div class="aspect-[3/4] rounded-xl overflow-hidden mb-6 bg-surface-container">
                         <img class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500" alt="Sarah Jenkins" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBoj26AvtHHEdqDGOxTuSIDMWkMnC5IUy6qaHDQbabvDvm6Q6xtnoOFYvCOccbT7Gm16j2DZDEY9iyI6fCgGdgAXDeiK3LUSzKpJ9yvKbCpJOze7mk-FevfCL-VEQokJSDU_M0fIBB_u277y29U1wgtwaHzXE1lv5v-DqHbu_Uxi2UV0VcL4Z80wmai4g8FmOIJmEpyCvZA2y0gU6TF1yap8aPXZfK2kVu4Rh1fUaIOoVE5rKEQBWIeci38-1qofhbd7mAacWnpjsTq"/>
                     </div>
                     <h4 class="font-headline text-xl text-primary">Sarah Jenkins</h4>
-                    <p class="text-secondary font-medium text-sm uppercase tracking-wide">Director of Welfare</p>
+                    <p class="text-secondary font-medium text-sm uppercase tracking-wide">Direktur Kesejahteraan</p>
                 </div>
             </div>
         </div>

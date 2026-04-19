@@ -23,7 +23,7 @@ include 'includes/header.php';
     <!-- Header Section -->
     <div class="mb-16">
         <span class="bg-secondary-container text-on-secondary-container px-4 py-1.5 rounded-full text-sm font-bold tracking-wider uppercase mb-6 inline-block">
-            Analysis Complete
+            Analisis Selesai
         </span>
         <h1 class="font-headline text-5xl md:text-6xl text-primary font-bold tracking-tight mb-6">Hasil Analisis Kesehatan</h1>
         <p class="text-on-surface-variant text-xl max-w-2xl leading-relaxed">
@@ -39,11 +39,11 @@ include 'includes/header.php';
                 <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-6 mb-8">
                     <div>
                         <h2 class="font-headline text-3xl text-primary font-bold mb-2"><?= $diagnosis['nama'] ?></h2>
-                        <span class="bg-primary-container text-on-primary-container px-3 py-1 rounded-full text-xs font-bold uppercase tracking-widest">Confirmed Pattern Match</span>
+                        <span class="bg-primary-container text-on-primary-container px-3 py-1 rounded-full text-xs font-bold uppercase tracking-widest">Kecocokan Pola Terkonfirmasi</span>
                     </div>
                     <div class="text-center bg-surface-container-lowest p-6 rounded-2xl shadow-sm border border-outline-variant/10 min-w-[140px]">
                         <p class="text-5xl font-headline font-black text-primary leading-none"><?= $diagnosis['confidence'] ?>%</p>
-                        <p class="text-[10px] font-bold text-on-surface-variant uppercase tracking-widest mt-2">Confidence Score</p>
+                        <p class="text-[10px] font-bold text-on-surface-variant uppercase tracking-widest mt-2">Skor Keyakinan</p>
                     </div>
                 </div>
 
@@ -95,7 +95,7 @@ include 'includes/header.php';
         <!-- Sidebar / Details -->
         <div class="lg:col-span-5 space-y-8 sticky top-28">
             <div class="bg-surface-container-low p-8 rounded-xl">
-                <h3 class="font-headline text-xl text-primary mb-6">Symptom Summary</h3>
+                <h3 class="font-headline text-xl text-primary mb-6">Ringkasan Gejala</h3>
                 <div class="flex flex-wrap gap-2 mb-8">
                     <?php
                     $gejala_all = get_all_gejala($pdo);
@@ -111,14 +111,14 @@ include 'includes/header.php';
                     ?>
                 </div>
                 <div class="p-6 bg-surface-container-lowest rounded-xl border border-outline-variant/5">
-                    <p class="text-[10px] font-bold text-on-surface-variant uppercase tracking-widest mb-4">Diagnostic Context</p>
+                    <p class="text-[10px] font-bold text-on-surface-variant uppercase tracking-widest mb-4">Konteks Diagnostik</p>
                     <div class="space-y-4">
                         <div class="flex justify-between items-center text-sm">
-                            <span class="text-on-surface-variant">Method</span>
+                            <span class="text-on-surface-variant">Metode</span>
                             <span class="font-bold">Forward Chaining</span>
                         </div>
                         <div class="flex justify-between items-center text-sm">
-                            <span class="text-on-surface-variant">Timestamp</span>
+                            <span class="text-on-surface-variant">Waktu</span>
                             <span class="font-bold"><?= date('d M Y, H:i') ?> WIB</span>
                         </div>
                     </div>
@@ -129,7 +129,7 @@ include 'includes/header.php';
                 <img class="w-full h-full object-cover" alt="Expert consultation" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAv6Cyh7PHS4jVbuTjoVDTl1fPAWlWfPB8YNPxJaX1n1LuK_GwIagh4H-G4vPpwzM45mcqijfFsk98WIDr4dSA1fYDKtSioH4mboqyxYNN-bKRzTSmtJ1lu5TgLFTPFysXmOpcAS8eGom5-M_WoMZk22kSGn44oZDAG0e2k71F2L9123DR6WxPZbynZ0iirtKnUD-6BGFAG1AHXyUE_JzAN3UXUQIkzL6lDyLItzS6R-vtHUgInPBxgDz8cnX_uRJVBwcQHVr-UI2nY"/>
                 <div class="absolute inset-0 bg-primary/40 flex items-center justify-center p-8 text-center text-on-primary">
                     <div>
-                        <p class="font-headline text-lg mb-4 italic">"Early detection is the cornerstone of flock safety."</p>
+                        <p class="font-headline text-lg mb-4 italic">"Deteksi dini adalah landasan keselamatan kawanan."</p>
                         <a href="riwayat.php" class="bg-white/20 backdrop-blur-md border border-white/30 text-white px-6 py-2 rounded-lg text-sm font-bold hover:bg-white/30 transition-all">Lihat Riwayat</a>
                     </div>
                 </div>

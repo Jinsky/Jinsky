@@ -70,7 +70,7 @@ $penyakit_list = get_all_penyakit($pdo);
         <div class="max-w-7xl mx-auto px-8 grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
             <div class="relative">
                 <div class="aspect-[4/5] bg-surface-container-highest rounded-2xl overflow-hidden shadow-2xl">
-                    <img alt="Laboratory research" class="w-full h-full object-cover grayscale mix-blend-multiply opacity-80" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDHUrfQM2NJzzNNAvpFYZU5ypsPRMWdvYGS2rTbzA4WDtfrHM3GDZIvjJ5q-m4vYZE82bMJsibH0sCs1EpWc5MnS0t8dKvrpBZzvVJZyhAM4if4SkiJJBSKvdiqNG3x9BVTRyGu6BFJU8NYxJVoOG_yXXsA8jZQP5S9hNwWRWa4b5JpLYXg4AHljdMS1enbjTHNCmIgNLItNcn0hUzx4EFLj7KPm8WYqlL3w8ZmFBDZu2jR14Ynf-enw9OmAPFeLIr2LEuse-dWQqBZ"/>
+                    <img alt="Penelitian laboratorium" class="w-full h-full object-cover grayscale mix-blend-multiply opacity-80" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDHUrfQM2NJzzNNAvpFYZU5ypsPRMWdvYGS2rTbzA4WDtfrHM3GDZIvjJ5q-m4vYZE82bMJsibH0sCs1EpWc5MnS0t8dKvrpBZzvVJZyhAM4if4SkiJJBSKvdiqNG3x9BVTRyGu6BFJU8NYxJVoOG_yXXsA8jZQP5S9hNwWRWa4b5JpLYXg4AHljdMS1enbjTHNCmIgNLItNcn0hUzx4EFLj7KPm8WYqlL3w8ZmFBDZu2jR14Ynf-enw9OmAPFeLIr2LEuse-dWQqBZ"/>
                 </div>
                 <div class="absolute -bottom-8 -right-8 p-8 bg-primary rounded-2xl text-on-primary max-w-xs shadow-xl">
                     <p class="font-headline italic text-lg leading-snug">"Deteksi dini adalah kunci keselamatan koloni merpati Anda."</p>
