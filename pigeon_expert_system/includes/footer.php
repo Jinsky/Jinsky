@@ -16,17 +16,17 @@
             </ul>
         </div>
         <div>
-            <h5 class="text-cyan-900 dark:text-cyan-100 font-bold mb-6">Resources</h5>
+            <h5 class="text-cyan-900 dark:text-cyan-100 font-bold mb-6">Sumber Daya</h5>
             <ul class="space-y-4">
-                <li><a class="text-slate-500 dark:text-slate-400 hover:text-cyan-600 dark:hover:text-cyan-200 transition-colors" href="#">Bird Care Guide</a></li>
-                <li><a class="text-slate-500 dark:text-slate-400 hover:text-cyan-600 dark:hover:text-cyan-200 transition-colors" href="#">Privacy Policy</a></li>
-                <li><a class="text-slate-500 dark:text-slate-400 hover:text-cyan-600 dark:hover:text-cyan-200 transition-colors" href="#">Terms of Service</a></li>
+                <li><a class="text-slate-500 dark:text-slate-400 hover:text-cyan-600 dark:hover:text-cyan-200 transition-colors" href="#">Panduan Perawatan</a></li>
+                <li><a class="text-slate-500 dark:text-slate-400 hover:text-cyan-600 dark:hover:text-cyan-200 transition-colors" href="#">Kebijakan Privasi</a></li>
+                <li><a class="text-slate-500 dark:text-slate-400 hover:text-cyan-600 dark:hover:text-cyan-200 transition-colors" href="#">Syarat Layanan</a></li>
             </ul>
         </div>
         <div>
             <h5 class="text-cyan-900 dark:text-cyan-100 font-bold mb-6">Hubungi Kami</h5>
             <ul class="space-y-4">
-                <li><a class="text-slate-500 dark:text-slate-400 hover:text-cyan-600 dark:hover:text-cyan-200 transition-colors" href="#">Contact Veterinarian</a></li>
+                <li><a class="text-slate-500 dark:text-slate-400 hover:text-cyan-600 dark:hover:text-cyan-200 transition-colors" href="#">Hubungi Dokter Hewan</a></li>
                 <li class="flex items-center gap-3 text-slate-500 dark:text-slate-400">
                     <span class="material-symbols-outlined text-sm">mail</span>
                     clinic@avianresearch.org
@@ -35,7 +35,7 @@
         </div>
     </div>
     <div class="max-w-7xl mx-auto px-8 mt-16 pt-8 border-t border-slate-200/30 dark:border-slate-800/30 flex justify-between items-center text-slate-400">
-        <p>© 2024 Clinical Vitality Avian Research. All rights reserved.</p>
+        <p>© 2024 Clinical Vitality Avian Research. Seluruh hak cipta dilindungi.</p>
         <div class="flex gap-6">
             <span class="material-symbols-outlined cursor-pointer hover:text-primary transition-colors">language</span>
             <span class="material-symbols-outlined cursor-pointer hover:text-primary transition-colors">share</span>
