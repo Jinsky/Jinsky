@@ -22,7 +22,7 @@ $gejala_list = get_all_gejala($pdo);
             <div class="w-full md:w-96">
                 <div class="relative group">
                     <span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-outline-variant group-focus-within:text-primary transition-colors">search</span>
-                    <input id="catalogSearch" class="w-full pl-12 pr-4 py-4 bg-surface-container-highest border-none rounded-xl focus:ring-2 focus:ring-primary-fixed transition-all text-on-surface placeholder:text-outline" placeholder="Cari..." type="text"/>
+                    <input id="catalogSearch" class="w-full pl-12 pr-4 py-4 bg-surface-container border-none rounded-full focus:ring-2 focus:ring-primary-fixed transition-all text-on-surface placeholder:text-outline" placeholder="Cari..." type="text"/>
                 </div>
             </div>
         </div>
@@ -37,19 +37,19 @@ $gejala_list = get_all_gejala($pdo);
         </div>
 
         <!-- Disease Grid -->
-        <div id="diseaseGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div id="diseaseGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 items-stretch">
             <?php foreach ($penyakit_list as $p): ?>
-            <article class="disease-card bg-surface-container-lowest rounded-xl p-8 flex flex-col relative overflow-hidden group shadow-sm shadow-cyan-900/5" data-name="<?= strtolower($p['nama']) ?>">
+            <article class="disease-card h-full bg-surface-container-lowest rounded-xl p-8 flex flex-col relative overflow-hidden group shadow-sm shadow-cyan-900/5" data-name="<?= strtolower($p['nama']) ?>">
                 <div class="absolute top-0 left-0 w-1 h-full bg-secondary"></div>
                 <div class="flex justify-between items-start mb-6">
                     <span class="px-3 py-1 bg-secondary-container text-on-secondary-container rounded-full text-xs font-bold tracking-wide">Info Penyakit</span>
                     <span class="material-symbols-outlined text-outline-variant">microbiology</span>
                 </div>
                 <h3 class="text-2xl font-headline font-bold text-primary mb-3"><?= $p['nama'] ?></h3>
-                <p class="text-on-surface-variant text-sm leading-relaxed mb-6 flex-grow">
+                <p class="text-on-surface-variant text-sm leading-relaxed mb-6 flex-grow line-clamp-4">
                     <?= $p['deskripsi'] ?>
                 </p>
-                <div class="space-y-3 mb-8">
+                <div class="space-y-3 mb-6">
                     <div class="flex items-start gap-3">
                         <span class="material-symbols-outlined text-secondary text-sm mt-0.5">check_circle</span>
                         <span class="text-xs text-on-surface font-medium"><?= substr($p['solusi'], 0, 50) ?>...</span>
@@ -66,11 +66,11 @@ $gejala_list = get_all_gejala($pdo);
         <!-- Disease Detail Modal -->
         <div id="diseaseModal" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm hidden flex items-center justify-center p-4 z-[100]">
             <div class="bg-surface rounded-2xl max-w-2xl w-full max-h-[90vh] overflow-hidden flex flex-col shadow-2xl">
-                <div class="p-8 border-b border-outline-variant/10 flex justify-between items-center bg-primary text-on-primary">
+                <div class="px-10 py-8 border-b border-outline-variant/10 flex justify-between items-center bg-primary text-on-primary">
                     <h2 id="modalDiseaseName" class="text-3xl font-headline font-bold">Detail Penyakit</h2>
                     <button onclick="closeDiseaseModal()" class="material-symbols-outlined hover:rotate-90 transition-transform">close</button>
                 </div>
-                <div class="p-8 overflow-y-auto space-y-8">
+                <div class="px-10 py-8 overflow-y-auto space-y-8">
                     <div>
                         <h4 class="text-sm font-bold uppercase tracking-widest text-primary mb-3">Deskripsi</h4>
                         <p id="modalDiseaseDesc" class="text-on-surface-variant leading-relaxed"></p>
@@ -80,13 +80,13 @@ $gejala_list = get_all_gejala($pdo);
                             <h4 class="text-sm font-bold uppercase tracking-widest text-secondary mb-3 flex items-center gap-2">
                                 <span class="material-symbols-outlined text-sm">medical_services</span> Solusi
                             </h4>
-                            <p id="modalDiseaseSol" class="text-xs text-on-surface-variant leading-relaxed"></p>
+                            <p id="modalDiseaseSol" class="text-sm text-on-surface-variant leading-relaxed"></p>
                         </div>
                         <div class="bg-surface-container-low p-6 rounded-xl border border-outline-variant/10">
                             <h4 class="text-sm font-bold uppercase tracking-widest text-tertiary mb-3 flex items-center gap-2">
                                 <span class="material-symbols-outlined text-sm">shield</span> Pencegahan
                             </h4>
-                            <p id="modalDiseasePrev" class="text-xs text-on-surface-variant leading-relaxed"></p>
+                            <p id="modalDiseasePrev" class="text-sm text-on-surface-variant leading-relaxed"></p>
                         </div>
                     </div>
                 </div>
@@ -99,9 +99,9 @@ $gejala_list = get_all_gejala($pdo);
         <!-- Symptoms Grid (Hidden by default) -->
         <div id="symptomGrid" class="hidden grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             <?php foreach ($gejala_list as $g): ?>
-            <div class="symptom-card bg-surface-container-lowest p-6 rounded-xl border border-outline-variant/10 shadow-sm hover:border-primary/30 transition-all group" data-name="<?= strtolower($g['nama']) ?>">
+            <div class="symptom-card bg-surface-container-lowest p-6 rounded-xl border border-outline-variant/10 shadow-sm hover:shadow-md hover:-translate-y-1 hover:border-primary/30 transition-all group" data-name="<?= strtolower($g['nama']) ?>">
                 <div class="flex items-center gap-4">
-                    <div class="w-10 h-10 rounded-lg bg-primary-fixed flex items-center justify-center text-primary font-bold text-sm group-hover:bg-primary group-hover:text-on-primary transition-colors">
+                    <div class="w-10 h-10 rounded-lg bg-primary-container flex items-center justify-center text-on-primary-container font-bold text-sm group-hover:bg-primary group-hover:text-on-primary transition-colors">
                         <?= $g['id'] ?>
                     </div>
                     <span class="font-medium text-on-surface text-sm"><?= $g['nama'] ?></span>
