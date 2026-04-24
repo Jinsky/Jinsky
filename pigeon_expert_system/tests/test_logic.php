@@ -1,87 +1,57 @@
 <?php
-// Mock PDO and Statement classes for testing
-class MockPDO {
-    public $rules = [];
-    public $penyakit = [
-        'P03' => ['id' => 'P03', 'nama' => 'Coccidiosis']
+require_once __DIR__ . '/../includes/functions.php';
+
+// Mock logic for testing without DB
+function test_get_diagnosa_mock($selected_gejala) {
+    $rules_raw = [
+        ['id_aturan' => 'R01', 'id_penyakit' => 'P01', 'id_gejala' => 'G14', 'persentase' => 33.33],
+        ['id_aturan' => 'R01', 'id_penyakit' => 'P01', 'id_gejala' => 'G15', 'persentase' => 33.33],
+        ['id_aturan' => 'R01', 'id_penyakit' => 'P01', 'id_gejala' => 'G16', 'persentase' => 33.33],
+        ['id_aturan' => 'R02', 'id_penyakit' => 'P01', 'id_gejala' => 'G14', 'persentase' => 33.33],
+        ['id_aturan' => 'R02', 'id_penyakit' => 'P01', 'id_gejala' => 'G16', 'persentase' => 33.33],
+        ['id_aturan' => 'R02', 'id_penyakit' => 'P01', 'id_gejala' => 'G17', 'persentase' => 33.33],
     ];
 
-    public function query($sql) {
-        return new MockStatement($this->rules);
-    }
-
-    public function prepare($sql) {
-        return new MockStatement($this->penyakit);
-    }
-}
-
-class MockStatement {
-    private $data;
-    public function __construct($data) {
-        $this->data = $data;
-    }
-    public function fetchAll() {
-        return $this->data;
-    }
-    public function execute($params) {
-        $this->current = $this->data[$params[0]] ?? null;
-    }
-    public function fetch() {
-        return $this->current ?? reset($this->data);
-    }
-}
-
-// Minimal reproduction of get_diagnosa logic for testing
-function test_forward_chaining($rules_raw, $selected_gejala) {
-    $rules = [];
+    $rule_scores = [];
     foreach ($rules_raw as $row) {
-        $rules[$row['id_aturan']]['id_penyakit'] = $row['id_penyakit'];
-        $rules[$row['id_aturan']]['gejala'][] = $row['id_gejala'];
-    }
-
-    $best_match = null;
-    $max_match_count = 0;
-
-    foreach ($rules as $rule_id => $rule_data) {
-        $rule_gejala = $rule_data['gejala'];
-        $intersection = array_intersect($rule_gejala, $selected_gejala);
-        $match_count = count($intersection);
-        $total_rule_gejala = count($rule_gejala);
-
-        if ($match_count === $total_rule_gejala) {
-            if ($match_count > $max_match_count) {
-                $max_match_count = $match_count;
-                $best_match = $rule_data['id_penyakit'];
-            }
+        $aid = $row['id_aturan'];
+        if (!isset($rule_scores[$aid])) {
+            $rule_scores[$aid] = [
+                'id_penyakit' => $row['id_penyakit'],
+                'score' => 0
+            ];
+        }
+        if (in_array($row['id_gejala'], $selected_gejala)) {
+            $rule_scores[$aid]['score'] += (float)$row['persentase'];
         }
     }
-    return $best_match;
+
+    if (empty($rule_scores)) return null;
+
+    $max_score = 0;
+    $best_penyakit_id = null;
+    foreach ($rule_scores as $rule) {
+        if ($rule['score'] > $max_score) {
+            $max_score = $rule['score'];
+            $best_penyakit_id = $rule['id_penyakit'];
+        }
+    }
+    return ['id' => $best_penyakit_id, 'confidence' => round($max_score, 2)];
 }
 
-// Define test data based on schema.sql
-$rules_raw = [
-    ['id_aturan' => 'R07', 'id_penyakit' => 'P03', 'id_gejala' => 'G03'],
-    ['id_aturan' => 'R07', 'id_penyakit' => 'P03', 'id_gejala' => 'G04'],
-    ['id_aturan' => 'R07', 'id_penyakit' => 'P03', 'id_gejala' => 'G05'],
-];
+// Test Case 1: 1 symptom (G14)
+$res1 = test_get_diagnosa_mock(['G14']);
+echo "Test 1 (1 symptom): " . ($res1['confidence'] == 33.33 ? "PASS" : "FAIL (" . $res1['confidence'] . ")") . "\n";
 
-// Test Case 1: Match P03
-$selected_1 = ['G03', 'G04', 'G05', 'G01']; // G01 is extra
-$result_1 = test_forward_chaining($rules_raw, $selected_1);
-echo "Test 1 (Expected P03): " . ($result_1 === 'P03' ? "PASS" : "FAIL ($result_1)") . "\n";
+// Test Case 2: 2 symptoms (G14, G15)
+$res2 = test_get_diagnosa_mock(['G14', 'G15']);
+echo "Test 2 (2 symptoms): " . ($res2['confidence'] == 66.66 ? "PASS" : "FAIL (" . $res2['confidence'] . ")") . "\n";
 
-// Test Case 2: No match (missing G05)
-$selected_2 = ['G03', 'G04'];
-$result_2 = test_forward_chaining($rules_raw, $selected_2);
-echo "Test 2 (Expected null): " . ($result_2 === null ? "PASS" : "FAIL ($result_2)") . "\n";
+// Test Case 3: 3 symptoms (G14, G15, G16)
+$res3 = test_get_diagnosa_mock(['G14', 'G15', 'G16']);
+echo "Test 3 (3 symptoms): " . ($res3['confidence'] == 99.99 ? "PASS" : "FAIL (" . $res3['confidence'] . ")") . "\n";
 
-// Test Case 3: P01 match
-$rules_p01 = [
-    ['id_aturan' => 'R01', 'id_penyakit' => 'P01', 'id_gejala' => 'G14'],
-    ['id_aturan' => 'R01', 'id_penyakit' => 'P01', 'id_gejala' => 'G15'],
-    ['id_aturan' => 'R01', 'id_penyakit' => 'P01', 'id_gejala' => 'G16'],
-];
-$selected_3 = ['G14', 'G15', 'G16'];
-$result_3 = test_forward_chaining($rules_p01, $selected_3);
-echo "Test 3 (Expected P01): " . ($result_3 === 'P01' ? "PASS" : "FAIL ($result_3)") . "\n";
+// Test Case 4: Extra symptoms
+$res4 = test_get_diagnosa_mock(['G14', 'G15', 'G16', 'G17']);
+echo "Test 4 (Extra symptoms): " . ($res4['confidence'] == 99.99 ? "PASS" : "FAIL (" . $res4['confidence'] . ")") . "\n";
 ?>

@@ -49,74 +49,72 @@ function get_all_gejala($pdo) {
  * Returns the matched disease based on selected symptoms
  */
 function get_diagnosa($pdo, $selected_gejala) {
-    if (count($selected_gejala) < 2) return null;
+    if (empty($selected_gejala)) return null;
 
     if (!$pdo) {
         // Mock logic for demo if DB is missing
-        if (in_array('G14', $selected_gejala) && in_array('G15', $selected_gejala)) {
+        $mock_gejala_p01 = ['G14', 'G15', 'G16'];
+        $match_count = count(array_intersect($mock_gejala_p01, $selected_gejala));
+        if ($match_count > 0) {
             $penyakit = [
                 'id' => 'P01',
                 'nama' => 'Newcastle Disease',
                 'deskripsi' => 'Penyakit Newcastle (ND) atau yang dikenal dengan nama Tetelo adalah penyakit viral yang sangat menular pada unggas. Gejala yang paling khas adalah gangguan saraf seperti leher berputar (tortikolis) dan kelumpuhan.',
                 'solusi' => '1. Isolasi segera burung.\n2. Berikan dukungan vitamin B Kompleks.\n3. Desinfeksi kandang.',
                 'pencegahan' => '1. Vaksinasi rutin.\n2. Biosekuriti ketat.',
-                'confidence' => 85
+                'confidence' => round($match_count * 33.33, 2)
             ];
+            if ($penyakit['confidence'] > 100) $penyakit['confidence'] = 100;
             return $penyakit;
         }
         return null;
     }
 
     // Fetch all rules and their associated symptoms with percentages
-    // Wrapped in try-catch to handle cases where schema update might not have been applied yet in a real DB
-    try {
-        $stmt = $pdo->query("
-            SELECT a.id as id_aturan, a.id_penyakit, ad.id_gejala, ad.persentase
-            FROM aturan a
-            JOIN aturan_detail ad ON a.id = ad.id_aturan
-        ");
-        $rules_raw = $stmt->fetchAll();
-    } catch (PDOException $e) {
-        // Fallback for missing 'persentase' column if DB not yet updated
-        $stmt = $pdo->query("
-            SELECT a.id as id_aturan, a.id_penyakit, ad.id_gejala
-            FROM aturan a
-            JOIN aturan_detail ad ON a.id = ad.id_aturan
-        ");
-        $rules_raw = $stmt->fetchAll();
-        foreach ($rules_raw as &$row) {
-            $row['persentase'] = 0; // Default to 0 or some logic
-        }
-    }
+    $stmt = $pdo->query("
+        SELECT a.id as id_aturan, a.id_penyakit, ad.id_gejala, ad.persentase
+        FROM aturan a
+        JOIN aturan_detail ad ON a.id = ad.id_aturan
+    ");
+    $rules_raw = $stmt->fetchAll();
 
-    $scores = []; // [id_penyakit => score]
+    $rule_scores = []; // [id_aturan => ['id_penyakit' => PXX, 'score' => score]]
 
     foreach ($rules_raw as $row) {
+        $aid = $row['id_aturan'];
+        if (!isset($rule_scores[$aid])) {
+            $rule_scores[$aid] = [
+                'id_penyakit' => $row['id_penyakit'],
+                'score' => 0
+            ];
+        }
         if (in_array($row['id_gejala'], $selected_gejala)) {
-            if (!isset($scores[$row['id_penyakit']])) {
-                $scores[$row['id_penyakit']] = 0;
-            }
-            $scores[$row['id_penyakit']] += (isset($row['persentase']) ? (int)$row['persentase'] : 0);
+            $rule_scores[$aid]['score'] += (float)$row['persentase'];
         }
     }
 
-    if (empty($scores)) return null;
+    if (empty($rule_scores)) return null;
 
-    // Sort by score descending
-    arsort($scores);
-    $best_penyakit_id = key($scores);
-    $max_score = current($scores);
+    // Find the rule with the highest score
+    $max_score = 0;
+    $best_penyakit_id = null;
 
-    // Limit confidence to 100%
+    foreach ($rule_scores as $rule) {
+        if ($rule['score'] > $max_score) {
+            $max_score = $rule['score'];
+            $best_penyakit_id = $rule['id_penyakit'];
+        }
+    }
+
+    if ($max_score == 0) return null;
     if ($max_score > 100) $max_score = 100;
-    if ($max_score == 0) return null; // No meaningful match if all weights are 0
 
     $stmt = $pdo->prepare("SELECT * FROM penyakit WHERE id = ?");
     $stmt->execute([$best_penyakit_id]);
     $penyakit = $stmt->fetch();
 
     if ($penyakit) {
-        $penyakit['confidence'] = $max_score;
+        $penyakit['confidence'] = round($max_score, 2);
         return $penyakit;
     }
 
