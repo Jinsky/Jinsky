@@ -4,12 +4,12 @@ require_once __DIR__ . '/../includes/functions.php';
 // Mock logic for testing without DB
 function test_get_diagnosa_mock($selected_gejala) {
     $rules_raw = [
-        ['id_aturan' => 'R01', 'id_penyakit' => 'P01', 'id_gejala' => 'G14', 'persentase' => 33.33],
-        ['id_aturan' => 'R01', 'id_penyakit' => 'P01', 'id_gejala' => 'G15', 'persentase' => 33.33],
-        ['id_aturan' => 'R01', 'id_penyakit' => 'P01', 'id_gejala' => 'G16', 'persentase' => 33.33],
-        ['id_aturan' => 'R02', 'id_penyakit' => 'P01', 'id_gejala' => 'G14', 'persentase' => 33.33],
-        ['id_aturan' => 'R02', 'id_penyakit' => 'P01', 'id_gejala' => 'G16', 'persentase' => 33.33],
-        ['id_aturan' => 'R02', 'id_penyakit' => 'P01', 'id_gejala' => 'G17', 'persentase' => 33.33],
+        ['id_aturan' => 'R01', 'id_penyakit' => 'P01', 'id_gejala' => 'G14', 'bobot' => 33.33],
+        ['id_aturan' => 'R01', 'id_penyakit' => 'P01', 'id_gejala' => 'G15', 'bobot' => 33.33],
+        ['id_aturan' => 'R01', 'id_penyakit' => 'P01', 'id_gejala' => 'G16', 'bobot' => 33.33],
+        ['id_aturan' => 'R02', 'id_penyakit' => 'P01', 'id_gejala' => 'G14', 'bobot' => 33.33],
+        ['id_aturan' => 'R02', 'id_penyakit' => 'P01', 'id_gejala' => 'G16', 'bobot' => 33.33],
+        ['id_aturan' => 'R02', 'id_penyakit' => 'P01', 'id_gejala' => 'G17', 'bobot' => 33.33],
     ];
 
     $rule_scores = [];
@@ -22,7 +22,7 @@ function test_get_diagnosa_mock($selected_gejala) {
             ];
         }
         if (in_array($row['id_gejala'], $selected_gejala)) {
-            $rule_scores[$aid]['score'] += (float)$row['persentase'];
+            $rule_scores[$aid]['score'] += (float)$row['bobot'];
         }
     }
 

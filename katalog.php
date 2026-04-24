@@ -29,7 +29,7 @@ $gejala_list = get_all_gejala($pdo);
     </header>
 
     <!-- Main Content: Disease Catalog -->
-    <main class="px-8 pb-24 max-w-7xl mx-auto">
+    <section class="px-8 pb-24 max-w-7xl mx-auto">
         <!-- Filter Tabs -->
         <div class="flex gap-4 mb-12 overflow-x-auto no-scrollbar pb-2">
             <button id="btnInfoPenyakit" class="px-6 py-2 bg-primary text-on-primary rounded-full text-sm font-semibold whitespace-nowrap transition-all shadow-sm">Info Penyakit</button>
@@ -37,16 +37,16 @@ $gejala_list = get_all_gejala($pdo);
         </div>
 
         <!-- Disease Grid -->
-        <div id="diseaseGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div id="diseaseGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 items-stretch">
             <?php foreach ($penyakit_list as $p): ?>
-            <article class="disease-card bg-surface-container-lowest rounded-xl p-8 flex flex-col relative overflow-hidden group shadow-sm shadow-cyan-900/5" data-name="<?= strtolower($p['nama']) ?>">
+            <article class="disease-card bg-surface-container-lowest rounded-xl p-8 flex flex-col relative overflow-hidden group shadow-sm shadow-cyan-900/5 h-full" data-name="<?= strtolower($p['nama']) ?>">
                 <div class="absolute top-0 left-0 w-1 h-full bg-secondary"></div>
                 <div class="flex justify-between items-start mb-6">
                     <span class="px-3 py-1 bg-secondary-container text-on-secondary-container rounded-full text-xs font-bold tracking-wide">Info Penyakit</span>
                     <span class="material-symbols-outlined text-outline-variant">microbiology</span>
                 </div>
                 <h3 class="text-2xl font-headline font-bold text-primary mb-3"><?= $p['nama'] ?></h3>
-                <p class="text-on-surface-variant text-sm leading-relaxed mb-6 flex-grow">
+                <p class="text-on-surface-variant text-sm leading-relaxed mb-6 flex-grow line-clamp-4">
                     <?= $p['deskripsi'] ?>
                 </p>
                 <div class="space-y-3 mb-8">
@@ -55,12 +55,45 @@ $gejala_list = get_all_gejala($pdo);
                         <span class="text-xs text-on-surface font-medium"><?= substr($p['solusi'], 0, 50) ?>...</span>
                     </div>
                 </div>
-                <button onclick="alert('Deskripsi:\n<?= addslashes($p['deskripsi']) ?>\n\nSolusi:\n<?= addslashes($p['solusi']) ?>\n\nPencegahan:\n<?= addslashes($p['pencegahan']) ?>')" class="flex items-center gap-2 text-primary font-bold text-sm group-hover:gap-4 transition-all">
+                <button onclick="openDiseaseModal('<?= addslashes($p['nama']) ?>', '<?= addslashes(nl2br($p['deskripsi'])) ?>', '<?= addslashes(nl2br($p['solusi'])) ?>', '<?= addslashes(nl2br($p['pencegahan'])) ?>')" class="flex items-center gap-2 text-primary font-bold text-sm group-hover:gap-4 transition-all">
                     Baca Selengkapnya
                     <span class="material-symbols-outlined text-sm">arrow_forward</span>
                 </button>
             </article>
             <?php endforeach; ?>
+        </div>
+
+        <!-- Disease Detail Modal -->
+        <div id="diseaseModal" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm hidden flex items-center justify-center p-4 z-[100]">
+            <div class="bg-surface rounded-2xl max-w-2xl w-full max-h-[90vh] overflow-hidden flex flex-col shadow-2xl">
+                <div class="p-8 border-b border-outline-variant/10 flex justify-between items-center bg-primary text-on-primary">
+                    <h2 id="modalDiseaseName" class="text-3xl font-headline font-bold">Detail Penyakit</h2>
+                    <button onclick="closeDiseaseModal()" class="material-symbols-outlined hover:rotate-90 transition-transform">close</button>
+                </div>
+                <div class="p-8 overflow-y-auto space-y-8">
+                    <div>
+                        <h4 class="text-sm font-bold uppercase tracking-widest text-primary mb-3">Deskripsi</h4>
+                        <p id="modalDiseaseDesc" class="text-on-surface-variant leading-relaxed"></p>
+                    </div>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                        <div class="bg-surface-container-low p-6 rounded-xl border border-outline-variant/10">
+                            <h4 class="text-sm font-bold uppercase tracking-widest text-secondary mb-3 flex items-center gap-2">
+                                <span class="material-symbols-outlined text-sm">medical_services</span> Solusi
+                            </h4>
+                            <p id="modalDiseaseSol" class="text-xs text-on-surface-variant leading-relaxed"></p>
+                        </div>
+                        <div class="bg-surface-container-low p-6 rounded-xl border border-outline-variant/10">
+                            <h4 class="text-sm font-bold uppercase tracking-widest text-tertiary mb-3 flex items-center gap-2">
+                                <span class="material-symbols-outlined text-sm">shield</span> Pencegahan
+                            </h4>
+                            <p id="modalDiseasePrev" class="text-xs text-on-surface-variant leading-relaxed"></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="p-6 bg-surface-container-highest flex justify-end">
+                    <button onclick="closeDiseaseModal()" class="px-8 py-3 bg-primary text-on-primary rounded-xl font-bold hover:opacity-90 transition-opacity">Tutup</button>
+                </div>
+            </div>
         </div>
 
         <!-- Symptoms Grid (Hidden by default) -->
@@ -76,51 +109,25 @@ $gejala_list = get_all_gejala($pdo);
             </div>
             <?php endforeach; ?>
         </div>
-    </main>
-
-    <!-- Professional Support Section -->
-    <section class="bg-surface-container py-24">
-        <div class="max-w-7xl mx-auto px-8 grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
-            <div class="relative">
-                <div class="aspect-[4/5] bg-surface-container-highest rounded-2xl overflow-hidden shadow-2xl">
-                    <img alt="Penelitian laboratorium" class="w-full h-full object-cover grayscale mix-blend-multiply opacity-80" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDHUrfQM2NJzzNNAvpFYZU5ypsPRMWdvYGS2rTbzA4WDtfrHM3GDZIvjJ5q-m4vYZE82bMJsibH0sCs1EpWc5MnS0t8dKvrpBZzvVJZyhAM4if4SkiJJBSKvdiqNG3x9BVTRyGu6BFJU8NYxJVoOG_yXXsA8jZQP5S9hNwWRWa4b5JpLYXg4AHljdMS1enbjTHNCmIgNLItNcn0hUzx4EFLj7KPm8WYqlL3w8ZmFBDZu2jR14Ynf-enw9OmAPFeLIr2LEuse-dWQqBZ"/>
-                </div>
-                <div class="absolute -bottom-8 -right-8 p-8 bg-primary rounded-2xl text-on-primary max-w-xs shadow-xl">
-                    <p class="font-headline italic text-lg leading-snug">"Deteksi dini adalah kunci keselamatan koloni merpati Anda."</p>
-                    <p class="mt-4 text-xs font-bold uppercase tracking-widest opacity-70">— Dr. Hendrik, Spesialis Avian</p>
-                </div>
-            </div>
-            <div class="space-y-8">
-                <h2 class="text-4xl font-headline font-bold text-primary">Butuh Diagnosa Profesional?</h2>
-                <p class="text-lg text-on-surface-variant leading-relaxed">
-                    Katalog ini hanyalah referensi awal. Untuk akurasi medis yang tepat, kami menyarankan konsultasi langsung dengan dokter hewan spesialis burung.
-                </p>
-                <div class="flex flex-col gap-4">
-                    <div class="p-6 bg-surface-container-lowest rounded-xl flex items-center gap-6 group hover:bg-primary transition-all cursor-pointer">
-                        <div class="w-12 h-12 bg-secondary-container rounded-full flex items-center justify-center group-hover:bg-on-primary">
-                            <span class="material-symbols-outlined text-on-secondary-container group-hover:text-primary">video_call</span>
-                        </div>
-                        <div>
-                            <h4 class="font-bold group-hover:text-on-primary">Telekonsultasi Cepat</h4>
-                            <p class="text-sm text-on-surface-variant group-hover:text-on-primary/80">Hubungi dokter dalam 15 menit melalui video.</p>
-                        </div>
-                    </div>
-                    <div class="p-6 bg-surface-container-lowest rounded-xl flex items-center gap-6 group hover:bg-primary transition-all cursor-pointer">
-                        <div class="w-12 h-12 bg-tertiary-fixed rounded-full flex items-center justify-center group-hover:bg-on-primary">
-                            <span class="material-symbols-outlined text-on-tertiary-fixed-variant group-hover:text-primary">lab_research</span>
-                        </div>
-                        <div>
-                            <h4 class="font-bold group-hover:text-on-primary">Analisis Lab Mandiri</h4>
-                            <p class="text-sm text-on-surface-variant group-hover:text-on-primary/80">Kirim sampel kotoran untuk pengujian PCR.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
     </section>
+
 </main>
 
 <script>
+    function openDiseaseModal(name, desc, sol, prev) {
+        document.getElementById('modalDiseaseName').innerText = name;
+        document.getElementById('modalDiseaseDesc').innerHTML = desc;
+        document.getElementById('modalDiseaseSol').innerHTML = sol;
+        document.getElementById('modalDiseasePrev').innerHTML = prev;
+        document.getElementById('diseaseModal').classList.remove('hidden');
+        document.body.style.overflow = 'hidden';
+    }
+
+    function closeDiseaseModal() {
+        document.getElementById('diseaseModal').classList.add('hidden');
+        document.body.style.overflow = 'auto';
+    }
+
     const btnInfoPenyakit = document.getElementById('btnInfoPenyakit');
     const btnInfoGejala = document.getElementById('btnInfoGejala');
     const diseaseGrid = document.getElementById('diseaseGrid');

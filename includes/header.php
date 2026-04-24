@@ -89,17 +89,17 @@
 <body class="bg-surface text-on-surface font-body selection:bg-primary-fixed selection:text-on-primary-fixed min-h-screen flex flex-col">
     <?php if (!isset($hide_top_nav) || !$hide_top_nav): ?>
     <!-- Top Navigation Bar -->
-    <nav class="fixed top-0 w-full z-50 bg-slate-50/80 dark:bg-slate-900/80 backdrop-blur-xl shadow-sm shadow-cyan-900/5 transition-all duration-300 ease-in-out">
+    <nav class="fixed top-0 w-full z-50 bg-primary backdrop-blur-xl shadow-lg transition-all duration-300 ease-in-out">
         <div class="flex justify-between items-center max-w-7xl mx-auto px-8 h-20">
-            <div class="text-2xl font-headline italic font-bold text-cyan-950 dark:text-white">
+            <div class="text-2xl font-headline italic font-bold text-on-primary">
                 <a href="index.php">Clinical Vitality</a>
             </div>
             <div class="hidden md:flex items-center space-x-8">
-                <a class="font-headline text-lg tracking-tight <?= basename($_SERVER['PHP_SELF']) == 'index.php' ? 'text-cyan-700 dark:text-cyan-300 border-b-2 border-cyan-700 font-bold pb-1' : 'text-slate-600 dark:text-slate-400 hover:text-cyan-800 transition-colors' ?>" href="index.php">Beranda</a>
-                <a class="font-headline text-lg tracking-tight <?= basename($_SERVER['PHP_SELF']) == 'konsultasi.php' ? 'text-cyan-700 dark:text-cyan-300 border-b-2 border-cyan-700 font-bold pb-1' : 'text-slate-600 dark:text-slate-400 hover:text-cyan-800 transition-colors' ?>" href="konsultasi.php">Konsultasi</a>
-                <a class="font-headline text-lg tracking-tight <?= basename($_SERVER['PHP_SELF']) == 'riwayat.php' ? 'text-cyan-700 dark:text-cyan-300 border-b-2 border-cyan-700 font-bold pb-1' : 'text-slate-600 dark:text-slate-400 hover:text-cyan-800 transition-colors' ?>" href="riwayat.php">Riwayat</a>
-                <a class="font-headline text-lg tracking-tight <?= basename($_SERVER['PHP_SELF']) == 'katalog.php' ? 'text-cyan-700 dark:text-cyan-300 border-b-2 border-cyan-700 font-bold pb-1' : 'text-slate-600 dark:text-slate-400 hover:text-cyan-800 transition-colors' ?>" href="katalog.php">Katalog Penyakit</a>
-                <a class="font-headline text-lg tracking-tight <?= basename($_SERVER['PHP_SELF']) == 'tentang.php' ? 'text-cyan-700 dark:text-cyan-300 border-b-2 border-cyan-700 font-bold pb-1' : 'text-slate-600 dark:text-slate-400 hover:text-cyan-800 transition-colors' ?>" href="tentang.php">Tentang</a>
+                <a class="font-headline text-lg tracking-tight <?= basename($_SERVER['PHP_SELF']) == 'index.php' ? 'text-on-primary border-b-2 border-on-primary font-bold pb-1' : 'text-on-primary/70 hover:text-on-primary transition-colors' ?>" href="index.php">Beranda</a>
+                <a class="font-headline text-lg tracking-tight <?= basename($_SERVER['PHP_SELF']) == 'konsultasi.php' ? 'text-on-primary border-b-2 border-on-primary font-bold pb-1' : 'text-on-primary/70 hover:text-on-primary transition-colors' ?>" href="konsultasi.php">Konsultasi</a>
+                <a class="font-headline text-lg tracking-tight <?= basename($_SERVER['PHP_SELF']) == 'riwayat.php' ? 'text-on-primary border-b-2 border-on-primary font-bold pb-1' : 'text-on-primary/70 hover:text-on-primary transition-colors' ?>" href="riwayat.php">Riwayat</a>
+                <a class="font-headline text-lg tracking-tight <?= basename($_SERVER['PHP_SELF']) == 'katalog.php' ? 'text-on-primary border-b-2 border-on-primary font-bold pb-1' : 'text-on-primary/70 hover:text-on-primary transition-colors' ?>" href="katalog.php">Katalog Penyakit</a>
+                <a class="font-headline text-lg tracking-tight <?= basename($_SERVER['PHP_SELF']) == 'tentang.php' ? 'text-on-primary border-b-2 border-on-primary font-bold pb-1' : 'text-on-primary/70 hover:text-on-primary transition-colors' ?>" href="tentang.php">Tentang</a>
             </div>
             <div class="flex items-center gap-4">
             </div>

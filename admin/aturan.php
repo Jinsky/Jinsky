@@ -21,8 +21,8 @@ if (isset($_POST['add_rule'])) {
 if (isset($_POST['add_detail'])) {
     if ($pdo) {
         try {
-            $stmt = $pdo->prepare("INSERT INTO aturan_detail (id_aturan, id_gejala, persentase) VALUES (?, ?, ?)");
-            $stmt->execute([$_POST['id_aturan'], $_POST['id_gejala'], $_POST['persentase']]);
+            $stmt = $pdo->prepare("INSERT INTO aturan_detail (id_aturan, id_gejala, bobot) VALUES (?, ?, ?)");
+            $stmt->execute([$_POST['id_aturan'], $_POST['id_gejala'], $_POST['bobot']]);
             $message = "Gejala ditambahkan ke aturan.";
         } catch (Exception $e) { $error = "Gagal: " . $e->getMessage(); }
     }
@@ -126,7 +126,7 @@ if ($pdo) {
                                 <tr>
                                     <td class="p-4 font-mono font-bold text-cyan-600"><?= $d['id_gejala'] ?></td>
                                     <td class="p-4 text-slate-700"><?= $d['nama'] ?></td>
-                                    <td class="p-4 text-center font-bold"><?= $d['persentase'] ?>%</td>
+                                    <td class="p-4 text-center font-bold"><?= $d['bobot'] ?>%</td>
                                     <td class="p-4 text-right">
                                         <form method="POST" class="inline">
                                             <input type="hidden" name="id_aturan" value="<?= $a['id'] ?>">
@@ -184,7 +184,7 @@ if ($pdo) {
                 </div>
                 <div>
                     <label class="block text-sm font-bold mb-1">Bobot Persentase (1-100)</label>
-                    <input type="number" name="persentase" min="1" max="100" required class="w-full border p-3 rounded-xl">
+                    <input type="number" name="bobot" min="1" max="100" required class="w-full border p-3 rounded-xl">
                 </div>
                 <div class="flex gap-4 pt-4">
                     <button type="button" onclick="document.getElementById('addDetailModal').classList.add('hidden')" class="flex-1 py-3 border rounded-xl">Batal</button>

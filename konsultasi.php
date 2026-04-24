@@ -40,7 +40,7 @@ $step2_gejala = array_filter($gejala_list, function($g) use ($step2_ids) { retur
                     <label class="relative flex items-start p-4 bg-surface-container-lowest rounded-xl cursor-pointer hover:bg-primary-fixed transition-colors group border-2 border-transparent has-[:checked]:border-primary has-[:checked]:bg-primary-fixed/30">
                         <input name="gejala[]" value="<?= $g['id'] ?>" class="mt-1 w-5 h-5 rounded border-outline-variant text-primary focus:ring-primary" type="checkbox"/>
                         <div class="ml-4">
-                            <span class="block font-bold text-on-surface"><?= $g['nama'] ?></span>
+                            <span class="block font-bold text-on-surface"><?= $g['id'] ?> - <?= $g['nama'] ?></span>
                             <span class="text-sm text-on-surface-variant">Teramati pada kondisi fisik luar.</span>
                         </div>
                     </label>
@@ -58,7 +58,7 @@ $step2_gejala = array_filter($gejala_list, function($g) use ($step2_ids) { retur
                     <label class="relative flex items-center p-4 bg-surface-container-lowest rounded-xl cursor-pointer hover:bg-primary-fixed transition-colors border-2 border-transparent has-[:checked]:border-primary has-[:checked]:bg-primary-fixed/30">
                         <input name="gejala[]" value="<?= $g['id'] ?>" class="w-5 h-5 rounded border-outline-variant text-primary focus:ring-primary" type="checkbox"/>
                         <div class="ml-4">
-                            <span class="block font-bold text-on-surface"><?= $g['nama'] ?></span>
+                            <span class="block font-bold text-on-surface"><?= $g['id'] ?> - <?= $g['nama'] ?></span>
                             <span class="text-sm text-on-surface-variant">Perubahan pada perilaku atau gejala sistemik.</span>
                         </div>
                     </label>

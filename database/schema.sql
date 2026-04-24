@@ -23,7 +23,7 @@ CREATE TABLE aturan (
 CREATE TABLE aturan_detail (
     id_aturan VARCHAR(5),
     id_gejala VARCHAR(5),
-    persentase DECIMAL(5,2) DEFAULT 0,
+    bobot DECIMAL(5,2) DEFAULT 0,
     PRIMARY KEY (id_aturan, id_gejala),
     FOREIGN KEY (id_aturan) REFERENCES aturan(id),
     FOREIGN KEY (id_gejala) REFERENCES gejala(id)
@@ -146,7 +146,7 @@ INSERT INTO aturan (id, id_penyakit) VALUES
 ('R25', 'P09'), ('R26', 'P09'), ('R27', 'P09'),
 ('R28', 'P10'), ('R29', 'P10'), ('R30', 'P10');
 
-INSERT INTO aturan_detail (id_aturan, id_gejala, persentase) VALUES
+INSERT INTO aturan_detail (id_aturan, id_gejala, bobot) VALUES
 ('R01', 'G14', 33.33), ('R01', 'G15', 33.33), ('R01', 'G16', 33.33),
 ('R02', 'G14', 33.33), ('R02', 'G16', 33.33), ('R02', 'G17', 33.33),
 ('R03', 'G15', 33.33), ('R03', 'G16', 33.33), ('R03', 'G17', 33.33),
