@@ -27,7 +27,7 @@ function simulate_diagnosa($rules_raw, $selected_gejala) {
     foreach ($rules_raw as $row) {
         if (in_array($row['id_gejala'], $selected_gejala)) {
             if (!isset($scores[$row['id_penyakit']])) $scores[$row['id_penyakit']] = 0;
-            $scores[$row['id_penyakit']] += (int)$row['persentase'];
+            $scores[$row['id_penyakit']] += (int)$row['bobot'];
         }
     }
     if (empty($scores)) return null;
@@ -36,10 +36,10 @@ function simulate_diagnosa($rules_raw, $selected_gejala) {
 }
 
 $rules = [
-    ['id_penyakit' => 'P01', 'id_gejala' => 'G01', 'persentase' => 30],
-    ['id_penyakit' => 'P01', 'id_gejala' => 'G02', 'persentase' => 40],
-    ['id_penyakit' => 'P02', 'id_gejala' => 'G01', 'persentase' => 20],
-    ['id_penyakit' => 'P02', 'id_gejala' => 'G03', 'persentase' => 60],
+    ['id_penyakit' => 'P01', 'id_gejala' => 'G01', 'bobot' => 30],
+    ['id_penyakit' => 'P01', 'id_gejala' => 'G02', 'bobot' => 40],
+    ['id_penyakit' => 'P02', 'id_gejala' => 'G01', 'bobot' => 20],
+    ['id_penyakit' => 'P02', 'id_gejala' => 'G03', 'bobot' => 60],
 ];
 
 // Case A: Higher P01
