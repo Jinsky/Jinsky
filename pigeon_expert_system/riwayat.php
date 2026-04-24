@@ -21,20 +21,8 @@ $total_diagnosa = count($riwayat);
             </div>
         </div>
         <nav class="flex-1 space-y-1">
-            <a class="flex items-center text-[#171c1f]/60 dark:text-[#ffffff]/60 px-8 py-3 hover:bg-[#f6fafe]/50 dark:hover:bg-[#ffffff]/10 transition-all font-manrope text-sm font-medium" href="index.php">
-                <span class="material-symbols-outlined mr-3">grid_view</span> Beranda
-            </a>
-            <a class="flex items-center text-[#171c1f]/60 dark:text-[#ffffff]/60 px-8 py-3 hover:bg-[#f6fafe]/50 dark:hover:bg-[#ffffff]/10 transition-all font-manrope text-sm font-medium" href="katalog.php">
-                <span class="material-symbols-outlined mr-3">flutter_dash</span> Profil Avian
-            </a>
-            <a class="flex items-center text-[#171c1f]/60 dark:text-[#ffffff]/60 px-8 py-3 hover:bg-[#f6fafe]/50 dark:hover:bg-[#ffffff]/10 transition-all font-manrope text-sm font-medium" href="konsultasi.php">
-                <span class="material-symbols-outlined mr-3">biotech</span> Hasil Lab
-            </a>
             <a class="flex items-center bg-[#ffffff] dark:bg-[#2a6069] text-[#005C97] dark:text-white rounded-l-full ml-4 pl-4 py-3 shadow-sm font-manrope text-sm font-medium translate-x-1 duration-200" href="riwayat.php">
                 <span class="material-symbols-outlined mr-3">history</span> Riwayat
-            </a>
-            <a class="flex items-center text-[#171c1f]/60 dark:text-[#ffffff]/60 px-8 py-3 hover:bg-[#f6fafe]/50 dark:hover:bg-[#ffffff]/10 transition-all font-manrope text-sm font-medium" href="tentang.php">
-                <span class="material-symbols-outlined mr-3">settings</span> Pengaturan
             </a>
         </nav>
         <div class="px-8 mt-auto pt-6 border-t border-outline-variant/10">
@@ -149,17 +137,8 @@ $total_diagnosa = count($riwayat);
 
     <!-- Mobile Nav -->
     <div class="md:hidden fixed bottom-0 left-0 right-0 h-16 bg-[#f6fafe]/90 backdrop-blur-xl flex justify-around items-center border-t border-outline-variant/10 z-[100]">
-        <a href="index.php" class="flex flex-col items-center gap-1 text-on-surface-variant">
-            <span class="material-symbols-outlined">grid_view</span>
-        </a>
-        <a href="katalog.php" class="flex flex-col items-center gap-1 text-on-surface-variant">
-            <span class="material-symbols-outlined">flutter_dash</span>
-        </a>
         <a href="riwayat.php" class="flex flex-col items-center gap-1 text-primary">
             <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">history</span>
-        </a>
-        <a href="tentang.php" class="flex flex-col items-center gap-1 text-on-surface-variant">
-            <span class="material-symbols-outlined">settings</span>
         </a>
     </div>
 </div>

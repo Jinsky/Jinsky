@@ -4,6 +4,7 @@ $page_title = "Katalog Penyakit";
 include 'includes/header.php';
 
 $penyakit_list = get_all_penyakit($pdo);
+$gejala_list = get_all_gejala($pdo);
 ?>
 
 <main class="bg-surface text-on-surface selection:bg-primary-fixed-dim min-h-screen">
@@ -21,7 +22,7 @@ $penyakit_list = get_all_penyakit($pdo);
             <div class="w-full md:w-96">
                 <div class="relative group">
                     <span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-outline-variant group-focus-within:text-primary transition-colors">search</span>
-                    <input id="diseaseSearch" class="w-full pl-12 pr-4 py-4 bg-surface-container-highest border-none rounded-xl focus:ring-2 focus:ring-primary-fixed transition-all text-on-surface placeholder:text-outline" placeholder="Cari nama penyakit..." type="text"/>
+                    <input id="catalogSearch" class="w-full pl-12 pr-4 py-4 bg-surface-container-highest border-none rounded-xl focus:ring-2 focus:ring-primary-fixed transition-all text-on-surface placeholder:text-outline" placeholder="Cari..." type="text"/>
                 </div>
             </div>
         </div>
@@ -31,14 +32,12 @@ $penyakit_list = get_all_penyakit($pdo);
     <main class="px-8 pb-24 max-w-7xl mx-auto">
         <!-- Filter Tabs -->
         <div class="flex gap-4 mb-12 overflow-x-auto no-scrollbar pb-2">
-            <button class="px-6 py-2 bg-primary text-on-primary rounded-full text-sm font-semibold whitespace-nowrap">Semua Kategori</button>
-            <button class="px-6 py-2 bg-surface-container hover:bg-surface-container-high transition-colors rounded-full text-sm font-medium whitespace-nowrap">Infeksi Bakteri</button>
-            <button class="px-6 py-2 bg-surface-container hover:bg-surface-container-high transition-colors rounded-full text-sm font-medium whitespace-nowrap">Virus</button>
-            <button class="px-6 py-2 bg-surface-container hover:bg-surface-container-high transition-colors rounded-full text-sm font-medium whitespace-nowrap">Parasit</button>
+            <button id="btnInfoPenyakit" class="px-6 py-2 bg-primary text-on-primary rounded-full text-sm font-semibold whitespace-nowrap transition-all shadow-sm">Info Penyakit</button>
+            <button id="btnInfoGejala" class="px-6 py-2 bg-surface-container hover:bg-surface-container-high text-on-surface-variant rounded-full text-sm font-medium whitespace-nowrap transition-all shadow-sm">Info Gejala</button>
         </div>
 
         <!-- Disease Grid -->
-        <div id="catalogGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div id="diseaseGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             <?php foreach ($penyakit_list as $p): ?>
             <article class="disease-card bg-surface-container-lowest rounded-xl p-8 flex flex-col relative overflow-hidden group shadow-sm shadow-cyan-900/5" data-name="<?= strtolower($p['nama']) ?>">
                 <div class="absolute top-0 left-0 w-1 h-full bg-secondary"></div>
@@ -61,6 +60,20 @@ $penyakit_list = get_all_penyakit($pdo);
                     <span class="material-symbols-outlined text-sm">arrow_forward</span>
                 </button>
             </article>
+            <?php endforeach; ?>
+        </div>
+
+        <!-- Symptoms Grid (Hidden by default) -->
+        <div id="symptomGrid" class="hidden grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            <?php foreach ($gejala_list as $g): ?>
+            <div class="symptom-card bg-surface-container-lowest p-6 rounded-xl border border-outline-variant/10 shadow-sm hover:border-primary/30 transition-all group" data-name="<?= strtolower($g['nama']) ?>">
+                <div class="flex items-center gap-4">
+                    <div class="w-10 h-10 rounded-lg bg-primary-fixed flex items-center justify-center text-primary font-bold text-sm group-hover:bg-primary group-hover:text-on-primary transition-colors">
+                        <?= $g['id'] ?>
+                    </div>
+                    <span class="font-medium text-on-surface text-sm"><?= $g['nama'] ?></span>
+                </div>
+            </div>
             <?php endforeach; ?>
         </div>
     </main>
@@ -108,17 +121,52 @@ $penyakit_list = get_all_penyakit($pdo);
 </main>
 
 <script>
-    document.getElementById('diseaseSearch').addEventListener('input', function(e) {
-        const search = e.target.value.toLowerCase();
-        document.querySelectorAll('.disease-card').forEach(card => {
-            const name = card.getAttribute('data-name');
-            if (name.includes(search)) {
-                card.style.display = 'flex';
-            } else {
-                card.style.display = 'none';
-            }
-        });
+    const btnInfoPenyakit = document.getElementById('btnInfoPenyakit');
+    const btnInfoGejala = document.getElementById('btnInfoGejala');
+    const diseaseGrid = document.getElementById('diseaseGrid');
+    const symptomGrid = document.getElementById('symptomGrid');
+    const catalogSearch = document.getElementById('catalogSearch');
+
+    let currentTab = 'penyakit';
+
+    btnInfoPenyakit.addEventListener('click', () => {
+        currentTab = 'penyakit';
+        diseaseGrid.classList.remove('hidden');
+        symptomGrid.classList.add('hidden');
+
+        btnInfoPenyakit.className = 'px-6 py-2 bg-primary text-on-primary rounded-full text-sm font-semibold whitespace-nowrap transition-all shadow-sm';
+        btnInfoGejala.className = 'px-6 py-2 bg-surface-container hover:bg-surface-container-high text-on-surface-variant rounded-full text-sm font-medium whitespace-nowrap transition-all shadow-sm';
+
+        filterItems();
     });
+
+    btnInfoGejala.addEventListener('click', () => {
+        currentTab = 'gejala';
+        diseaseGrid.classList.add('hidden');
+        symptomGrid.classList.remove('hidden');
+
+        btnInfoGejala.className = 'px-6 py-2 bg-primary text-on-primary rounded-full text-sm font-semibold whitespace-nowrap transition-all shadow-sm';
+        btnInfoPenyakit.className = 'px-6 py-2 bg-surface-container hover:bg-surface-container-high text-on-surface-variant rounded-full text-sm font-medium whitespace-nowrap transition-all shadow-sm';
+
+        filterItems();
+    });
+
+    catalogSearch.addEventListener('input', filterItems);
+
+    function filterItems() {
+        const search = catalogSearch.value.toLowerCase();
+        if (currentTab === 'penyakit') {
+            document.querySelectorAll('.disease-card').forEach(card => {
+                const name = card.getAttribute('data-name');
+                card.style.display = name.includes(search) ? 'flex' : 'none';
+            });
+        } else {
+            document.querySelectorAll('.symptom-card').forEach(card => {
+                const name = card.getAttribute('data-name');
+                card.style.display = name.includes(search) ? 'block' : 'none';
+            });
+        }
+    }
 </script>
 
 <?php include 'includes/footer.php'; ?>
