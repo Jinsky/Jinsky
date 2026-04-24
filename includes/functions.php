@@ -72,7 +72,7 @@ function get_diagnosa($pdo, $selected_gejala) {
 
     // Fetch all rules and their associated symptoms with percentages
     $stmt = $pdo->query("
-        SELECT a.id as id_aturan, a.id_penyakit, ad.id_gejala, ad.persentase
+        SELECT a.id as id_aturan, a.id_penyakit, ad.id_gejala, ad.bobot
         FROM aturan a
         JOIN aturan_detail ad ON a.id = ad.id_aturan
     ");
@@ -89,7 +89,7 @@ function get_diagnosa($pdo, $selected_gejala) {
             ];
         }
         if (in_array($row['id_gejala'], $selected_gejala)) {
-            $rule_scores[$aid]['score'] += (float)$row['persentase'];
+            $rule_scores[$aid]['score'] += (float)$row['bobot'];
         }
     }
 

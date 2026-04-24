@@ -92,16 +92,6 @@ include 'includes/header.php';
         </div>
     </section>
 
-    <!-- Contact Section -->
-    <section class="py-32 relative overflow-hidden bg-primary">
-        <div class="max-w-4xl mx-auto px-8 relative z-10 text-center text-on-primary">
-            <h2 class="font-headline text-4xl mb-8 leading-tight">Join our research network or consult with our avian specialists.</h2>
-            <div class="flex flex-wrap justify-center gap-4">
-                <button class="bg-surface-container-lowest text-primary px-10 py-4 rounded-xl font-bold shadow-lg hover:bg-primary-fixed transition-colors">Contact Veterinarian</button>
-                <button class="border border-on-primary/30 text-on-primary px-10 py-4 rounded-xl font-bold hover:bg-white/10 transition-colors">Bird Care Guide</button>
-            </div>
-        </div>
-    </section>
 </main>
 
 <?php include 'includes/footer.php'; ?>
