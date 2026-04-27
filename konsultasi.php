@@ -26,8 +26,8 @@ $step2_gejala = array_filter($gejala_list, function($g) use ($step2_ids) { retur
         <!-- Symptom Selection Area -->
         <div class="lg:col-span-7 space-y-8">
             <div class="bg-surface-container-low p-8 rounded-xl">
-                <label class="block font-headline text-2xl font-bold text-primary mb-6">Identitas Pemilik</label>
-                <input type="text" name="nama_merpati" required placeholder="Masukkan nama pemilik..." class="w-full bg-surface-container-lowest border-none rounded-xl p-4 focus:ring-2 focus:ring-primary/20 text-on-surface">
+                <label class="block font-headline text-2xl font-bold text-primary mb-6">Identitas Merpati</label>
+                <input type="text" name="nama_merpati" required placeholder="Masukkan nama atau ID merpati..." class="w-full bg-surface-container-lowest border-none rounded-xl p-4 focus:ring-2 focus:ring-primary/20 text-on-surface">
             </div>
 
             <div class="bg-surface-container-low p-8 rounded-xl">

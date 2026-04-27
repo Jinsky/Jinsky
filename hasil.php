@@ -27,7 +27,7 @@ include 'includes/header.php';
         </span>
         <h1 class="font-headline text-5xl md:text-6xl text-primary font-bold tracking-tight mb-6">Hasil Analisis Kesehatan</h1>
         <p class="text-on-surface-variant text-xl max-w-2xl leading-relaxed">
-            Nama Pemilik: <span class="font-bold text-on-surface"><?= htmlspecialchars($nama_merpati) ?></span>. Berdasarkan pola gejala yang Anda berikan, sistem pakar kami telah mencapai kesimpulan berikut.
+            Identitas Merpati: <span class="font-bold text-on-surface"><?= htmlspecialchars($nama_merpati) ?></span>. Berdasarkan pola gejala yang Anda berikan, sistem pakar kami telah mencapai kesimpulan berikut.
         </p>
     </div>
 

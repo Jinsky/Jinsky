@@ -13,7 +13,7 @@ include 'includes/header.php';
                     Menggabungkan Sains <br/>dengan <span class="italic text-primary-container">Vitalitas Avian.</span>
                 </h1>
                 <p class="text-on-surface-variant text-xl max-w-xl leading-relaxed font-body">
-                    Klinik Merpati mewakili pergeseran paradigma dalam perawatan kesehatan merpati, menggunakan logika diagnostik tingkat lanjut untuk memberikan wawasan berbasis riset yang instan bagi peternak dan dokter hewan.
+                    Clinical Vitality mewakili pergeseran paradigma dalam perawatan kesehatan merpati, menggunakan logika diagnostik tingkat lanjut untuk memberikan wawasan berbasis riset yang instan bagi peternak dan dokter hewan.
                 </p>
             </div>
             <div class="relative">
@@ -55,7 +55,7 @@ include 'includes/header.php';
         <div class="max-w-7xl mx-auto px-8">
             <div class="text-center mb-16">
                 <h2 class="font-headline text-5xl text-primary mb-4">Ketelitian Diagnostik</h2>
-                <p class="text-on-surface-variant text-lg">Mesin ilmiah yang menggerakkan Klinik Merpati</p>
+                <p class="text-on-surface-variant text-lg">Mesin ilmiah yang menggerakkan Clinical Vitality</p>
             </div>
             <div class="grid grid-cols-1 lg:grid-cols-3 gap-12">
                 <div class="group">
