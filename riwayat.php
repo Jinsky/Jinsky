@@ -16,7 +16,7 @@ $total_diagnosa = count($riwayat);
                 <span class="material-symbols-outlined">clinical_notes</span>
             </div>
             <div>
-                <p class="font-headline font-bold text-primary tracking-tight leading-none">Clinical Vitality</p>
+                <p class="font-headline font-bold text-primary tracking-tight leading-none">Klinik Merpati</p>
                 <p class="text-[10px] text-primary/60 uppercase tracking-widest font-bold mt-1">Avian Atelier</p>
             </div>
         </div>
@@ -87,7 +87,7 @@ $total_diagnosa = count($riwayat);
                             <p class="text-xs text-on-surface-variant"><?= date('H:i', strtotime($r['tanggal'])) ?> WIB</p>
                         </div>
                         <div class="flex-1">
-                            <p class="text-[10px] text-on-surface-variant font-bold uppercase tracking-tighter mb-2">Identitas Merpati</p>
+                            <p class="text-[10px] text-on-surface-variant font-bold uppercase tracking-tighter mb-2">Nama Pemilik</p>
                             <div class="flex items-center gap-3">
                                 <div class="w-8 h-8 rounded-full bg-primary-container flex items-center justify-center text-primary font-bold text-xs">
                                     <?= strtoupper(substr($r['nama_merpati'], 0, 1)) ?>

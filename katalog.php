@@ -39,61 +39,25 @@ $gejala_list = get_all_gejala($pdo);
         <!-- Disease Grid -->
         <div id="diseaseGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 items-stretch">
             <?php foreach ($penyakit_list as $p): ?>
-            <article class="disease-card h-full bg-surface-container-lowest rounded-xl p-8 flex flex-col relative overflow-hidden group shadow-sm shadow-cyan-900/5" data-name="<?= strtolower($p['nama']) ?>">
+            <article class="disease-card flex flex-col h-full bg-surface-container-lowest rounded-xl p-8 relative overflow-hidden group shadow-sm shadow-cyan-900/5 transition-all hover:shadow-md border border-outline-variant/10" data-name="<?= strtolower($p['nama']) ?>">
                 <div class="absolute top-0 left-0 w-1 h-full bg-secondary"></div>
                 <div class="flex justify-between items-start mb-6">
                     <span class="px-3 py-1 bg-secondary-container text-on-secondary-container rounded-full text-xs font-bold tracking-wide">Info Penyakit</span>
                     <span class="material-symbols-outlined text-outline-variant">microbiology</span>
                 </div>
-                <h3 class="text-2xl font-headline font-bold text-primary mb-3"><?= $p['nama'] ?></h3>
-                <p class="text-on-surface-variant text-sm leading-relaxed mb-6 flex-grow line-clamp-4">
-                    <?= $p['deskripsi'] ?>
+                <h3 class="text-2xl font-headline font-bold text-primary mb-3 h-16 line-clamp-2"><?= $p['nama'] ?></h3>
+                <p class="text-on-surface-variant text-sm leading-relaxed mb-8 flex-grow line-clamp-3">
+                    <?= strip_tags($p['deskripsi']) ?>
                 </p>
-                <div class="space-y-3 mb-6">
-                    <div class="flex items-start gap-3">
-                        <span class="material-symbols-outlined text-secondary text-sm mt-0.5">check_circle</span>
-                        <span class="text-xs text-on-surface font-medium"><?= substr($p['solusi'], 0, 50) ?>...</span>
-                    </div>
+
+                <div class="mt-auto">
+                    <a href="detail_penyakit.php?id=<?= $p['id'] ?>" class="flex items-center gap-2 text-primary font-bold text-sm group-hover:gap-4 transition-all">
+                        Baca Selengkapnya
+                        <span class="material-symbols-outlined text-sm">arrow_forward</span>
+                    </a>
                 </div>
-                <button onclick="openDiseaseModal('<?= addslashes($p['nama']) ?>', '<?= addslashes(nl2br($p['deskripsi'])) ?>', '<?= addslashes(nl2br($p['solusi'])) ?>', '<?= addslashes(nl2br($p['pencegahan'])) ?>')" class="flex items-center gap-2 text-primary font-bold text-sm group-hover:gap-4 transition-all">
-                    Baca Selengkapnya
-                    <span class="material-symbols-outlined text-sm">arrow_forward</span>
-                </button>
             </article>
             <?php endforeach; ?>
-        </div>
-
-        <!-- Disease Detail Modal -->
-        <div id="diseaseModal" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm hidden flex items-center justify-center p-4 z-[100]">
-            <div class="bg-surface rounded-2xl max-w-2xl w-full max-h-[90vh] overflow-hidden flex flex-col shadow-2xl">
-                <div class="px-10 py-8 border-b border-outline-variant/10 flex justify-between items-center bg-primary text-on-primary">
-                    <h2 id="modalDiseaseName" class="text-3xl font-headline font-bold">Detail Penyakit</h2>
-                    <button onclick="closeDiseaseModal()" class="material-symbols-outlined hover:rotate-90 transition-transform">close</button>
-                </div>
-                <div class="px-10 py-8 overflow-y-auto space-y-8">
-                    <div>
-                        <h4 class="text-sm font-bold uppercase tracking-widest text-primary mb-3">Deskripsi</h4>
-                        <p id="modalDiseaseDesc" class="text-on-surface-variant leading-relaxed"></p>
-                    </div>
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                        <div class="bg-surface-container-low p-6 rounded-xl border border-outline-variant/10">
-                            <h4 class="text-sm font-bold uppercase tracking-widest text-secondary mb-3 flex items-center gap-2">
-                                <span class="material-symbols-outlined text-sm">medical_services</span> Solusi
-                            </h4>
-                            <p id="modalDiseaseSol" class="text-sm text-on-surface-variant leading-relaxed"></p>
-                        </div>
-                        <div class="bg-surface-container-low p-6 rounded-xl border border-outline-variant/10">
-                            <h4 class="text-sm font-bold uppercase tracking-widest text-tertiary mb-3 flex items-center gap-2">
-                                <span class="material-symbols-outlined text-sm">shield</span> Pencegahan
-                            </h4>
-                            <p id="modalDiseasePrev" class="text-sm text-on-surface-variant leading-relaxed"></p>
-                        </div>
-                    </div>
-                </div>
-                <div class="p-6 bg-surface-container-highest flex justify-end">
-                    <button onclick="closeDiseaseModal()" class="px-8 py-3 bg-primary text-on-primary rounded-xl font-bold hover:opacity-90 transition-opacity">Tutup</button>
-                </div>
-            </div>
         </div>
 
         <!-- Symptoms Grid (Hidden by default) -->
@@ -109,25 +73,10 @@ $gejala_list = get_all_gejala($pdo);
             </div>
             <?php endforeach; ?>
         </div>
-    </main>
-
+    </div>
 </main>
 
 <script>
-    function openDiseaseModal(name, desc, sol, prev) {
-        document.getElementById('modalDiseaseName').innerText = name;
-        document.getElementById('modalDiseaseDesc').innerHTML = desc;
-        document.getElementById('modalDiseaseSol').innerHTML = sol;
-        document.getElementById('modalDiseasePrev').innerHTML = prev;
-        document.getElementById('diseaseModal').classList.remove('hidden');
-        document.body.style.overflow = 'hidden';
-    }
-
-    function closeDiseaseModal() {
-        document.getElementById('diseaseModal').classList.add('hidden');
-        document.body.style.overflow = 'auto';
-    }
-
     const btnInfoPenyakit = document.getElementById('btnInfoPenyakit');
     const btnInfoGejala = document.getElementById('btnInfoGejala');
     const diseaseGrid = document.getElementById('diseaseGrid');

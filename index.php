@@ -158,7 +158,7 @@ include 'includes/header.php';
         <div class="max-w-5xl mx-auto rounded-[3rem] bg-gradient-to-br from-primary to-primary-container p-12 lg:p-20 text-center relative overflow-hidden">
             <div class="relative z-10">
                 <h2 class="text-4xl lg:text-5xl font-bold text-white mb-8 font-headline">Siap Memastikan Kesehatan Burung Anda?</h2>
-                <p class="text-xl text-on-primary-container mb-12 max-w-2xl mx-auto font-body">Bergabunglah dengan ribuan pemilik burung yang telah mempercayakan diagnosa kesehatan pada Clinical Vitality.</p>
+                <p class="text-xl text-on-primary-container mb-12 max-w-2xl mx-auto font-body">Bergabunglah dengan ribuan pemilik burung yang telah mempercayakan diagnosa kesehatan pada Klinik Merpati.</p>
                 <a href="konsultasi.php" class="px-10 py-5 rounded-full bg-white text-primary font-extrabold text-xl hover:bg-primary-fixed transition-colors shadow-xl font-label inline-block">
                     Mulai Konsultasi Sekarang
                 </a>
