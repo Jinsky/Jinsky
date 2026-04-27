@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8"/>
     <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-    <title><?= isset($page_title) ? $page_title . ' | Clinical Vitality' : 'Clinical Vitality | Avian Research & Diagnosis' ?></title>
+    <title><?= isset($page_title) ? $page_title . ' | Klinik Merpati' : 'Klinik Merpati | Avian Research & Diagnosis' ?></title>
     <!-- Material Symbols -->
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
     <!-- Google Fonts: Noto Serif & Manrope -->
@@ -92,7 +92,7 @@
     <nav class="fixed top-0 w-full z-50 bg-primary backdrop-blur-xl shadow-lg transition-all duration-300 ease-in-out">
         <div class="flex justify-between items-center max-w-7xl mx-auto px-8 h-20">
             <div class="text-2xl font-headline italic font-bold text-on-primary">
-                <a href="index.php">Clinical Vitality</a>
+                <a href="index.php">Klinik Merpati</a>
             </div>
             <div class="hidden md:flex items-center space-x-8">
                 <a class="font-headline text-lg tracking-tight <?= basename($_SERVER['PHP_SELF']) == 'index.php' ? 'text-on-primary border-b-2 border-on-primary font-bold pb-1' : 'text-on-primary/70 hover:text-on-primary transition-colors' ?>" href="index.php">Beranda</a>

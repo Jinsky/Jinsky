@@ -33,7 +33,7 @@ $gejala_list = get_all_gejala($pdo);
 <html lang="id">
 <head>
     <meta charset="UTF-8">
-    <title>Kelola Gejala | Admin Clinical Vitality</title>
+    <title>Kelola Gejala | Admin Klinik Merpati</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet">
 </head>

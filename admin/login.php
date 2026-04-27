@@ -38,7 +38,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login Admin | Clinical Vitality</title>
+    <title>Login Admin | Klinik Merpati</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Serif:wght@700&family=Manrope:wght@400;700&display=swap" rel="stylesheet">
     <style>
@@ -49,7 +49,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <body class="bg-slate-50 flex items-center justify-center min-h-screen">
     <div class="max-w-md w-full bg-white p-8 rounded-2xl shadow-xl">
         <div class="text-center mb-8">
-            <h1 class="text-3xl font-bold text-cyan-900">Clinical Vitality</h1>
+            <h1 class="text-3xl font-bold text-cyan-900">Klinik Merpati</h1>
             <p class="text-slate-500 mt-2">Admin Control Panel</p>
         </div>
 
