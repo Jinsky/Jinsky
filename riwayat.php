@@ -4,8 +4,12 @@ $hide_top_nav = true;
 $page_title = "Riwayat Diagnosa";
 include 'includes/header.php';
 
-$riwayat = get_riwayat($pdo);
+$search = $_GET['search'] ?? '';
+$id_penyakit = $_GET['penyakit'] ?? '';
+
+$riwayat = get_riwayat($pdo, $search, $id_penyakit);
 $total_diagnosa = count($riwayat);
+$penyakit_list = get_all_penyakit($pdo);
 ?>
 
 <div class="bg-surface text-on-surface min-h-screen flex w-full">
@@ -43,10 +47,13 @@ $total_diagnosa = count($riwayat);
         <header class="fixed top-0 right-0 left-0 md:left-64 z-50 px-8 py-4 bg-[#f6fafe]/80 dark:bg-[#171c1f]/80 backdrop-blur-xl flex justify-between items-center shadow-sm shadow-[#171c1f]/5">
             <h1 class="font-headline text-2xl font-bold tracking-tight text-primary">Riwayat Diagnosa</h1>
             <div class="flex items-center gap-6">
-                <div class="relative hidden lg:block">
+                <form action="" method="GET" class="relative hidden lg:block">
                     <span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline scale-75">search</span>
-                    <input class="bg-surface-container-low border-none rounded-full py-2 pl-10 pr-4 text-sm w-64 focus:ring-2 focus:ring-primary/20" placeholder="Cari diagnosa atau pasien..." type="text"/>
-                </div>
+                    <input name="search" value="<?= htmlspecialchars($search) ?>" class="bg-surface-container-low border-none rounded-full py-2 pl-10 pr-4 text-sm w-64 focus:ring-2 focus:ring-primary/20" placeholder="Cari diagnosa atau pasien..." type="text"/>
+                    <?php if (!empty($id_penyakit)): ?>
+                        <input type="hidden" name="penyakit" value="<?= htmlspecialchars($id_penyakit) ?>">
+                    <?php endif; ?>
+                </form>
                 <div class="flex items-center gap-4 text-primary">
                     <button class="scale-95 active:opacity-80 transition-all material-symbols-outlined">notifications</button>
                     <button class="scale-95 active:opacity-80 transition-all material-symbols-outlined">account_circle</button>
@@ -62,9 +69,17 @@ $total_diagnosa = count($riwayat);
                     <p class="text-on-surface-variant text-sm leading-relaxed">Berikut adalah catatan komprehensif dari penilaian kesehatan yang dilakukan. Gunakan filter untuk meninjau kasus spesifik atau unduh laporan untuk keperluan medis lebih lanjut.</p>
                 </div>
                 <div class="flex gap-2">
-                    <button class="px-6 py-2.5 rounded-xl bg-secondary-container text-on-secondary-container text-sm font-bold flex items-center gap-2 hover:opacity-90 transition-all shadow-sm">
-                        <span class="material-symbols-outlined text-lg">filter_list</span> Filter Riwayat
-                    </button>
+                    <form action="" method="GET" class="flex gap-2">
+                        <?php if (!empty($search)): ?>
+                            <input type="hidden" name="search" value="<?= htmlspecialchars($search) ?>">
+                        <?php endif; ?>
+                        <select name="penyakit" onchange="this.form.submit()" class="px-6 py-2.5 rounded-xl bg-secondary-container text-on-secondary-container text-sm font-bold flex items-center gap-2 hover:opacity-90 transition-all shadow-sm border-none focus:ring-0">
+                            <option value="">Semua Penyakit</option>
+                            <?php foreach ($penyakit_list as $p): ?>
+                                <option value="<?= $p['id'] ?>" <?= $id_penyakit == $p['id'] ? 'selected' : '' ?>><?= $p['nama'] ?></option>
+                            <?php endforeach; ?>
+                        </select>
+                    </form>
                     <a href="konsultasi.php" class="px-6 py-2.5 rounded-xl bg-primary text-on-primary text-sm font-bold flex items-center gap-2 hover:opacity-90 transition-all shadow-sm">
                         <span class="material-symbols-outlined text-lg">add</span> Diagnosa Baru
                     </a>

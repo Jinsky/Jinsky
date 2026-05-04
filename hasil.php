@@ -9,7 +9,8 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
 $nama_merpati = $_POST['nama_merpati'] ?? 'Unnamed';
 $selected_gejala = $_POST['gejala'] ?? [];
 
-$diagnosis = get_diagnosa($pdo, $selected_gejala);
+$diagnoses = get_diagnosa($pdo, $selected_gejala);
+$diagnosis = !empty($diagnoses) ? $diagnoses[0] : null;
 
 if ($diagnosis) {
     save_diagnosa($pdo, $nama_merpati, $diagnosis['id'], $selected_gejala, $diagnosis['confidence']);
@@ -41,9 +42,8 @@ include 'includes/header.php';
                         <h2 class="font-headline text-3xl text-primary font-bold mb-2"><?= $diagnosis['nama'] ?></h2>
                         <span class="bg-primary-container text-on-primary-container px-3 py-1 rounded-full text-xs font-bold uppercase tracking-widest">Kecocokan Pola Terkonfirmasi</span>
                     </div>
-                    <div class="text-center bg-surface-container-lowest p-6 rounded-2xl shadow-sm border border-outline-variant/10 min-w-[140px]">
+                    <div class="text-center bg-surface-container-lowest p-6 rounded-2xl shadow-sm border border-outline-variant/10 min-w-[140px] flex items-center justify-center">
                         <p class="text-5xl font-headline font-black text-primary leading-none"><?= $diagnosis['confidence'] ?>%</p>
-                        <p class="text-[10px] font-bold text-on-surface-variant uppercase tracking-widest mt-2">Skor Keyakinan</p>
                     </div>
                 </div>
 
@@ -78,6 +78,29 @@ include 'includes/header.php';
                     </div>
                 </div>
             </div>
+
+            <?php if (count($diagnoses) > 1): ?>
+            <!-- Other Possible Diseases -->
+            <div class="bg-surface-container-low p-8 rounded-xl">
+                <h3 class="font-headline text-2xl text-primary font-bold mb-6 flex items-center gap-2">
+                    <span class="material-symbols-outlined">account_tree</span>
+                    Kemungkinan Penyakit Lain
+                </h3>
+                <div class="space-y-4">
+                    <?php for ($i = 1; $i < count($diagnoses); $i++): $d = $diagnoses[$i]; ?>
+                    <div class="bg-surface-container-lowest p-5 rounded-xl border border-outline-variant/10 flex justify-between items-center transition-hover hover:shadow-md">
+                        <div>
+                            <h4 class="font-bold text-on-surface"><?= $d['nama'] ?></h4>
+                            <p class="text-xs text-on-surface-variant mt-1 line-clamp-1"><?= strip_tags($d['deskripsi']) ?></p>
+                        </div>
+                        <div class="text-right">
+                            <span class="text-lg font-headline font-bold text-secondary"><?= $d['confidence'] ?>%</span>
+                        </div>
+                    </div>
+                    <?php endfor; ?>
+                </div>
+            </div>
+            <?php endif; ?>
 
             <div class="bg-error-container/20 p-6 rounded-xl border border-error/10">
                 <div class="flex gap-4">
