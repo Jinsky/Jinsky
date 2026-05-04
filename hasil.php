@@ -12,8 +12,9 @@ $selected_gejala = $_POST['gejala'] ?? [];
 $diagnoses = get_diagnosa($pdo, $selected_gejala);
 $diagnosis = !empty($diagnoses) ? $diagnoses[0] : null;
 
-if ($diagnosis) {
-    save_diagnosa($pdo, $nama_merpati, $diagnosis['id'], $selected_gejala, $diagnosis['confidence']);
+if (!empty($diagnoses)) {
+    $all_pids = array_map(function($d) { return $d['id']; }, $diagnoses);
+    save_diagnosa($pdo, $nama_merpati, $all_pids, $selected_gejala, $diagnosis['confidence']);
 }
 
 $page_title = "Hasil Diagnosa";
@@ -40,11 +41,6 @@ include 'includes/header.php';
                 <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-6 mb-8">
                     <div>
                         <h2 class="font-headline text-3xl text-primary font-bold mb-2"><?= $diagnosis['nama'] ?></h2>
-                        <span class="bg-primary-container text-on-primary-container px-3 py-1 rounded-full text-xs font-bold uppercase tracking-widest">Kecocokan Pola Terkonfirmasi</span>
-                    </div>
-                    <div class="text-center bg-surface-container-lowest p-6 rounded-2xl shadow-sm border border-outline-variant/10 min-w-[140px]">
-                        <p class="text-5xl font-headline font-black text-primary leading-none"><?= $diagnosis['confidence'] ?>%</p>
-                        <p class="text-[10px] font-bold text-on-surface-variant uppercase tracking-widest mt-2">Skor Keyakinan</p>
                     </div>
                 </div>
 
@@ -93,10 +89,6 @@ include 'includes/header.php';
                         <div>
                             <h4 class="font-bold text-on-surface"><?= $d['nama'] ?></h4>
                             <p class="text-xs text-on-surface-variant mt-1 line-clamp-1"><?= strip_tags($d['deskripsi']) ?></p>
-                        </div>
-                        <div class="text-right">
-                            <span class="text-lg font-headline font-bold text-secondary"><?= $d['confidence'] ?>%</span>
-                            <p class="text-[10px] font-bold text-on-surface-variant uppercase tracking-widest">Kecocokan</p>
                         </div>
                     </div>
                     <?php endfor; ?>
