@@ -127,14 +127,16 @@ function get_diagnosa($pdo, $selected_gejala) {
  */
 function save_diagnosa($pdo, $nama_merpati, $id_penyakit, $gejala_terpilih, $confidence) {
     if (!$pdo) return false;
+    // id_penyakit can be an array or string
+    $pid_str = is_array($id_penyakit) ? implode(',', $id_penyakit) : $id_penyakit;
     $stmt = $pdo->prepare("INSERT INTO diagnosa (nama_merpati, id_penyakit, gejala_terpilih, confidence) VALUES (?, ?, ?, ?)");
-    return $stmt->execute([$nama_merpati, $id_penyakit, implode(',', $gejala_terpilih), $confidence]);
+    return $stmt->execute([$nama_merpati, $pid_str, implode(',', $gejala_terpilih), $confidence]);
 }
 
 /**
  * Get diagnosis history with search and filter
  */
-function get_riwayat($pdo, $search = '', $id_penyakit = '') {
+function get_riwayat($pdo, $search = '', $id_penyakit_filter = '') {
     if (!$pdo) {
         $mock_data = [
             ['id' => 1, 'nama_merpati' => 'Merpati Pos A', 'nama_penyakit' => 'Newcastle Disease', 'id_penyakit' => 'P01', 'confidence' => 100, 'tanggal' => date('Y-m-d H:i:s'), 'gejala_terpilih' => 'G14,G15,G16'],
@@ -148,39 +150,67 @@ function get_riwayat($pdo, $search = '', $id_penyakit = '') {
             });
         }
 
-        if ($id_penyakit) {
-            $mock_data = array_filter($mock_data, function($r) use ($id_penyakit) {
-                return $r['id_penyakit'] == $id_penyakit;
+        if ($id_penyakit_filter) {
+            $mock_data = array_filter($mock_data, function($r) use ($id_penyakit_filter) {
+                $pids = explode(',', $r['id_penyakit']);
+                return in_array($id_penyakit_filter, $pids);
             });
         }
 
         return array_values($mock_data);
     }
 
-    $query = "
-        SELECT d.*, p.nama as nama_penyakit
-        FROM diagnosa d
-        LEFT JOIN penyakit p ON d.id_penyakit = p.id
-        WHERE 1=1
-    ";
+    $query = "SELECT * FROM diagnosa WHERE 1=1";
     $params = [];
 
     if (!empty($search)) {
-        $query .= " AND (d.nama_merpati LIKE ? OR p.nama LIKE ?)";
-        $params[] = "%$search%";
+        $query .= " AND nama_merpati LIKE ?";
         $params[] = "%$search%";
     }
 
-    if (!empty($id_penyakit)) {
-        $query .= " AND d.id_penyakit = ?";
-        $params[] = $id_penyakit;
+    if (!empty($id_penyakit_filter)) {
+        $query .= " AND (id_penyakit = ? OR id_penyakit LIKE ? OR id_penyakit LIKE ? OR id_penyakit LIKE ?)";
+        $params[] = $id_penyakit_filter;
+        $params[] = "$id_penyakit_filter,%";
+        $params[] = "%,$id_penyakit_filter";
+        $params[] = "%,$id_penyakit_filter,%";
     }
 
-    $query .= " ORDER BY d.tanggal DESC";
+    $query .= " ORDER BY tanggal DESC";
 
     $stmt = $pdo->prepare($query);
     $stmt->execute($params);
-    return $stmt->fetchAll();
+    $rows = $stmt->fetchAll();
+
+    // Avoid N+1 by fetching all diseases at once
+    $penyakit_all = get_all_penyakit($pdo);
+    $penyakit_map = [];
+    foreach ($penyakit_all as $p) {
+        $penyakit_map[$p['id']] = $p['nama'];
+    }
+
+    $results = [];
+    foreach ($rows as $row) {
+        $pids = explode(',', $row['id_penyakit']);
+        $names = [];
+        foreach ($pids as $pid) {
+            if (isset($penyakit_map[$pid])) {
+                $names[] = $penyakit_map[$pid];
+            }
+        }
+        $row['nama_penyakit'] = implode(', ', $names);
+
+        // Secondary filtering for search term in resolved disease names
+        if (!empty($search)) {
+            $in_name = strpos(strtolower($row['nama_merpati']), strtolower($search)) !== false;
+            $in_disease = strpos(strtolower($row['nama_penyakit']), strtolower($search)) !== false;
+            if (!$in_name && !$in_disease) continue;
+        }
+
+        $results[] = $row;
+    }
+
+    return $results;
 }
 
 /**
