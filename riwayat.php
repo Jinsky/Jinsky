@@ -114,6 +114,7 @@ $penyakit_list = get_all_penyakit($pdo);
                             <p class="text-[10px] text-on-surface-variant font-bold uppercase tracking-tighter mb-1">Hasil Diagnosa</p>
                             <div class="flex items-center gap-3">
                                 <span class="text-lg font-headline font-bold text-primary"><?= $r['nama_penyakit'] ?? 'Tidak Terdeteksi' ?></span>
+                                <span class="bg-<?= $r['id_penyakit'] ? 'error' : 'secondary' ?>-container text-on-<?= $r['id_penyakit'] ? 'error' : 'secondary' ?>-container text-[10px] font-bold px-2 py-0.5 rounded-full"><?= $r['confidence'] ?>% Cocok</span>
                             </div>
                         </div>
                         <div class="flex justify-end lg:w-40">
