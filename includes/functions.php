@@ -125,21 +125,37 @@ function get_diagnosa($pdo, $selected_gejala) {
 /**
  * Save diagnosis result to history
  */
-function save_diagnosa($pdo, $nama_merpati, $id_penyakit, $gejala_terpilih, $confidence) {
+function save_diagnosa($pdo, $nama_merpati, $ids_penyakit, $gejala_terpilih, $confidence) {
     if (!$pdo) return false;
+    $id_penyakit_str = is_array($ids_penyakit) ? implode(',', $ids_penyakit) : $ids_penyakit;
     $stmt = $pdo->prepare("INSERT INTO diagnosa (nama_merpati, id_penyakit, gejala_terpilih, confidence) VALUES (?, ?, ?, ?)");
-    return $stmt->execute([$nama_merpati, $id_penyakit, implode(',', $gejala_terpilih), $confidence]);
+    return $stmt->execute([$nama_merpati, $id_penyakit_str, implode(',', $gejala_terpilih), $confidence]);
 }
 
 /**
  * Get diagnosis history with search and filter
  */
-function get_riwayat($pdo, $search = '', $id_penyakit = '') {
+function get_riwayat($pdo, $search = '', $id_penyakit_filter = '') {
+    $penyakit_names = [];
+    $all_penyakit = get_all_penyakit($pdo);
+    foreach ($all_penyakit as $p) {
+        $penyakit_names[$p['id']] = $p['nama'];
+    }
+
     if (!$pdo) {
         $mock_data = [
-            ['id' => 1, 'nama_merpati' => 'Merpati Pos A', 'nama_penyakit' => 'Newcastle Disease', 'id_penyakit' => 'P01', 'confidence' => 100, 'tanggal' => date('Y-m-d H:i:s'), 'gejala_terpilih' => 'G14,G15,G16'],
-            ['id' => 2, 'nama_merpati' => 'Budi', 'nama_penyakit' => 'Trichomoniasis', 'id_penyakit' => 'P02', 'confidence' => 66.67, 'tanggal' => date('Y-m-d H:i:s'), 'gejala_terpilih' => 'G19,G21']
+            ['id' => 1, 'nama_merpati' => 'Merpati Pos A', 'id_penyakit' => 'P01', 'confidence' => 100, 'tanggal' => date('Y-m-d H:i:s'), 'gejala_terpilih' => 'G14,G15,G16'],
+            ['id' => 2, 'nama_merpati' => 'Budi', 'id_penyakit' => 'P02,P03', 'confidence' => 66.67, 'tanggal' => date('Y-m-d H:i:s'), 'gejala_terpilih' => 'G19,G21']
         ];
+
+        foreach ($mock_data as &$r) {
+            $ids = explode(',', $r['id_penyakit']);
+            $names = [];
+            foreach ($ids as $id) {
+                if (isset($penyakit_names[$id])) $names[] = $penyakit_names[$id];
+            }
+            $r['nama_penyakit'] = implode(', ', $names);
+        }
 
         if ($search) {
             $mock_data = array_filter($mock_data, function($r) use ($search) {
@@ -148,39 +164,46 @@ function get_riwayat($pdo, $search = '', $id_penyakit = '') {
             });
         }
 
-        if ($id_penyakit) {
-            $mock_data = array_filter($mock_data, function($r) use ($id_penyakit) {
-                return $r['id_penyakit'] == $id_penyakit;
+        if ($id_penyakit_filter) {
+            $mock_data = array_filter($mock_data, function($r) use ($id_penyakit_filter) {
+                return in_array($id_penyakit_filter, explode(',', $r['id_penyakit']));
             });
         }
 
         return array_values($mock_data);
     }
 
-    $query = "
-        SELECT d.*, p.nama as nama_penyakit
-        FROM diagnosa d
-        LEFT JOIN penyakit p ON d.id_penyakit = p.id
-        WHERE 1=1
-    ";
+    $query = "SELECT * FROM diagnosa WHERE 1=1";
     $params = [];
 
-    if (!empty($search)) {
-        $query .= " AND (d.nama_merpati LIKE ? OR p.nama LIKE ?)";
-        $params[] = "%$search%";
-        $params[] = "%$search%";
+    if (!empty($id_penyakit_filter)) {
+        $query .= " AND FIND_IN_SET(?, REPLACE(id_penyakit, ' ', ''))";
+        $params[] = $id_penyakit_filter;
     }
 
-    if (!empty($id_penyakit)) {
-        $query .= " AND d.id_penyakit = ?";
-        $params[] = $id_penyakit;
-    }
-
-    $query .= " ORDER BY d.tanggal DESC";
+    $query .= " ORDER BY tanggal DESC";
 
     $stmt = $pdo->prepare($query);
     $stmt->execute($params);
-    return $stmt->fetchAll();
+    $rows = $stmt->fetchAll();
+
+    foreach ($rows as &$row) {
+        $ids = explode(',', $row['id_penyakit']);
+        $names = [];
+        foreach ($ids as $id) {
+            if (isset($penyakit_names[$id])) $names[] = $penyakit_names[$id];
+        }
+        $row['nama_penyakit'] = implode(', ', $names);
+    }
+
+    if (!empty($search)) {
+        $rows = array_filter($rows, function($r) use ($search) {
+            return strpos(strtolower($r['nama_merpati']), strtolower($search)) !== false ||
+                   strpos(strtolower($r['nama_penyakit']), strtolower($search)) !== false;
+        });
+    }
+
+    return array_values($rows);
 }
 
 /**

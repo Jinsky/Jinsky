@@ -32,11 +32,10 @@ CREATE TABLE aturan_detail (
 CREATE TABLE diagnosa (
     id INT AUTO_INCREMENT PRIMARY KEY,
     nama_merpati VARCHAR(255) NOT NULL,
-    id_penyakit VARCHAR(5),
+    id_penyakit TEXT,
     gejala_terpilih TEXT,
     confidence FLOAT,
-    tanggal TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    FOREIGN KEY (id_penyakit) REFERENCES penyakit(id)
+    tanggal TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
 CREATE TABLE admin (
