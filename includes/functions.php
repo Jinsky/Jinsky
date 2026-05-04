@@ -46,79 +46,80 @@ function get_all_gejala($pdo) {
 
 /**
  * Weighted Diagnostic Algorithm
- * Returns the matched disease based on selected symptoms
+ * Returns an array of matched diseases based on selected symptoms
  */
 function get_diagnosa($pdo, $selected_gejala) {
-    if (empty($selected_gejala)) return null;
+    if (empty($selected_gejala)) return [];
 
     if (!$pdo) {
-        // Mock logic for demo if DB is missing
-        $mock_gejala_p01 = ['G14', 'G15', 'G16'];
-        $match_count = count(array_intersect($mock_gejala_p01, $selected_gejala));
-        if ($match_count > 0) {
-            $penyakit = [
+        // Simple mock logic for demo
+        return [
+            [
                 'id' => 'P01',
                 'nama' => 'Newcastle Disease',
-                'deskripsi' => 'Penyakit Newcastle (ND) atau yang dikenal dengan nama Tetelo adalah penyakit viral yang sangat menular pada unggas. Gejala yang paling khas adalah gangguan saraf seperti leher berputar (tortikolis) dan kelumpuhan.',
-                'solusi' => '1. Isolasi segera burung.\n2. Berikan dukungan vitamin B Kompleks.\n3. Desinfeksi kandang.',
-                'pencegahan' => '1. Vaksinasi rutin.\n2. Biosekuriti ketat.',
-                'confidence' => round($match_count * 33.33, 2)
-            ];
-            if ($penyakit['confidence'] > 100) $penyakit['confidence'] = 100;
-            return $penyakit;
-        }
-        return null;
+                'deskripsi' => 'Penyakit Newcastle (ND) atau yang dikenal dengan nama Tetelo adalah penyakit viral yang sangat menular pada unggas.',
+                'solusi' => 'Isolasi, Vitamin B, Desinfeksi.',
+                'pencegahan' => 'Vaksinasi, Biosekuriti.',
+                'confidence' => 100
+            ],
+            [
+                'id' => 'P02',
+                'nama' => 'Trichomoniasis',
+                'deskripsi' => 'Canker atau Goham caused by protozoa Trichomonas gallinae.',
+                'solusi' => 'Obat Ronidazole/Metronidazole.',
+                'pencegahan' => 'Kebersihan air minum.',
+                'confidence' => 66.67
+            ]
+        ];
     }
 
-    // Fetch all rules and their associated symptoms with percentages
+    // Fetch all rules and their associated symptoms
     $stmt = $pdo->query("
-        SELECT a.id as id_aturan, a.id_penyakit, ad.id_gejala, ad.bobot
+        SELECT a.id_penyakit, ad.id_gejala
         FROM aturan a
         JOIN aturan_detail ad ON a.id = ad.id_aturan
     ");
     $rules_raw = $stmt->fetchAll();
 
-    $rule_scores = []; // [id_aturan => ['id_penyakit' => PXX, 'score' => score]]
+    $disease_matches = []; // [id_penyakit => [gejala_terpilih]]
 
     foreach ($rules_raw as $row) {
-        $aid = $row['id_aturan'];
-        if (!isset($rule_scores[$aid])) {
-            $rule_scores[$aid] = [
-                'id_penyakit' => $row['id_penyakit'],
-                'score' => 0
-            ];
-        }
-        if (in_array($row['id_gejala'], $selected_gejala)) {
-            $rule_scores[$aid]['score'] += (float)$row['bobot'];
-        }
-    }
-
-    if (empty($rule_scores)) return null;
-
-    // Find the rule with the highest score
-    $max_score = 0;
-    $best_penyakit_id = null;
-
-    foreach ($rule_scores as $rule) {
-        if ($rule['score'] > $max_score) {
-            $max_score = $rule['score'];
-            $best_penyakit_id = $rule['id_penyakit'];
+        $pid = $row['id_penyakit'];
+        $gid = $row['id_gejala'];
+        if (in_array($gid, $selected_gejala)) {
+            if (!isset($disease_matches[$pid])) {
+                $disease_matches[$pid] = [];
+            }
+            if (!in_array($gid, $disease_matches[$pid])) {
+                $disease_matches[$pid][] = $gid;
+            }
         }
     }
 
-    if ($max_score == 0) return null;
-    if ($max_score > 100) $max_score = 100;
+    if (empty($disease_matches)) return [];
 
-    $stmt = $pdo->prepare("SELECT * FROM penyakit WHERE id = ?");
-    $stmt->execute([$best_penyakit_id]);
-    $penyakit = $stmt->fetch();
+    $results = [];
+    foreach ($disease_matches as $pid => $matched_gejala) {
+        $count = count($matched_gejala);
+        // Requirement: If at least 3 symptoms match, 100% confidence. Otherwise (count/3)*100.
+        $confidence = ($count >= 3) ? 100 : round(($count / 3) * 100, 2);
 
-    if ($penyakit) {
-        $penyakit['confidence'] = round($max_score, 2);
-        return $penyakit;
+        $stmt = $pdo->prepare("SELECT * FROM penyakit WHERE id = ?");
+        $stmt->execute([$pid]);
+        $penyakit = $stmt->fetch();
+
+        if ($penyakit) {
+            $penyakit['confidence'] = $confidence;
+            $results[] = $penyakit;
+        }
     }
 
-    return null;
+    // Sort by confidence descending
+    usort($results, function($a, $b) {
+        return $b['confidence'] <=> $a['confidence'];
+    });
+
+    return $results;
 }
 
 /**
@@ -131,20 +132,54 @@ function save_diagnosa($pdo, $nama_merpati, $id_penyakit, $gejala_terpilih, $con
 }
 
 /**
- * Get diagnosis history
+ * Get diagnosis history with search and filter
  */
-function get_riwayat($pdo) {
+function get_riwayat($pdo, $search = '', $id_penyakit = '') {
     if (!$pdo) {
-        return [
-            ['id' => 1, 'nama_merpati' => 'Merpati Pos A', 'nama_penyakit' => 'Newcastle Disease', 'id_penyakit' => 'P01', 'confidence' => 100, 'tanggal' => date('Y-m-d H:i:s'), 'gejala_terpilih' => 'G14,G15,G16']
+        $mock_data = [
+            ['id' => 1, 'nama_merpati' => 'Merpati Pos A', 'nama_penyakit' => 'Newcastle Disease', 'id_penyakit' => 'P01', 'confidence' => 100, 'tanggal' => date('Y-m-d H:i:s'), 'gejala_terpilih' => 'G14,G15,G16'],
+            ['id' => 2, 'nama_merpati' => 'Budi', 'nama_penyakit' => 'Trichomoniasis', 'id_penyakit' => 'P02', 'confidence' => 66.67, 'tanggal' => date('Y-m-d H:i:s'), 'gejala_terpilih' => 'G19,G21']
         ];
+
+        if ($search) {
+            $mock_data = array_filter($mock_data, function($r) use ($search) {
+                return strpos(strtolower($r['nama_merpati']), strtolower($search)) !== false ||
+                       strpos(strtolower($r['nama_penyakit']), strtolower($search)) !== false;
+            });
+        }
+
+        if ($id_penyakit) {
+            $mock_data = array_filter($mock_data, function($r) use ($id_penyakit) {
+                return $r['id_penyakit'] == $id_penyakit;
+            });
+        }
+
+        return array_values($mock_data);
     }
-    $stmt = $pdo->query("
+
+    $query = "
         SELECT d.*, p.nama as nama_penyakit
         FROM diagnosa d
         LEFT JOIN penyakit p ON d.id_penyakit = p.id
-        ORDER BY d.tanggal DESC
-    ");
+        WHERE 1=1
+    ";
+    $params = [];
+
+    if (!empty($search)) {
+        $query .= " AND (d.nama_merpati LIKE ? OR p.nama LIKE ?)";
+        $params[] = "%$search%";
+        $params[] = "%$search%";
+    }
+
+    if (!empty($id_penyakit)) {
+        $query .= " AND d.id_penyakit = ?";
+        $params[] = $id_penyakit;
+    }
+
+    $query .= " ORDER BY d.tanggal DESC";
+
+    $stmt = $pdo->prepare($query);
+    $stmt->execute($params);
     return $stmt->fetchAll();
 }
 
