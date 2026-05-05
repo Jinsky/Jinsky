@@ -1,0 +1,34 @@
+{
+  "nodes": [
+    {"id": "start", "label": "Mulai", "shape": "start"},
+    {"id": "open_admin", "label": "Buka Halaman Kelola Penyakit", "shape": "process"},
+    {"id": "show_table", "label": "Tampilkan Tabel Penyakit", "shape": "display"},
+    {"id": "action", "label": "Pilih Aksi", "shape": "decision"},
+    {"id": "add_btn", "label": "Klik Tombol Tambah", "shape": "process"},
+    {"id": "input_data", "label": "Input Data Penyakit", "shape": "io"},
+    {"id": "save", "label": "Klik Simpan", "shape": "process"},
+    {"id": "db_insert", "label": "INSERT INTO penyakit", "shape": "process"},
+    {"id": "delete_btn", "label": "Klik Ikon Hapus", "shape": "process"},
+    {"id": "confirm", "label": "Konfirmasi Hapus?", "shape": "decision"},
+    {"id": "db_delete", "label": "DELETE FROM penyakit", "shape": "process"},
+    {"id": "refresh", "label": "Refresh Tabel", "shape": "process"},
+    {"id": "end", "label": "Selesai", "shape": "end"}
+  ],
+  "edges": [
+    {"from": "start", "to": "open_admin"},
+    {"from": "open_admin", "to": "show_table"},
+    {"from": "show_table", "to": "action"},
+    {"from": "action", "to": "add_btn", "label": "Tambah"},
+    {"from": "add_btn", "to": "input_data"},
+    {"from": "input_data", "to": "save"},
+    {"from": "save", "to": "db_insert"},
+    {"from": "db_insert", "to": "refresh"},
+    {"from": "action", "to": "delete_btn", "label": "Hapus"},
+    {"from": "delete_btn", "to": "confirm"},
+    {"from": "confirm", "to": "db_delete", "label": "Ya"},
+    {"from": "confirm", "to": "show_table", "label": "Tidak"},
+    {"from": "db_delete", "to": "refresh"},
+    {"from": "refresh", "to": "show_table"},
+    {"from": "show_table", "to": "end", "label": "Dashboard"}
+  ]
+}
