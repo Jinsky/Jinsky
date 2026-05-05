@@ -1,0 +1,18 @@
+<mxfile host="app.diagrams.net" modified="2024-05-05T00:00:00.000Z" agent="Jules" version="21.0.0" type="device">
+  <diagram id="page1" name="Page-1">
+    <mxGraphModel dx="1422" dy="798" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />        <mxCell id="bg" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#f6fafe;strokeColor=none;" vertex="1" parent="1"><mxGeometry x="0" y="0" width="800" height="1000" as="geometry" /></mxCell>
+        <mxCell id="nav" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#094851;strokeColor=none;" vertex="1" parent="1"><mxGeometry x="0" y="0" width="800" height="60" as="geometry" /></mxCell>
+        <mxCell id="hero" value="&lt;b&gt;Menggabungkan Sains dengan Vitalitas Avian.&lt;/b&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=32;fontColor=#094851;" vertex="1" parent="1"><mxGeometry x="40" y="120" width="400" height="100" as="geometry" /></mxCell>
+        <mxCell id="img" value="Image" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#dfe3e7;rounded=1;" vertex="1" parent="1"><mxGeometry x="480" y="120" width="280" height="350" as="geometry" /></mxCell>
+        <mxCell id="mission" value="&lt;b&gt;Misi Kami&lt;/b&gt;&lt;br/&gt;..." style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;rounded=1;shadow=1;" vertex="1" parent="1"><mxGeometry x="40" y="520" width="400" height="150" as="geometry" /></mxCell>
+        <mxCell id="vision" value="&lt;b&gt;Visi&lt;/b&gt;&lt;br/&gt;..." style="rounded=0;whiteSpace=wrap;html=1;fillColor=#094851;fontColor=#ffffff;rounded=1;" vertex="1" parent="1"><mxGeometry x="460" y="580" width="300" height="150" as="geometry" /></mxCell>
+        <mxCell id="htw_t" value="&lt;b&gt;Ketelitian Diagnostik&lt;/b&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;align=center;fontSize=24;fontColor=#094851;" vertex="1" parent="1"><mxGeometry x="0" y="750" width="800" height="40" as="geometry" /></mxCell>
+        <mxCell id="s1" value="Observasi" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;rounded=1;" vertex="1" parent="1"><mxGeometry x="40" y="820" width="220" height="120" as="geometry" /></mxCell>
+        <mxCell id="s2" value="Forward Chaining" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#eaeef2;rounded=1;borderLeft=4;strokeColor=#4f2992;" vertex="1" parent="1"><mxGeometry x="290" y="820" width="220" height="120" as="geometry" /></mxCell>
+        <mxCell id="s3" value="Analisis Probabilitas" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;rounded=1;" vertex="1" parent="1"><mxGeometry x="540" y="820" width="220" height="120" as="geometry" /></mxCell>      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

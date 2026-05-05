@@ -1,0 +1,17 @@
+<mxfile host="app.diagrams.net" modified="2024-05-05T00:00:00.000Z" agent="Jules" version="21.0.0" type="device">
+  <diagram id="page1" name="Page-1">
+    <mxGraphModel dx="1422" dy="798" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />        <mxCell id="bg" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#f6fafe;strokeColor=none;" vertex="1" parent="1"><mxGeometry x="0" y="0" width="1000" height="800" as="geometry" /></mxCell>
+        <mxCell id="sidebar" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#eaeef2;strokeColor=none;" vertex="1" parent="1"><mxGeometry x="0" y="0" width="220" height="800" as="geometry" /></mxCell>
+        <mxCell id="side_logo" value="&lt;b&gt;Klinik Merpati&lt;/b&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontColor=#094851;fontSize=18;" vertex="1" parent="1"><mxGeometry x="30" y="30" width="160" height="30" as="geometry" /></mxCell>
+        <mxCell id="side_active" value="Riwayat" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;fontColor=#005C97;strokeColor=none;rounded=1;" vertex="1" parent="1"><mxGeometry x="10" y="80" width="210" height="45" as="geometry" /></mxCell>
+        <mxCell id="title" value="&lt;b&gt;Riwayat Diagnosa&lt;/b&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=24;fontColor=#094851;" vertex="1" parent="1"><mxGeometry x="250" y="40" width="400" height="40" as="geometry" /></mxCell>
+        <mxCell id="filter" value="Cari..." style="rounded=0;whiteSpace=wrap;html=1;fillColor=#eaeef2;rounded=1;strokeColor=none;" vertex="1" parent="1"><mxGeometry x="250" y="100" width="250" height="40" as="geometry" /></mxCell>
+        <mxCell id="select" value="Semua Penyakit" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#a4f1e7;rounded=1;strokeColor=none;" vertex="1" parent="1"><mxGeometry x="520" y="100" width="200" height="40" as="geometry" /></mxCell>
+        <mxCell id="item1" value="05 Mei 2024 | Jules | &lt;b&gt;Penyakit X&lt;/b&gt;" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;rounded=1;strokeColor=none;" vertex="1" parent="1"><mxGeometry x="250" y="160" width="700" height="80" as="geometry" /></mxCell>
+        <mxCell id="item2" value="04 Mei 2024 | Doe | &lt;b&gt;Penyakit Y&lt;/b&gt;" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;rounded=1;strokeColor=none;" vertex="1" parent="1"><mxGeometry x="250" y="250" width="700" height="80" as="geometry" /></mxCell>      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
