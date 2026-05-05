@@ -1,5 +1,5 @@
 <mxfile host="app.diagrams.net" modified="2023-10-27T00:00:00.000Z" agent="JulesAgent" version="21.6.8" type="device">
-  <diagram id="f156bd05-b010-4e68-944d-adafddc903e9" name="Page-1">
+  <diagram id="7996e9ef-8349-4d12-9b19-811ca20992eb" name="Page-1">
     <mxGraphModel dx="1000" dy="1000" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
         <mxCell id="0" />
@@ -19,7 +19,7 @@
         <mxCell id="6" value="Klik Tombol Tambah" style="whiteSpace=wrap;html=1;" vertex="1" parent="1">
           <mxGeometry x="200" y="440" width="120" height="60" as="geometry" />
         </mxCell>
-        <mxCell id="7" value="Input ID & Nama Gejala" style="shape=parallelogram;perimeter=parallelogramPerimeter;whiteSpace=wrap;html=1;fixedSize=1;" vertex="1" parent="1">
+        <mxCell id="7" value="Input ID &amp; Nama Gejala" style="shape=parallelogram;perimeter=parallelogramPerimeter;whiteSpace=wrap;html=1;fixedSize=1;" vertex="1" parent="1">
           <mxGeometry x="200" y="540" width="120" height="60" as="geometry" />
         </mxCell>
         <mxCell id="8" value="Klik Simpan" style="whiteSpace=wrap;html=1;" vertex="1" parent="1">

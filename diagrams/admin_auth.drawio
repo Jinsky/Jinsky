@@ -1,5 +1,5 @@
 <mxfile host="app.diagrams.net" modified="2023-10-27T00:00:00.000Z" agent="JulesAgent" version="21.6.8" type="device">
-  <diagram id="4d762d5c-414e-49b1-b415-8cb8d97573fd" name="Page-1">
+  <diagram id="6a113bce-0e37-4aa0-99fb-630ad958d5dc" name="Page-1">
     <mxGraphModel dx="1000" dy="1000" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
         <mxCell id="0" />
@@ -10,7 +10,7 @@
         <mxCell id="3" value="Buka Halaman Login" style="whiteSpace=wrap;html=1;" vertex="1" parent="1">
           <mxGeometry x="200" y="140" width="120" height="60" as="geometry" />
         </mxCell>
-        <mxCell id="4" value="Input Username & Password" style="shape=parallelogram;perimeter=parallelogramPerimeter;whiteSpace=wrap;html=1;fixedSize=1;" vertex="1" parent="1">
+        <mxCell id="4" value="Input Username &amp; Password" style="shape=parallelogram;perimeter=parallelogramPerimeter;whiteSpace=wrap;html=1;fixedSize=1;" vertex="1" parent="1">
           <mxGeometry x="200" y="240" width="120" height="60" as="geometry" />
         </mxCell>
         <mxCell id="5" value="Klik Tombol Masuk" style="whiteSpace=wrap;html=1;" vertex="1" parent="1">

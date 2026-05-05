@@ -1,5 +1,5 @@
 <mxfile host="app.diagrams.net" modified="2023-10-27T00:00:00.000Z" agent="JulesAgent" version="21.6.8" type="device">
-  <diagram id="09ce7aad-60fe-4474-8591-265a1178f274" name="Page-1">
+  <diagram id="9b190f33-ed26-47b5-8b59-aa502548fddb" name="Page-1">
     <mxGraphModel dx="1000" dy="1000" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
         <mxCell id="0" />
@@ -25,7 +25,7 @@
         <mxCell id="8" value="Cari Gejala via Search Bar" style="whiteSpace=wrap;html=1;" vertex="1" parent="1">
           <mxGeometry x="200" y="640" width="120" height="60" as="geometry" />
         </mxCell>
-        <mxCell id="9" value="Klik 'Baca Selengkapnya'" style="whiteSpace=wrap;html=1;" vertex="1" parent="1">
+        <mxCell id="9" value="Klik &apos;Baca Selengkapnya&apos;" style="whiteSpace=wrap;html=1;" vertex="1" parent="1">
           <mxGeometry x="200" y="740" width="120" height="60" as="geometry" />
         </mxCell>
         <mxCell id="10" value="Tampilkan Halaman Detail Penyakit" style="shape=display;whiteSpace=wrap;html=1;" vertex="1" parent="1">
