@@ -1,0 +1,14 @@
+<mxfile host="app.diagrams.net" modified="2024-05-05T00:00:00.000Z" agent="Jules" version="21.0.0" type="device">
+  <diagram id="page1" name="Page-1">
+    <mxGraphModel dx="1422" dy="798" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />        <mxCell id="bg" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#f6fafe;strokeColor=none;" vertex="1" parent="1"><mxGeometry x="0" y="0" width="800" height="1000" as="geometry" /></mxCell>
+        <mxCell id="nav" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#094851;strokeColor=none;" vertex="1" parent="1"><mxGeometry x="0" y="0" width="800" height="60" as="geometry" /></mxCell>
+        <mxCell id="head" value="&lt;b&gt;Penyakit A&lt;/b&gt;" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#094851;fontColor=#ffffff;rounded=1;fontSize=32;" vertex="1" parent="1"><mxGeometry x="40" y="120" width="720" height="180" as="geometry" /></mxCell>
+        <mxCell id="desc" value="&lt;b&gt;Deskripsi Klinis&lt;/b&gt;&lt;br/&gt;..." style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;rounded=1;strokeColor=#c1c7d1;" vertex="1" parent="1"><mxGeometry x="40" y="320" width="720" height="150" as="geometry" /></mxCell>
+        <mxCell id="sol" value="&lt;b&gt;Penanganan&lt;/b&gt;&lt;br/&gt;..." style="rounded=0;whiteSpace=wrap;html=1;fillColor=#f0f4f8;rounded=1;strokeColor=none;" vertex="1" parent="1"><mxGeometry x="40" y="500" width="350" height="200" as="geometry" /></mxCell>
+        <mxCell id="prev" value="&lt;b&gt;Pencegahan&lt;/b&gt;&lt;br/&gt;..." style="rounded=0;whiteSpace=wrap;html=1;fillColor=#f0f4f8;rounded=1;strokeColor=none;" vertex="1" parent="1"><mxGeometry x="410" y="500" width="350" height="200" as="geometry" /></mxCell>      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
