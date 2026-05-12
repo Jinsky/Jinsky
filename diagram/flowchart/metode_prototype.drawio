@@ -1,0 +1,64 @@
+<?xml version="1.0" ?>
+<mxfile host="app.diagrams.net" version="21.0.0" type="device">
+  <diagram id="page1" name="Page-1">
+    <mxGraphModel dx="1422" dy="798" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0"/>
+        <mxCell id="1" parent="0"/>
+        <mxCell id="bg" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#f8fafc;strokeColor=none;" vertex="1" parent="1">
+          <mxGeometry x="0" y="0" width="827" height="1169" as="geometry"/>
+        </mxCell>
+        <mxCell id="start" value="Mulai" style="ellipse;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;fontStyle=1;fontSize=14;" vertex="1" parent="1">
+          <mxGeometry x="350" y="40" width="120" height="60" as="geometry"/>
+        </mxCell>
+        <mxCell id="req" value="Pengumpulan Kebutuhan" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#094851;strokeColor=#126a63;fontColor=#ffffff;fontSize=13;" vertex="1" parent="1">
+          <mxGeometry x="320" y="140" width="180" height="80" as="geometry"/>
+        </mxCell>
+        <mxCell id="design" value="Desain Cepat" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#094851;strokeColor=#126a63;fontColor=#ffffff;fontSize=13;" vertex="1" parent="1">
+          <mxGeometry x="330" y="260" width="160" height="80" as="geometry"/>
+        </mxCell>
+        <mxCell id="proto" value="Membangun Prototipe" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#094851;strokeColor=#126a63;fontColor=#ffffff;fontSize=13;" vertex="1" parent="1">
+          <mxGeometry x="330" y="380" width="160" height="80" as="geometry"/>
+        </mxCell>
+        <mxCell id="eval" value="Evaluasi Pengguna?" style="rhombus;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=13;" vertex="1" parent="1">
+          <mxGeometry x="330" y="500" width="160" height="100" as="geometry"/>
+        </mxCell>
+        <mxCell id="impl" value="Implementasi &amp; Pengujian" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#094851;strokeColor=#126a63;fontColor=#ffffff;fontSize=13;" vertex="1" parent="1">
+          <mxGeometry x="330" y="640" width="160" height="80" as="geometry"/>
+        </mxCell>
+        <mxCell id="end" value="Selesai" style="ellipse;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;fontStyle=1;fontSize=14;" vertex="1" parent="1">
+          <mxGeometry x="350" y="760" width="120" height="60" as="geometry"/>
+        </mxCell>
+        <mxCell id="e1" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=2;fontSize=11;" edge="1" parent="1" source="start" target="req">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="e2" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=2;fontSize=11;" edge="1" parent="1" source="req" target="design">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="e3" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=2;fontSize=11;" edge="1" parent="1" source="design" target="proto">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="e4" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=2;fontSize=11;" edge="1" parent="1" source="proto" target="eval">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="e5" value="Sesuai" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=2;fontSize=11;" edge="1" parent="1" source="eval" target="impl">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="e6" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=2;fontSize=11;" edge="1" parent="1" source="impl" target="end">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="e7" value="Tidak Sesuai / Perbaikan" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=2;fontSize=11;entryX=0;entryY=0.5;entryDx=0;entryDy=0;exitX=0;exitY=0.5;exitDx=0;exitDy=0;" edge="1" parent="1" source="eval" target="design">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="280" y="550"/>
+              <mxPoint x="280" y="300"/>
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="title" value="Metode Prototype" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=24;fontStyle=1;fontColor=#094851;" vertex="1" parent="1">
+          <mxGeometry x="200" y="5" width="427" height="30" as="geometry"/>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
