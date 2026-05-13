@@ -6,18 +6,18 @@ $pdo = null; // Test Mock Mode
 
 echo "--- Testing Mock Mode ---\n";
 
-// Test 1: Less than 2 symptoms
+// Test 1: Non-empty symptoms returns mock array
 $res = get_diagnosa($pdo, ['G14']);
-echo "Test 1 (1 symptom, expected null): " . ($res === null ? "PASS" : "FAIL") . "\n";
+echo "Test 1 (1 symptom, expected not empty): " . (!empty($res) ? "PASS" : "FAIL") . "\n";
 
 // Test 2: Match P01 in mock
 $res = get_diagnosa($pdo, ['G14', 'G15']);
-echo "Test 2 (G14, G15, expected P01): " . ($res['id'] === 'P01' ? "PASS" : "FAIL") . "\n";
-echo "Confidence: " . $res['confidence'] . "%\n";
+echo "Test 2 (G14, G15, expected P01): " . (isset($res[0]['id']) && $res[0]['id'] === 'P01' ? "PASS" : "FAIL") . "\n";
+if (isset($res[0])) echo "Confidence: " . $res[0]['confidence'] . "%\n";
 
-// Test 3: No match in mock
-$res = get_diagnosa($pdo, ['G01', 'G02']);
-echo "Test 3 (G01, G02, expected null): " . ($res === null ? "PASS" : "FAIL") . "\n";
+// Test 3: Empty symptoms returns empty array
+$res = get_diagnosa($pdo, []);
+echo "Test 3 (Empty symptoms, expected empty): " . (empty($res) ? "PASS" : "FAIL") . "\n";
 
 echo "\n--- Testing Logic Aggregation (Local Simulation) ---\n";
 

@@ -44,7 +44,7 @@ include 'includes/header.php';
                     </div>
                     <div class="text-center bg-surface-container-lowest p-6 rounded-2xl shadow-sm border border-outline-variant/10 min-w-[140px]">
                         <p class="text-5xl font-headline font-black text-primary leading-none"><?= $diagnosis['confidence'] ?>%</p>
-                        <p class="text-[10px] font-bold text-on-surface-variant uppercase tracking-widest mt-2">Skor Keyakinan</p>
+                        <p class="text-[10px] font-bold text-on-surface-variant uppercase tracking-widest mt-2">Tingkat Kecocokan</p>
                     </div>
                 </div>
 
