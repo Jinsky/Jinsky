@@ -35,6 +35,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 ?>
 <!DOCTYPE html>
 <html lang="id">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -42,10 +43,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Serif:wght@700&family=Manrope:wght@400;700&display=swap" rel="stylesheet">
     <style>
-        body { font-family: 'Manrope', sans-serif; }
-        h1 { font-family: 'Noto Serif', serif; }
+        body {
+            font-family: 'Manrope', sans-serif;
+        }
+
+        h1 {
+            font-family: 'Noto Serif', serif;
+        }
     </style>
 </head>
+
 <body class="bg-slate-50 flex items-center justify-center min-h-screen">
     <div class="max-w-md w-full bg-white p-8 rounded-2xl shadow-xl">
         <div class="text-center mb-8">
@@ -77,4 +84,5 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         </div>
     </div>
 </body>
+
 </html>
