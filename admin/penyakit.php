@@ -16,6 +16,16 @@ if (isset($_POST['add'])) {
     }
 }
 
+if (isset($_POST['edit'])) {
+    if ($pdo) {
+        try {
+            $stmt = $pdo->prepare("UPDATE penyakit SET id = ?, nama = ?, deskripsi = ?, solusi = ?, pencegahan = ? WHERE id = ?");
+            $stmt->execute([$_POST['id'], $_POST['nama'], $_POST['deskripsi'], $_POST['solusi'], $_POST['pencegahan'], $_POST['old_id']]);
+            $message = "Penyakit berhasil diperbarui.";
+        } catch (Exception $e) { $error = "Gagal: " . $e->getMessage(); }
+    }
+}
+
 if (isset($_POST['delete'])) {
     if ($pdo) {
         $stmt = $pdo->prepare("DELETE FROM penyakit WHERE id = ?");
@@ -74,7 +84,8 @@ $penyakit_list = get_all_penyakit($pdo);
                         <td class="p-6 font-mono text-cyan-700 font-bold"><?= $p['id'] ?></td>
                         <td class="p-6 font-bold text-slate-800"><?= $p['nama'] ?></td>
                         <td class="p-6 text-slate-500 text-sm max-w-xs truncate"><?= $p['deskripsi'] ?></td>
-                        <td class="p-6 text-right">
+                        <td class="p-6 text-right flex justify-end gap-2">
+                            <button onclick='openEditModal(<?= htmlspecialchars(json_encode($p), ENT_QUOTES, 'UTF-8') ?>)' class="text-amber-500 hover:text-amber-600 transition material-symbols-outlined">edit</button>
                             <form method="POST" onsubmit="return confirm('Hapus penyakit ini?')">
                                 <input type="hidden" name="id" value="<?= $p['id'] ?>">
                                 <button name="delete" class="text-red-400 hover:text-red-600 transition material-symbols-outlined">delete</button>
@@ -120,5 +131,52 @@ $penyakit_list = get_all_penyakit($pdo);
             </form>
         </div>
     </div>
+
+    <div id="editModal" class="fixed inset-0 bg-slate-900/50 hidden flex items-center justify-center p-4 z-50">
+        <div class="bg-white rounded-2xl p-8 max-w-2xl w-full max-h-[90vh] overflow-auto">
+            <h2 class="text-2xl font-bold mb-6">Edit Penyakit</h2>
+            <form method="POST" class="space-y-4">
+                <input type="hidden" name="old_id" id="edit_old_id">
+                <div class="grid grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-sm font-bold mb-1">ID (Contoh: P11)</label>
+                        <input type="text" name="id" id="edit_id" required class="w-full border p-3 rounded-xl">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-bold mb-1">Nama Penyakit</label>
+                        <input type="text" name="nama" id="edit_nama" required class="w-full border p-3 rounded-xl">
+                    </div>
+                </div>
+                <div>
+                    <label class="block text-sm font-bold mb-1">Deskripsi</label>
+                    <textarea name="deskripsi" id="edit_deskripsi" required class="w-full border p-3 rounded-xl h-24"></textarea>
+                </div>
+                <div>
+                    <label class="block text-sm font-bold mb-1">Solusi / Penanganan</label>
+                    <textarea name="solusi" id="edit_solusi" required class="w-full border p-3 rounded-xl h-24"></textarea>
+                </div>
+                <div>
+                    <label class="block text-sm font-bold mb-1">Langkah Pencegahan</label>
+                    <textarea name="pencegahan" id="edit_pencegahan" required class="w-full border p-3 rounded-xl h-24"></textarea>
+                </div>
+                <div class="flex gap-4 pt-4">
+                    <button type="button" onclick="document.getElementById('editModal').classList.add('hidden')" class="flex-1 py-3 border rounded-xl font-bold">Batal</button>
+                    <button type="submit" name="edit" class="flex-1 py-3 bg-cyan-900 text-white rounded-xl font-bold">Simpan Perubahan</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        function openEditModal(penyakit) {
+            document.getElementById('edit_old_id').value = penyakit.id;
+            document.getElementById('edit_id').value = penyakit.id;
+            document.getElementById('edit_nama').value = penyakit.nama;
+            document.getElementById('edit_deskripsi').value = penyakit.deskripsi;
+            document.getElementById('edit_solusi').value = penyakit.solusi;
+            document.getElementById('edit_pencegahan').value = penyakit.pencegahan;
+            document.getElementById('editModal').classList.remove('hidden');
+        }
+    </script>
 </body>
 </html>

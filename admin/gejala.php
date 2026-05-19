@@ -18,6 +18,19 @@ if (isset($_POST['add'])) {
     }
 }
 
+if (isset($_POST['edit'])) {
+    $id = $_POST['id'];
+    $nama = $_POST['nama'];
+    $old_id = $_POST['old_id'];
+    if ($pdo) {
+        try {
+            $stmt = $pdo->prepare("UPDATE gejala SET id = ?, nama = ? WHERE id = ?");
+            $stmt->execute([$id, $nama, $old_id]);
+            $message = "Gejala berhasil diperbarui.";
+        } catch (Exception $e) { $error = "Gagal: " . $e->getMessage(); }
+    }
+}
+
 if (isset($_POST['delete'])) {
     $id = $_POST['id'];
     if ($pdo) {
@@ -79,7 +92,8 @@ $gejala_list = get_all_gejala($pdo);
                     <tr>
                         <td class="p-6 font-mono text-cyan-700 font-bold"><?= $g['id'] ?></td>
                         <td class="p-6 text-slate-700"><?= $g['nama'] ?></td>
-                        <td class="p-6 text-right">
+                        <td class="p-6 text-right flex justify-end gap-2">
+                            <button onclick='openEditModal(<?= htmlspecialchars(json_encode($g), ENT_QUOTES, 'UTF-8') ?>)' class="text-amber-500 hover:text-amber-600 transition material-symbols-outlined">edit</button>
                             <form method="POST" onsubmit="return confirm('Hapus gejala ini?')">
                                 <input type="hidden" name="id" value="<?= $g['id'] ?>">
                                 <button name="delete" class="text-red-400 hover:text-red-600 transition material-symbols-outlined">delete</button>
@@ -92,7 +106,7 @@ $gejala_list = get_all_gejala($pdo);
         </div>
     </main>
 
-    <div id="addModal" class="fixed inset-0 bg-slate-900/50 hidden flex items-center justify-center p-4">
+    <div id="addModal" class="fixed inset-0 bg-slate-900/50 hidden flex items-center justify-center p-4 z-50">
         <div class="bg-white rounded-2xl p-8 max-w-md w-full">
             <h2 class="text-2xl font-bold mb-6">Tambah Gejala Baru</h2>
             <form method="POST" class="space-y-4">
@@ -111,5 +125,35 @@ $gejala_list = get_all_gejala($pdo);
             </form>
         </div>
     </div>
+
+    <div id="editModal" class="fixed inset-0 bg-slate-900/50 hidden flex items-center justify-center p-4 z-50">
+        <div class="bg-white rounded-2xl p-8 max-w-md w-full">
+            <h2 class="text-2xl font-bold mb-6">Edit Gejala</h2>
+            <form method="POST" class="space-y-4">
+                <input type="hidden" name="old_id" id="edit_old_id">
+                <div>
+                    <label class="block text-sm font-bold mb-1">ID (Contoh: G31)</label>
+                    <input type="text" name="id" id="edit_id" required class="w-full border p-3 rounded-xl outline-none focus:ring-2 focus:ring-cyan-600">
+                </div>
+                <div>
+                    <label class="block text-sm font-bold mb-1">Nama Gejala</label>
+                    <input type="text" name="nama" id="edit_nama" required class="w-full border p-3 rounded-xl outline-none focus:ring-2 focus:ring-cyan-600">
+                </div>
+                <div class="flex gap-4 pt-4">
+                    <button type="button" onclick="document.getElementById('editModal').classList.add('hidden')" class="flex-1 py-3 border rounded-xl font-bold">Batal</button>
+                    <button type="submit" name="edit" class="flex-1 py-3 bg-cyan-900 text-white rounded-xl font-bold">Simpan Perubahan</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        function openEditModal(gejala) {
+            document.getElementById('edit_old_id').value = gejala.id;
+            document.getElementById('edit_id').value = gejala.id;
+            document.getElementById('edit_nama').value = gejala.nama;
+            document.getElementById('editModal').classList.remove('hidden');
+        }
+    </script>
 </body>
 </html>
