@@ -1,0 +1,82 @@
+<?xml version="1.0" ?>
+<mxfile host="65bd71144e">
+	<diagram id="program_structure" name="Struktur Program">
+		<mxGraphModel dx="1000" dy="1000" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169">
+			<root>
+				<mxCell id="0"/>
+				<mxCell id="1" parent="0"/>
+				<mxCell id="root_container" value="Klinik Merpati (Root Directory)" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;fillColor=#094851;fontColor=#ffffff;strokeColor=#094851;" parent="1" vertex="1">
+					<mxGeometry x="50" y="50" width="200" height="210" as="geometry"/>
+				</mxCell>
+				<mxCell id="f1" value="index.php (Beranda)" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" parent="root_container" vertex="1">
+					<mxGeometry y="26" width="200" height="26" as="geometry"/>
+				</mxCell>
+				<mxCell id="f2" value="konsultasi.php (Konsultasi)" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" parent="root_container" vertex="1">
+					<mxGeometry y="52" width="200" height="26" as="geometry"/>
+				</mxCell>
+				<mxCell id="f3" value="hasil.php (Hasil Diagnosa)" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" parent="root_container" vertex="1">
+					<mxGeometry y="78" width="200" height="26" as="geometry"/>
+				</mxCell>
+				<mxCell id="f4" value="riwayat.php (Riwayat)" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" parent="root_container" vertex="1">
+					<mxGeometry y="104" width="200" height="26" as="geometry"/>
+				</mxCell>
+				<mxCell id="f5" value="katalog.php (Katalog)" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" parent="root_container" vertex="1">
+					<mxGeometry y="130" width="200" height="26" as="geometry"/>
+				</mxCell>
+				<mxCell id="f6" value="detail_penyakit.php" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" parent="root_container" vertex="1">
+					<mxGeometry y="156" width="200" height="26" as="geometry"/>
+				</mxCell>
+				<mxCell id="f7" value="tentang.php (Tentang)" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" parent="root_container" vertex="1">
+					<mxGeometry y="182" width="200" height="26" as="geometry"/>
+				</mxCell>
+				<mxCell id="admin_container" value="admin/" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;fillColor=#126a63;fontColor=#ffffff;strokeColor=#126a63;" parent="1" vertex="1">
+					<mxGeometry x="300" y="50" width="200" height="160" as="geometry"/>
+				</mxCell>
+				<mxCell id="a1" value="index.php (Dashboard)" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" parent="admin_container" vertex="1">
+					<mxGeometry y="26" width="200" height="26" as="geometry"/>
+				</mxCell>
+				<mxCell id="a2" value="gejala.php (Kelola)" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" parent="admin_container" vertex="1">
+					<mxGeometry y="52" width="200" height="26" as="geometry"/>
+				</mxCell>
+				<mxCell id="a3" value="penyakit.php (Kelola)" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" parent="admin_container" vertex="1">
+					<mxGeometry y="78" width="200" height="26" as="geometry"/>
+				</mxCell>
+				<mxCell id="a4" value="aturan.php (Kelola)" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" parent="admin_container" vertex="1">
+					<mxGeometry y="104" width="200" height="26" as="geometry"/>
+				</mxCell>
+				<mxCell id="a5" value="login.php" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" parent="admin_container" vertex="1">
+					<mxGeometry y="130" width="200" height="26" as="geometry"/>
+				</mxCell>
+				<mxCell id="inc_container" value="includes/" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;fillColor=#01579b;fontColor=#ffffff;strokeColor=#01579b;" parent="1" vertex="1">
+					<mxGeometry x="550" y="50" width="200" height="134" as="geometry"/>
+				</mxCell>
+				<mxCell id="i1" value="db.php (Koneksi)" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" parent="inc_container" vertex="1">
+					<mxGeometry y="26" width="200" height="26" as="geometry"/>
+				</mxCell>
+				<mxCell id="i2" value="functions.php (Logika)" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" parent="inc_container" vertex="1">
+					<mxGeometry y="52" width="200" height="26" as="geometry"/>
+				</mxCell>
+				<mxCell id="i3" value="header.php (UI)" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" parent="inc_container" vertex="1">
+					<mxGeometry y="78" width="200" height="26" as="geometry"/>
+				</mxCell>
+				<mxCell id="i4" value="footer.php (UI)" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" parent="inc_container" vertex="1">
+					<mxGeometry y="104" width="200" height="26" as="geometry"/>
+				</mxCell>
+				<mxCell id="e1" value="Submit" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#414750;fontSize=10;" parent="1" source="f2" target="f3" edge="1">
+					<mxGeometry relative="1" as="geometry"/>
+				</mxCell>
+				<mxCell id="e2" value="View Detail" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#414750;fontSize=10;" parent="1" source="f5" target="f6" edge="1">
+					<mxGeometry relative="1" as="geometry"/>
+				</mxCell>
+				<mxCell id="e3" value="Success" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#414750;fontSize=10;" parent="1" source="a5" target="a1" edge="1">
+					<mxGeometry relative="1" as="geometry"/>
+				</mxCell>
+				<mxCell id="desc1" value="Semua halaman meng-include
+header.php, footer.php,
+dan functions.php" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=11;fontColor=#414750;" parent="1" vertex="1">
+					<mxGeometry x="550" y="200" width="200" height="60" as="geometry"/>
+				</mxCell>
+			</root>
+		</mxGraphModel>
+	</diagram>
+</mxfile>
