@@ -1,0 +1,37 @@
+<mxfile host="app.diagrams.net" modified="2024-05-05T00:00:00.000Z" agent="Jules" version="21.0.0" type="device">
+  <diagram id="gejala_form" name="Admin Gejala Form">
+    <mxGraphModel dx="1422" dy="798" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="overlay" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#0f172a;opacity=50;strokeColor=none;" vertex="1" parent="1">
+          <mxGeometry x="0" y="0" width="800" height="600" as="geometry" />
+        </mxCell>
+        <mxCell id="modal" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=none;arcSize=4;rounded=1;" vertex="1" parent="1">
+          <mxGeometry x="200" y="150" width="400" height="300" as="geometry" />
+        </mxCell>
+        <mxCell id="header" value="Tambah / Edit Gejala" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=18;fontStyle=1;fontColor=#1e293b;" vertex="1" parent="1">
+          <mxGeometry x="230" y="170" width="340" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="label_id" value="ID (Contoh: G31)" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=12;fontStyle=1;fontColor=#1e293b;" vertex="1" parent="1">
+          <mxGeometry x="230" y="210" width="340" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="input_id" value="G01" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#e2e8f0;align=left;spacingLeft=10;fontColor=#1e293b;" vertex="1" parent="1">
+          <mxGeometry x="230" y="235" width="340" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="label_nama" value="Nama Gejala" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=12;fontStyle=1;fontColor=#1e293b;" vertex="1" parent="1">
+          <mxGeometry x="230" y="285" width="340" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="input_nama" value="Nafsu makan menurun" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#e2e8f0;align=left;spacingLeft=10;fontColor=#1e293b;" vertex="1" parent="1">
+          <mxGeometry x="230" y="310" width="340" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="btn_cancel" value="Batal" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#e2e8f0;fontStyle=1;fontColor=#1e293b;" vertex="1" parent="1">
+          <mxGeometry x="230" y="380" width="160" height="45" as="geometry" />
+        </mxCell>
+        <mxCell id="btn_save" value="Simpan" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#083344;strokeColor=none;fontStyle=1;fontColor=#ffffff;" vertex="1" parent="1">
+          <mxGeometry x="410" y="380" width="160" height="45" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
