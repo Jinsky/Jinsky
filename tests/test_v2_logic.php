@@ -6,47 +6,63 @@ $pdo = null; // Test Mock Mode
 
 echo "--- Testing Mock Mode ---\n";
 
-// Test 1: Less than 2 symptoms
-$res = get_diagnosa($pdo, ['G14']);
-echo "Test 1 (1 symptom, expected null): " . ($res === null ? "PASS" : "FAIL") . "\n";
+// Test 1: Empty symptoms
+$res = get_diagnosa($pdo, []);
+echo "Test 1 (0 symptoms, expected empty array): " . (empty($res) ? "PASS" : "FAIL") . "\n";
 
-// Test 2: Match P01 in mock
+// Test 2: Match P01 in mock (Note: mock currently returns fixed array if $pdo is null)
 $res = get_diagnosa($pdo, ['G14', 'G15']);
-echo "Test 2 (G14, G15, expected P01): " . ($res['id'] === 'P01' ? "PASS" : "FAIL") . "\n";
-echo "Confidence: " . $res['confidence'] . "%\n";
+echo "Test 2 (G14, G15, expected P01 as top match): " . (!empty($res) && $res[0]['id'] === 'P01' ? "PASS" : "FAIL") . "\n";
+if (!empty($res)) {
+    echo "Top Match: " . $res[0]['nama'] . " (Confidence: " . $res[0]['confidence'] . "%)\n";
+}
 
-// Test 3: No match in mock
-$res = get_diagnosa($pdo, ['G01', 'G02']);
-echo "Test 3 (G01, G02, expected null): " . ($res === null ? "PASS" : "FAIL") . "\n";
+// Test 3: Multiple results check
+echo "Test 3 (Multiple results in mock): " . (count($res) > 1 ? "PASS" : "FAIL") . "\n";
 
 echo "\n--- Testing Logic Aggregation (Local Simulation) ---\n";
 
 function simulate_diagnosa($rules_raw, $selected_gejala) {
-    if (count($selected_gejala) < 2) return null;
-    $scores = [];
+    if (empty($selected_gejala)) return [];
+
+    $disease_matches = [];
     foreach ($rules_raw as $row) {
         if (in_array($row['id_gejala'], $selected_gejala)) {
-            if (!isset($scores[$row['id_penyakit']])) $scores[$row['id_penyakit']] = 0;
-            $scores[$row['id_penyakit']] += (int)$row['bobot'];
+            $pid = $row['id_penyakit'];
+            if (!isset($disease_matches[$pid])) $disease_matches[$pid] = [];
+            if (!in_array($row['id_gejala'], $disease_matches[$pid])) {
+                $disease_matches[$pid][] = $row['id_gejala'];
+            }
         }
     }
-    if (empty($scores)) return null;
-    arsort($scores);
-    return ['id' => key($scores), 'confidence' => min(100, current($scores))];
+
+    $results = [];
+    foreach ($disease_matches as $pid => $matched) {
+        $count = count($matched);
+        $confidence = ($count >= 3) ? 100 : round(($count / 3) * 100, 2);
+        $results[] = ['id' => $pid, 'confidence' => $confidence];
+    }
+
+    usort($results, function($a, $b) {
+        return $b['confidence'] <=> $a['confidence'];
+    });
+
+    return $results;
 }
 
 $rules = [
-    ['id_penyakit' => 'P01', 'id_gejala' => 'G01', 'bobot' => 30],
-    ['id_penyakit' => 'P01', 'id_gejala' => 'G02', 'bobot' => 40],
-    ['id_penyakit' => 'P02', 'id_gejala' => 'G01', 'bobot' => 20],
-    ['id_penyakit' => 'P02', 'id_gejala' => 'G03', 'bobot' => 60],
+    ['id_penyakit' => 'P01', 'id_gejala' => 'G01', 'bobot' => 33.33],
+    ['id_penyakit' => 'P01', 'id_gejala' => 'G02', 'bobot' => 33.33],
+    ['id_penyakit' => 'P02', 'id_gejala' => 'G01', 'bobot' => 33.33],
+    ['id_penyakit' => 'P02', 'id_gejala' => 'G03', 'bobot' => 33.33],
+    ['id_penyakit' => 'P02', 'id_gejala' => 'G04', 'bobot' => 33.33],
 ];
 
-// Case A: Higher P01
-$res = simulate_diagnosa($rules, ['G01', 'G02']);
-echo "Case A (G01+G02): P01=" . ($res['id'] === 'P01' ? "PASS" : "FAIL") . " (Score: " . $res['confidence'] . ")\n";
+// Case A: Higher P02 (2 symptoms vs 1)
+$res = simulate_diagnosa($rules, ['G01', 'G03', 'G04']);
+echo "Case A (G01+G03+G04): Top P02=" . (!empty($res) && $res[0]['id'] === 'P02' ? "PASS" : "FAIL") . " (Confidence: " . $res[0]['confidence'] . "%)\n";
 
-// Case B: Higher P02
-$res = simulate_diagnosa($rules, ['G01', 'G03']);
-echo "Case B (G01+G03): P02=" . ($res['id'] === 'P02' ? "PASS" : "FAIL") . " (Score: " . $res['confidence'] . ")\n";
+// Case B: P01 match
+$res = simulate_diagnosa($rules, ['G01', 'G02']);
+echo "Case B (G01+G02): Top P01=" . (!empty($res) && $res[0]['id'] === 'P01' ? "PASS" : "FAIL") . " (Confidence: " . $res[0]['confidence'] . "%)\n";
 ?>
