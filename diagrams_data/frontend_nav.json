@@ -1,0 +1,23 @@
+{
+  "nodes": [
+    {"id": "home", "label": "Beranda/Index", "shape": "start"},
+    {"id": "konsul", "label": "Konsultasi", "shape": "process"},
+    {"id": "riwayat", "label": "Riwayat", "shape": "process"},
+    {"id": "katalog", "label": "Katalog", "shape": "process"},
+    {"id": "tentang", "label": "Tentang Kami", "shape": "process"},
+    {"id": "hasil", "label": "Hasil Diagnosa", "shape": "display"},
+    {"id": "detail", "label": "Detail Penyakit", "shape": "display"}
+  ],
+  "edges": [
+    {"from": "home", "to": "konsul"},
+    {"from": "home", "to": "riwayat"},
+    {"from": "home", "to": "katalog"},
+    {"from": "home", "to": "tentang"},
+    {"from": "konsul", "to": "hasil"},
+    {"from": "hasil", "to": "konsul"},
+    {"from": "hasil", "to": "riwayat"},
+    {"from": "katalog", "to": "detail"},
+    {"from": "detail", "to": "katalog"},
+    {"from": "detail", "to": "konsul"}
+  ]
+}

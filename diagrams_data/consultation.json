@@ -1,0 +1,30 @@
+{
+  "nodes": [
+    {"id": "start", "label": "Mulai", "shape": "start"},
+    {"id": "open_cons", "label": "Buka Halaman Konsultasi", "shape": "process"},
+    {"id": "input_name", "label": "Input Nama Pemilik", "shape": "io"},
+    {"id": "step1", "label": "Pilih Gejala Fisik - Langkah 1", "shape": "process"},
+    {"id": "step2", "label": "Pilih Gejala Perilaku - Langkah 2", "shape": "process"},
+    {"id": "click_diag", "label": "Klik Tombol Diagnosa", "shape": "process"},
+    {"id": "forward_chain", "label": "Sistem Menjalankan Forward Chaining", "shape": "process"},
+    {"id": "save_db", "label": "Simpan Hasil ke Database", "shape": "process"},
+    {"id": "show_result", "label": "Tampilkan Halaman Hasil", "shape": "display"},
+    {"id": "other_dis", "label": "Lihat Penyakit Lain?", "shape": "decision"},
+    {"id": "show_others", "label": "Tampilkan List Penyakit Lain", "shape": "display"},
+    {"id": "end", "label": "Selesai", "shape": "end"}
+  ],
+  "edges": [
+    {"from": "start", "to": "open_cons"},
+    {"from": "open_cons", "to": "input_name"},
+    {"from": "input_name", "to": "step1"},
+    {"from": "step1", "to": "step2"},
+    {"from": "step2", "to": "click_diag"},
+    {"from": "click_diag", "to": "forward_chain"},
+    {"from": "forward_chain", "to": "save_db"},
+    {"from": "save_db", "to": "show_result"},
+    {"from": "show_result", "to": "other_dis"},
+    {"from": "other_dis", "to": "show_others", "label": "Ya"},
+    {"from": "other_dis", "to": "end", "label": "Tidak"},
+    {"from": "show_others", "to": "end"}
+  ]
+}

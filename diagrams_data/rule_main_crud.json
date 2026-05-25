@@ -1,0 +1,24 @@
+{
+  "nodes": [
+    {"id": "start", "label": "Mulai", "shape": "start"},
+    {"id": "open", "label": "Masuk Menu Kelola Aturan", "shape": "process"},
+    {"id": "show", "label": "Tampilkan Daftar Aturan", "shape": "display"},
+    {"id": "click", "label": "Klik Aturan Baru", "shape": "process"},
+    {"id": "input", "label": "Input ID & Pilih Penyakit", "shape": "io"},
+    {"id": "save", "label": "Klik Buat", "shape": "process"},
+    {"id": "db", "label": "Simpan ke Tabel aturan", "shape": "process"},
+    {"id": "refresh", "label": "Refresh Halaman", "shape": "process"},
+    {"id": "end", "label": "Selesai", "shape": "end"}
+  ],
+  "edges": [
+    {"from": "start", "to": "open"},
+    {"from": "open", "to": "show"},
+    {"from": "show", "to": "click"},
+    {"from": "click", "to": "input"},
+    {"from": "input", "to": "save"},
+    {"from": "save", "to": "db"},
+    {"from": "db", "to": "refresh"},
+    {"from": "refresh", "to": "show"},
+    {"from": "show", "to": "end", "label": "Dashboard"}
+  ]
+}

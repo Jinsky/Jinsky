@@ -1,0 +1,20 @@
+{
+  "nodes": [
+    {"id": "dash", "label": "Dashboard Index", "shape": "start"},
+    {"id": "gejala", "label": "Kelola Gejala", "shape": "process"},
+    {"id": "penyakit", "label": "Kelola Penyakit", "shape": "process"},
+    {"id": "aturan", "label": "Kelola Aturan", "shape": "process"},
+    {"id": "logout", "label": "Logout", "shape": "process"},
+    {"id": "login", "label": "Halaman Login", "shape": "end"}
+  ],
+  "edges": [
+    {"from": "dash", "to": "gejala"},
+    {"from": "dash", "to": "penyakit"},
+    {"from": "dash", "to": "aturan"},
+    {"from": "dash", "to": "logout"},
+    {"from": "gejala", "to": "dash"},
+    {"from": "penyakit", "to": "dash"},
+    {"from": "aturan", "to": "dash"},
+    {"from": "logout", "to": "login"}
+  ]
+}

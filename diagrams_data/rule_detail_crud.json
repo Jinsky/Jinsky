@@ -1,0 +1,28 @@
+{
+  "nodes": [
+    {"id": "start", "label": "Mulai", "shape": "start"},
+    {"id": "select", "label": "Pilih Card Aturan", "shape": "process"},
+    {"id": "action", "label": "Pilih Aksi", "shape": "decision"},
+    {"id": "add_btn", "label": "Klik Tombol Tambah Gejala", "shape": "process"},
+    {"id": "input", "label": "Pilih Gejala & Input Bobot", "shape": "io"},
+    {"id": "save", "label": "Klik Tambah", "shape": "process"},
+    {"id": "db_insert", "label": "Simpan ke aturan_detail", "shape": "process"},
+    {"id": "delete_btn", "label": "Klik Ikon Close", "shape": "process"},
+    {"id": "db_delete", "label": "Hapus dari aturan_detail", "shape": "process"},
+    {"id": "update", "label": "Update Tampilan Tabel Detail", "shape": "display"},
+    {"id": "end", "label": "Selesai", "shape": "end"}
+  ],
+  "edges": [
+    {"from": "start", "to": "select"},
+    {"from": "select", "to": "action"},
+    {"from": "action", "to": "add_btn", "label": "Tambah"},
+    {"from": "add_btn", "to": "input"},
+    {"from": "input", "to": "save"},
+    {"from": "save", "to": "db_insert"},
+    {"from": "db_insert", "to": "update"},
+    {"from": "action", "to": "delete_btn", "label": "Hapus"},
+    {"from": "delete_btn", "to": "db_delete"},
+    {"from": "db_delete", "to": "update"},
+    {"from": "update", "to": "end"}
+  ]
+}

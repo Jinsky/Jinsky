@@ -1,0 +1,34 @@
+{
+  "nodes": [
+    {"id": "start", "label": "Mulai", "shape": "start"},
+    {"id": "receive_gejala", "label": "Terima Array Gejala Terpilih", "shape": "io"},
+    {"id": "fetch_rules", "label": "Ambil Semua Aturan & Detail dari DB", "shape": "process"},
+    {"id": "iter_rule", "label": "Iterasi Setiap Aturan Penyakit", "shape": "hexagon"},
+    {"id": "match_rule", "label": "Apakah Gejala Terpilih Cocok?", "shape": "decision"},
+    {"id": "calc_conf", "label": "Hitung Skor Confidence", "shape": "process"},
+    {"id": "check_3", "label": "Skor >= 3 Gejala?", "shape": "decision"},
+    {"id": "conf_100", "label": "Confidence = 100%", "shape": "process"},
+    {"id": "conf_prop", "label": "Confidence = (Count/3)*100%", "shape": "process"},
+    {"id": "save_match", "label": "Simpan ke Daftar Hasil Match", "shape": "process"},
+    {"id": "iter_end", "label": "Semua Aturan Selesai?", "shape": "decision"},
+    {"id": "sort_results", "label": "Urutkan Hasil (Confidence Desc)", "shape": "process"},
+    {"id": "return", "label": "Kembalikan Array Hasil", "shape": "end"}
+  ],
+  "edges": [
+    {"from": "start", "to": "receive_gejala"},
+    {"from": "receive_gejala", "to": "fetch_rules"},
+    {"from": "fetch_rules", "to": "iter_rule"},
+    {"from": "iter_rule", "to": "match_rule"},
+    {"from": "match_rule", "to": "calc_conf", "label": "Ya"},
+    {"from": "match_rule", "to": "iter_end", "label": "Tidak"},
+    {"from": "calc_conf", "to": "check_3"},
+    {"from": "check_3", "to": "conf_100", "label": "Ya"},
+    {"from": "check_3", "to": "conf_prop", "label": "Tidak"},
+    {"from": "conf_100", "to": "save_match"},
+    {"from": "conf_prop", "to": "save_match"},
+    {"from": "save_match", "to": "iter_end"},
+    {"from": "iter_end", "to": "iter_rule", "label": "Belum"},
+    {"from": "iter_end", "to": "sort_results", "label": "Ya"},
+    {"from": "sort_results", "to": "return"}
+  ]
+}
