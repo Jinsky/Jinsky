@@ -58,7 +58,7 @@ if ($pdo) {
 <html lang="id">
 <head>
     <meta charset="UTF-8">
-    <title>Kelola Aturan | Admin Klinik Merpati</title>
+    <title>Kelola Aturan | Admin Clinical Vitality</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet">
 </head>

@@ -17,7 +17,7 @@ if ($pdo) {
 <html lang="id">
 <head>
     <meta charset="UTF-8">
-    <title>Admin Dashboard | Klinik Merpati</title>
+    <title>Admin Dashboard | Clinical Vitality</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet">
 </head>
@@ -37,7 +37,7 @@ if ($pdo) {
 
     <main class="flex-1 p-10">
         <h1 class="text-4xl font-bold text-slate-800 mb-2">Selamat Datang, <?= $_SESSION['admin_username'] ?></h1>
-        <p class="text-slate-500 mb-10">Ringkasan data sistem pakar Klinik Merpati.</p>
+        <p class="text-slate-500 mb-10">Ringkasan data sistem pakar Clinical Vitality.</p>
 
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             <div class="bg-white p-8 rounded-2xl shadow-sm border border-slate-200">
