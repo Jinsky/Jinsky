@@ -1,19 +1,20 @@
+<?xml version='1.0' encoding='utf-8'?>
 <mxfile host="app.diagrams.net" modified="2024-05-05T00:00:00.000Z" agent="Jules" version="21.0.0" type="device">
   <diagram id="page1" name="Page-1">
     <mxGraphModel dx="1422" dy="798" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
         <mxCell id="0" />
-        <mxCell id="1" parent="0" />        <mxCell id="bg" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#f6fafe;strokeColor=none;" vertex="1" parent="1"><mxGeometry x="0" y="0" width="800" height="1000" as="geometry" /></mxCell>
-        <mxCell id="nav" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#094851;strokeColor=none;" vertex="1" parent="1"><mxGeometry x="0" y="0" width="800" height="60" as="geometry" /></mxCell>
-        <mxCell id="title" value="&lt;b&gt;Hasil Analisis Kesehatan&lt;/b&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=28;fontColor=#094851;" vertex="1" parent="1"><mxGeometry x="40" y="100" width="500" height="50" as="geometry" /></mxCell>
-        <mxCell id="owner" value="Nama Pemilik: Jules" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=16;" vertex="1" parent="1"><mxGeometry x="40" y="150" width="400" height="30" as="geometry" /></mxCell>
-        <mxCell id="res_card" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#eaeef2;rounded=1;borderLeft=4;strokeColor=#094851;" vertex="1" parent="1"><mxGeometry x="40" y="200" width="450" height="400" as="geometry" /></mxCell>
-        <mxCell id="dis_name" value="&lt;b&gt;Penyakit X&lt;/b&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=24;fontColor=#094851;" vertex="1" parent="1"><mxGeometry x="70" y="230" width="300" height="40" as="geometry" /></mxCell>
-        <mxCell id="desc_box" value="Deskripsi Klinis: ..." style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;rounded=1;strokeColor=none;" vertex="1" parent="1"><mxGeometry x="70" y="280" width="390" height="80" as="geometry" /></mxCell>
-        <mxCell id="sol_box" value="Penanganan: ..." style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;rounded=1;strokeColor=none;" vertex="1" parent="1"><mxGeometry x="70" y="380" width="180" height="150" as="geometry" /></mxCell>
-        <mxCell id="prev_box" value="Pencegahan: ..." style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;rounded=1;strokeColor=none;" vertex="1" parent="1"><mxGeometry x="280" y="380" width="180" height="150" as="geometry" /></mxCell>
-        <mxCell id="side_sum" value="Ringkasan Gejala: [G01, G05]" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#eaeef2;rounded=1;" vertex="1" parent="1"><mxGeometry x="520" y="200" width="240" height="300" as="geometry" /></mxCell>
-        <mxCell id="btn_re" value="Diagnosa Ulang" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#094851;fontColor=#ffffff;rounded=1;" vertex="1" parent="1"><mxGeometry x="520" y="520" width="240" height="50" as="geometry" /></mxCell>      </root>
+        <mxCell id="1" parent="0" />        <mxCell id="bg" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#000000;fontColor=#000000;" vertex="1" parent="1"><mxGeometry x="0" y="0" width="800" height="1000" as="geometry" /></mxCell>
+        <mxCell id="nav" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#000000;fontColor=#000000;" vertex="1" parent="1"><mxGeometry x="0" y="0" width="800" height="60" as="geometry" /></mxCell>
+        <mxCell id="title" value="&lt;b&gt;Hasil Analisis Kesehatan&lt;/b&gt;" style="text;html=1;strokeColor=#000000;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=28;fontColor=#000000;" vertex="1" parent="1"><mxGeometry x="40" y="100" width="500" height="50" as="geometry" /></mxCell>
+        <mxCell id="owner" value="Nama Pemilik: Jules" style="text;html=1;strokeColor=#000000;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=16;fontColor=#000000;" vertex="1" parent="1"><mxGeometry x="40" y="150" width="400" height="30" as="geometry" /></mxCell>
+        <mxCell id="res_card" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;borderLeft=4;strokeColor=#000000;fontColor=#000000;" vertex="1" parent="1"><mxGeometry x="40" y="200" width="450" height="400" as="geometry" /></mxCell>
+        <mxCell id="dis_name" value="&lt;b&gt;Penyakit X&lt;/b&gt;" style="text;html=1;strokeColor=#000000;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=24;fontColor=#000000;" vertex="1" parent="1"><mxGeometry x="70" y="230" width="300" height="40" as="geometry" /></mxCell>
+        <mxCell id="desc_box" value="Deskripsi Klinis: ..." style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#000000;fontColor=#000000;" vertex="1" parent="1"><mxGeometry x="70" y="280" width="390" height="80" as="geometry" /></mxCell>
+        <mxCell id="sol_box" value="Penanganan: ..." style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#000000;fontColor=#000000;" vertex="1" parent="1"><mxGeometry x="70" y="380" width="180" height="150" as="geometry" /></mxCell>
+        <mxCell id="prev_box" value="Pencegahan: ..." style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#000000;fontColor=#000000;" vertex="1" parent="1"><mxGeometry x="280" y="380" width="180" height="150" as="geometry" /></mxCell>
+        <mxCell id="side_sum" value="Ringkasan Gejala: [G01, G05]" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#000000;fontColor=#000000;" vertex="1" parent="1"><mxGeometry x="520" y="200" width="240" height="300" as="geometry" /></mxCell>
+        <mxCell id="btn_re" value="Diagnosa Ulang" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;fontColor=#000000;strokeColor=#000000;" vertex="1" parent="1"><mxGeometry x="520" y="520" width="240" height="50" as="geometry" /></mxCell>      </root>
     </mxGraphModel>
   </diagram>
 </mxfile>
