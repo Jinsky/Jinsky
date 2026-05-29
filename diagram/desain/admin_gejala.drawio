@@ -1,16 +1,17 @@
+<?xml version='1.0' encoding='utf-8'?>
 <mxfile host="app.diagrams.net" modified="2024-05-05T00:00:00.000Z" agent="Jules" version="21.0.0" type="device">
   <diagram id="page1" name="Page-1">
     <mxGraphModel dx="1422" dy="798" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
         <mxCell id="0" />
-        <mxCell id="1" parent="0" />        <mxCell id="bg" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#f8fafc;strokeColor=none;" vertex="1" parent="1"><mxGeometry x="0" y="0" width="1000" height="700" as="geometry" /></mxCell>
-        <mxCell id="sidebar" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#083344;strokeColor=none;" vertex="1" parent="1"><mxGeometry x="0" y="0" width="220" height="700" as="geometry" /></mxCell>
-        <mxCell id="title" value="&lt;b&gt;Kelola Gejala&lt;/b&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=24;fontColor=#1e293b;" vertex="1" parent="1"><mxGeometry x="250" y="40" width="400" height="40" as="geometry" /></mxCell>
-        <mxCell id="btn_add" value="+ Tambah Gejala" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#083344;fontColor=#ffffff;rounded=1;fontStyle=1;" vertex="1" parent="1"><mxGeometry x="780" y="40" width="180" height="45" as="geometry" /></mxCell>
-        <mxCell id="table" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;rounded=1;strokeColor=#e2e8f0;" vertex="1" parent="1"><mxGeometry x="250" y="120" width="710" height="540" as="geometry" /></mxCell>
-        <mxCell id="thead" value="ID | Nama | Aksi" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#f8fafc;strokeColor=#e2e8f0;" vertex="1" parent="1"><mxGeometry x="250" y="120" width="710" height="50" as="geometry" /></mxCell>
-        <mxCell id="row_180" value="G01 | Gejala Satu | [Delete]" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1"><mxGeometry x="270" y="180" width="670" height="40" as="geometry" /></mxCell>
-        <mxCell id="row_230" value="G02 | Gejala Dua | [Delete]" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1"><mxGeometry x="270" y="230" width="670" height="40" as="geometry" /></mxCell>      </root>
+        <mxCell id="1" parent="0" />        <mxCell id="bg" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#000000;fontColor=#000000;" vertex="1" parent="1"><mxGeometry x="0" y="0" width="1000" height="700" as="geometry" /></mxCell>
+        <mxCell id="sidebar" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#000000;fontColor=#000000;" vertex="1" parent="1"><mxGeometry x="0" y="0" width="220" height="700" as="geometry" /></mxCell>
+        <mxCell id="title" value="&lt;b&gt;Kelola Gejala&lt;/b&gt;" style="text;html=1;strokeColor=#000000;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=24;fontColor=#000000;" vertex="1" parent="1"><mxGeometry x="250" y="40" width="400" height="40" as="geometry" /></mxCell>
+        <mxCell id="btn_add" value="+ Tambah Gejala" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;fontColor=#000000;fontStyle=1;strokeColor=#000000;" vertex="1" parent="1"><mxGeometry x="780" y="40" width="180" height="45" as="geometry" /></mxCell>
+        <mxCell id="table" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#000000;fontColor=#000000;" vertex="1" parent="1"><mxGeometry x="250" y="120" width="710" height="540" as="geometry" /></mxCell>
+        <mxCell id="thead" value="ID | Nama | Aksi" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#000000;fontColor=#000000;" vertex="1" parent="1"><mxGeometry x="250" y="120" width="710" height="50" as="geometry" /></mxCell>
+        <mxCell id="row_180" value="G01 | Gejala Satu | [Delete]" style="text;html=1;strokeColor=#000000;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontColor=#000000;" vertex="1" parent="1"><mxGeometry x="270" y="180" width="670" height="40" as="geometry" /></mxCell>
+        <mxCell id="row_230" value="G02 | Gejala Dua | [Delete]" style="text;html=1;strokeColor=#000000;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontColor=#000000;" vertex="1" parent="1"><mxGeometry x="270" y="230" width="670" height="40" as="geometry" /></mxCell>      </root>
     </mxGraphModel>
   </diagram>
 </mxfile>

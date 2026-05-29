@@ -1,17 +1,18 @@
+<?xml version='1.0' encoding='utf-8'?>
 <mxfile host="app.diagrams.net" modified="2024-05-05T00:00:00.000Z" agent="Jules" version="21.0.0" type="device">
   <diagram id="page1" name="Page-1">
     <mxGraphModel dx="1422" dy="798" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
         <mxCell id="0" />
-        <mxCell id="1" parent="0" />        <mxCell id="bg" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#f6fafe;strokeColor=none;" vertex="1" parent="1"><mxGeometry x="0" y="0" width="800" height="1000" as="geometry" /></mxCell>
-        <mxCell id="nav" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#094851;strokeColor=none;" vertex="1" parent="1"><mxGeometry x="0" y="0" width="800" height="60" as="geometry" /></mxCell>
-        <mxCell id="title" value="&lt;b&gt;Katalog Penyakit Avian&lt;/b&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=28;fontColor=#094851;" vertex="1" parent="1"><mxGeometry x="40" y="100" width="400" height="50" as="geometry" /></mxCell>
-        <mxCell id="search" value="Cari..." style="rounded=0;whiteSpace=wrap;html=1;fillColor=#eaeef2;rounded=1;strokeColor=none;" vertex="1" parent="1"><mxGeometry x="500" y="110" width="260" height="40" as="geometry" /></mxCell>
-        <mxCell id="tab1" value="Info Penyakit" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#094851;fontColor=#ffffff;rounded=1;" vertex="1" parent="1"><mxGeometry x="40" y="180" width="140" height="40" as="geometry" /></mxCell>
-        <mxCell id="tab2" value="Info Gejala" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#eaeef2;fontColor=#414750;rounded=1;" vertex="1" parent="1"><mxGeometry x="190" y="180" width="140" height="40" as="geometry" /></mxCell>
-        <mxCell id="card1" value="&lt;b&gt;Penyakit A&lt;/b&gt;&lt;br/&gt;Desc..." style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;rounded=1;strokeColor=#c1c7d1;borderLeft=4;" vertex="1" parent="1"><mxGeometry x="40" y="250" width="230" height="200" as="geometry" /></mxCell>
-        <mxCell id="card2" value="&lt;b&gt;Penyakit B&lt;/b&gt;&lt;br/&gt;Desc..." style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;rounded=1;strokeColor=#c1c7d1;borderLeft=4;" vertex="1" parent="1"><mxGeometry x="285" y="250" width="230" height="200" as="geometry" /></mxCell>
-        <mxCell id="card3" value="&lt;b&gt;Penyakit C&lt;/b&gt;&lt;br/&gt;Desc..." style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;rounded=1;strokeColor=#c1c7d1;borderLeft=4;" vertex="1" parent="1"><mxGeometry x="530" y="250" width="230" height="200" as="geometry" /></mxCell>      </root>
+        <mxCell id="1" parent="0" />        <mxCell id="bg" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#000000;fontColor=#000000;" vertex="1" parent="1"><mxGeometry x="0" y="0" width="800" height="1000" as="geometry" /></mxCell>
+        <mxCell id="nav" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#000000;fontColor=#000000;" vertex="1" parent="1"><mxGeometry x="0" y="0" width="800" height="60" as="geometry" /></mxCell>
+        <mxCell id="title" value="&lt;b&gt;Katalog Penyakit Avian&lt;/b&gt;" style="text;html=1;strokeColor=#000000;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=28;fontColor=#000000;" vertex="1" parent="1"><mxGeometry x="40" y="100" width="400" height="50" as="geometry" /></mxCell>
+        <mxCell id="search" value="Cari..." style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#000000;fontColor=#000000;" vertex="1" parent="1"><mxGeometry x="500" y="110" width="260" height="40" as="geometry" /></mxCell>
+        <mxCell id="tab1" value="Info Penyakit" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;fontColor=#000000;strokeColor=#000000;" vertex="1" parent="1"><mxGeometry x="40" y="180" width="140" height="40" as="geometry" /></mxCell>
+        <mxCell id="tab2" value="Info Gejala" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;fontColor=#000000;strokeColor=#000000;" vertex="1" parent="1"><mxGeometry x="190" y="180" width="140" height="40" as="geometry" /></mxCell>
+        <mxCell id="card1" value="&lt;b&gt;Penyakit A&lt;/b&gt;&lt;br/&gt;Desc..." style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#000000;borderLeft=4;fontColor=#000000;" vertex="1" parent="1"><mxGeometry x="40" y="250" width="230" height="200" as="geometry" /></mxCell>
+        <mxCell id="card2" value="&lt;b&gt;Penyakit B&lt;/b&gt;&lt;br/&gt;Desc..." style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#000000;borderLeft=4;fontColor=#000000;" vertex="1" parent="1"><mxGeometry x="285" y="250" width="230" height="200" as="geometry" /></mxCell>
+        <mxCell id="card3" value="&lt;b&gt;Penyakit C&lt;/b&gt;&lt;br/&gt;Desc..." style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#000000;borderLeft=4;fontColor=#000000;" vertex="1" parent="1"><mxGeometry x="530" y="250" width="230" height="200" as="geometry" /></mxCell>      </root>
     </mxGraphModel>
   </diagram>
 </mxfile>

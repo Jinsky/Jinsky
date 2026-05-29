@@ -1,47 +1,48 @@
+<?xml version='1.0' encoding='utf-8'?>
 <mxfile host="65bd71144e">
     <diagram id="page1" name="Page-1">
         <mxGraphModel dx="858" dy="1024" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
             <root>
-                <mxCell id="0"/>
-                <mxCell id="1" parent="0"/>
-                <mxCell id="bg" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#f6fafe;strokeColor=none;" parent="1" vertex="1">
-                    <mxGeometry width="800" height="1000" as="geometry"/>
+                <mxCell id="0" />
+                <mxCell id="1" parent="0" />
+                <mxCell id="bg" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#000000;fontColor=#000000;" parent="1" vertex="1">
+                    <mxGeometry width="800" height="1000" as="geometry" />
                 </mxCell>
-                <mxCell id="nav" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#094851;strokeColor=none;" parent="1" vertex="1">
-                    <mxGeometry width="800" height="60" as="geometry"/>
+                <mxCell id="nav" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#000000;fontColor=#000000;" parent="1" vertex="1">
+                    <mxGeometry width="800" height="60" as="geometry" />
                 </mxCell>
-                <mxCell id="logo" value="&lt;b&gt;&lt;font style=&quot;color: light-dark(rgb(255, 0, 0), rgb(237, 237, 237));&quot;&gt;Klinik Merpati&lt;/font&gt;&lt;/b&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontColor=#ffffff;fontSize=18;" parent="1" vertex="1">
-                    <mxGeometry x="30" y="15" width="150" height="30" as="geometry"/>
+                <mxCell id="logo" value="&lt;b&gt;&lt;font style=&quot;color: #000000;&quot;&gt;Klinik Merpati&lt;/font&gt;&lt;/b&gt;" style="text;html=1;strokeColor=#000000;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontColor=#000000;fontSize=18;" parent="1" vertex="1">
+                    <mxGeometry x="30" y="15" width="150" height="30" as="geometry" />
                 </mxCell>
-                <mxCell id="nav_links" value="&lt;font style=&quot;font-size: 14px; color: light-dark(rgb(255, 255, 255), rgb(237, 237, 237));&quot;&gt;Beranda&amp;nbsp; &amp;nbsp; &amp;nbsp; Konsultasi&amp;nbsp; &amp;nbsp; &amp;nbsp; Riwayat&amp;nbsp; &amp;nbsp; &amp;nbsp; Katalog&amp;nbsp; &amp;nbsp; &amp;nbsp;Tentang&lt;/font&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontColor=#ffffff;align=right;" parent="1" vertex="1">
-                    <mxGeometry x="360" y="15" width="380" height="30" as="geometry"/>
+                <mxCell id="nav_links" value="&lt;font style=&quot;font-size: 14px; color: #000000;&quot;&gt;Beranda&amp;nbsp; &amp;nbsp; &amp;nbsp; Konsultasi&amp;nbsp; &amp;nbsp; &amp;nbsp; Riwayat&amp;nbsp; &amp;nbsp; &amp;nbsp; Katalog&amp;nbsp; &amp;nbsp; &amp;nbsp;Tentang&lt;/font&gt;" style="text;html=1;strokeColor=#000000;fillColor=none;align=right;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontColor=#000000;" parent="1" vertex="1">
+                    <mxGeometry x="360" y="15" width="380" height="30" as="geometry" />
                 </mxCell>
-                <mxCell id="hero_title" value="&lt;b&gt;Perawatan Presisi untuk&lt;br/&gt;Teman Avian Anda.&lt;/b&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=32;fontColor=#094851;" parent="1" vertex="1">
-                    <mxGeometry x="60" y="150" width="400" height="100" as="geometry"/>
+                <mxCell id="hero_title" value="&lt;b&gt;Perawatan Presisi untuk&lt;br/&gt;Teman Avian Anda.&lt;/b&gt;" style="text;html=1;strokeColor=#000000;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=32;fontColor=#000000;" parent="1" vertex="1">
+                    <mxGeometry x="60" y="150" width="400" height="100" as="geometry" />
                 </mxCell>
-                <mxCell id="hero_desc" value="Menggabungkan riset klinis tingkat tinggi dengan pendekatan yang ramah." style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=14;fontColor=#414750;" parent="1" vertex="1">
-                    <mxGeometry x="60" y="260" width="350" height="60" as="geometry"/>
+                <mxCell id="hero_desc" value="Menggabungkan riset klinis tingkat tinggi dengan pendekatan yang ramah." style="text;html=1;strokeColor=#000000;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=14;fontColor=#000000;" parent="1" vertex="1">
+                    <mxGeometry x="60" y="260" width="350" height="60" as="geometry" />
                 </mxCell>
-                <mxCell id="btn_start" value="Mulai Konsultasi" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#094851;fontColor=#ffffff;rounded=1;" parent="1" vertex="1">
-                    <mxGeometry x="60" y="340" width="160" height="50" as="geometry"/>
+                <mxCell id="btn_start" value="Mulai Konsultasi" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;fontColor=#000000;strokeColor=#000000;" parent="1" vertex="1">
+                    <mxGeometry x="60" y="340" width="160" height="50" as="geometry" />
                 </mxCell>
-                <mxCell id="hero_img" value="Pigeon Image" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#dfe3e7;rounded=1;" parent="1" vertex="1">
-                    <mxGeometry x="480" y="120" width="280" height="350" as="geometry"/>
+                <mxCell id="hero_img" value="Pigeon Image" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#000000;fontColor=#000000;" parent="1" vertex="1">
+                    <mxGeometry x="480" y="120" width="280" height="350" as="geometry" />
                 </mxCell>
-                <mxCell id="bento_title" value="&lt;b&gt;Mengapa Diagnosa Dini Penting?&lt;/b&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;align=center;fontSize=24;fontColor=#094851;" parent="1" vertex="1">
-                    <mxGeometry y="520" width="800" height="40" as="geometry"/>
+                <mxCell id="bento_title" value="&lt;b&gt;Mengapa Diagnosa Dini Penting?&lt;/b&gt;" style="text;html=1;strokeColor=#000000;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=24;fontColor=#000000;" parent="1" vertex="1">
+                    <mxGeometry y="520" width="800" height="40" as="geometry" />
                 </mxCell>
-                <mxCell id="card1" value="Akurasi Laboratorium Digital" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;rounded=1;strokeColor=#c1c7d1;" parent="1" vertex="1">
-                    <mxGeometry x="60" y="600" width="450" height="180" as="geometry"/>
+                <mxCell id="card1" value="Akurasi Laboratorium Digital" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#000000;fontColor=#000000;" parent="1" vertex="1">
+                    <mxGeometry x="60" y="600" width="450" height="180" as="geometry" />
                 </mxCell>
-                <mxCell id="card2" value="Hasil Instan" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#094851;fontColor=#ffffff;rounded=1;strokeColor=none;" parent="1" vertex="1">
-                    <mxGeometry x="530" y="600" width="210" height="180" as="geometry"/>
+                <mxCell id="card2" value="Hasil Instan" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;fontColor=#000000;strokeColor=#000000;" parent="1" vertex="1">
+                    <mxGeometry x="530" y="600" width="210" height="180" as="geometry" />
                 </mxCell>
-                <mxCell id="card3" value="Aman &amp;amp; Terpercaya" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#4f2992;fontColor=#ffffff;rounded=1;strokeColor=none;" parent="1" vertex="1">
-                    <mxGeometry x="60" y="800" width="210" height="150" as="geometry"/>
+                <mxCell id="card3" value="Aman &amp;amp; Terpercaya" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;fontColor=#000000;strokeColor=#000000;" parent="1" vertex="1">
+                    <mxGeometry x="60" y="800" width="210" height="150" as="geometry" />
                 </mxCell>
-                <mxCell id="card4" value="Konsultasi Ahli" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#dfe3e7;rounded=1;strokeColor=#c1c7d1;" parent="1" vertex="1">
-                    <mxGeometry x="290" y="800" width="450" height="150" as="geometry"/>
+                <mxCell id="card4" value="Konsultasi Ahli" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#000000;fontColor=#000000;" parent="1" vertex="1">
+                    <mxGeometry x="290" y="800" width="450" height="150" as="geometry" />
                 </mxCell>
             </root>
         </mxGraphModel>
