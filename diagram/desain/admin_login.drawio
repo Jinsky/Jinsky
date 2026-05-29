@@ -1,17 +1,34 @@
-<?xml version='1.0' encoding='utf-8'?>
-<mxfile host="app.diagrams.net" modified="2024-05-05T00:00:00.000Z" agent="Jules" version="21.0.0" type="device">
-  <diagram id="page1" name="Page-1">
-    <mxGraphModel dx="1422" dy="798" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
-      <root>
-        <mxCell id="0" />
-        <mxCell id="1" parent="0" />        <mxCell id="bg" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#000000;fontColor=#000000;" vertex="1" parent="1"><mxGeometry x="0" y="0" width="800" height="600" as="geometry" /></mxCell>
-        <mxCell id="box" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#000000;fontColor=#000000;" vertex="1" parent="1"><mxGeometry x="250" y="100" width="300" height="400" as="geometry" /></mxCell>
-        <mxCell id="title" value="&lt;b&gt;Klinik Merpati&lt;/b&gt;" style="text;html=1;strokeColor=#000000;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=24;fontColor=#000000;" vertex="1" parent="1"><mxGeometry x="250" y="130" width="300" height="40" as="geometry" /></mxCell>
-        <mxCell id="user" value="Username" style="text;html=1;strokeColor=#000000;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontStyle=1;fontSize=12;fontColor=#000000;" vertex="1" parent="1"><mxGeometry x="280" y="200" width="240" height="20" as="geometry" /></mxCell>
-        <mxCell id="user_in" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#000000;fontColor=#000000;" vertex="1" parent="1"><mxGeometry x="280" y="225" width="240" height="40" as="geometry" /></mxCell>
-        <mxCell id="pass" value="Password" style="text;html=1;strokeColor=#000000;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontStyle=1;fontSize=12;fontColor=#000000;" vertex="1" parent="1"><mxGeometry x="280" y="280" width="240" height="20" as="geometry" /></mxCell>
-        <mxCell id="pass_in" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#000000;fontColor=#000000;" vertex="1" parent="1"><mxGeometry x="280" y="305" width="240" height="40" as="geometry" /></mxCell>
-        <mxCell id="btn" value="Masuk ke Panel" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;fontColor=#000000;fontStyle=1;strokeColor=#000000;" vertex="1" parent="1"><mxGeometry x="280" y="380" width="240" height="50" as="geometry" /></mxCell>      </root>
-    </mxGraphModel>
-  </diagram>
+<mxfile host="65bd71144e">
+    <diagram id="page1" name="Page-1">
+        <mxGraphModel dx="620" dy="460" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+            <root>
+                <mxCell id="0"/>
+                <mxCell id="1" parent="0"/>
+                <mxCell id="bg" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#000000;fontColor=#000000;" parent="1" vertex="1">
+                    <mxGeometry width="800" height="600" as="geometry"/>
+                </mxCell>
+                <mxCell id="box" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#000000;fontColor=#000000;" parent="1" vertex="1">
+                    <mxGeometry x="250" y="100" width="300" height="400" as="geometry"/>
+                </mxCell>
+                <mxCell id="title" value="&lt;b&gt;Admin&lt;/b&gt;" style="text;html=1;strokeColor=#000000;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=24;fontColor=#000000;" parent="1" vertex="1">
+                    <mxGeometry x="250" y="130" width="300" height="40" as="geometry"/>
+                </mxCell>
+                <mxCell id="user" value="Username" style="text;html=1;strokeColor=#000000;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontStyle=1;fontSize=12;fontColor=#000000;" parent="1" vertex="1">
+                    <mxGeometry x="280" y="200" width="240" height="20" as="geometry"/>
+                </mxCell>
+                <mxCell id="user_in" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#000000;fontColor=#000000;" parent="1" vertex="1">
+                    <mxGeometry x="280" y="225" width="240" height="40" as="geometry"/>
+                </mxCell>
+                <mxCell id="pass" value="Password" style="text;html=1;strokeColor=#000000;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontStyle=1;fontSize=12;fontColor=#000000;" parent="1" vertex="1">
+                    <mxGeometry x="280" y="280" width="240" height="20" as="geometry"/>
+                </mxCell>
+                <mxCell id="pass_in" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#000000;fontColor=#000000;" parent="1" vertex="1">
+                    <mxGeometry x="280" y="305" width="240" height="40" as="geometry"/>
+                </mxCell>
+                <mxCell id="btn" value="Masuk ke Panel" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;fontColor=#000000;fontStyle=1;strokeColor=#000000;" parent="1" vertex="1">
+                    <mxGeometry x="280" y="380" width="240" height="50" as="geometry"/>
+                </mxCell>
+            </root>
+        </mxGraphModel>
+    </diagram>
 </mxfile>

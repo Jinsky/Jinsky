@@ -1,48 +1,50 @@
-<?xml version='1.0' encoding='utf-8'?>
 <mxfile host="65bd71144e">
     <diagram id="page1" name="Page-1">
-        <mxGraphModel dx="629" dy="751" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+        <mxGraphModel dx="459" dy="341" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
             <root>
-                <mxCell id="0" />
-                <mxCell id="1" parent="0" />
+                <mxCell id="0"/>
+                <mxCell id="1" parent="0"/>
                 <mxCell id="bg" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#000000;fontColor=#000000;" parent="1" vertex="1">
-                    <mxGeometry width="800" height="1000" as="geometry" />
+                    <mxGeometry width="800" height="1000" as="geometry"/>
                 </mxCell>
                 <mxCell id="nav" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#000000;fontColor=#000000;" parent="1" vertex="1">
-                    <mxGeometry width="800" height="60" as="geometry" />
+                    <mxGeometry width="800" height="60" as="geometry"/>
                 </mxCell>
                 <mxCell id="logo" value="&lt;b&gt;&lt;font style=&quot;color: #000000;&quot;&gt;Klinik Merpati&lt;/font&gt;&lt;/b&gt;" style="text;html=1;strokeColor=#000000;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontColor=#000000;fontSize=18;" parent="1" vertex="1">
-                    <mxGeometry x="40" y="15" width="150" height="30" as="geometry" />
+                    <mxGeometry x="40" y="15" width="150" height="30" as="geometry"/>
                 </mxCell>
                 <mxCell id="title" value="&lt;b&gt;Analisis Kesehatan Avian&lt;/b&gt;" style="text;html=1;strokeColor=#000000;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=28;fontColor=#000000;" parent="1" vertex="1">
-                    <mxGeometry x="40" y="100" width="500" height="50" as="geometry" />
+                    <mxGeometry x="40" y="100" width="500" height="50" as="geometry"/>
                 </mxCell>
                 <mxCell id="form_id" value="Identitas Pemilik (Input Field)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#000000;align=left;spacingLeft=20;fontColor=#000000;" parent="1" vertex="1">
-                    <mxGeometry x="40" y="180" width="450" height="80" as="geometry" />
+                    <mxGeometry x="40" y="180" width="450" height="80" as="geometry"/>
                 </mxCell>
                 <mxCell id="step1" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#000000;fontColor=#000000;" parent="1" vertex="1">
-                    <mxGeometry x="40" y="280" width="450" height="300" as="geometry" />
+                    <mxGeometry x="40" y="280" width="450" height="300" as="geometry"/>
                 </mxCell>
                 <mxCell id="s1_t" value="&lt;b&gt;Langkah 1: Identifikasi Gejala Fisik&lt;/b&gt;" style="text;html=1;strokeColor=#000000;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontColor=#000000;fontSize=16;" parent="1" vertex="1">
-                    <mxGeometry x="60" y="300" width="300" height="30" as="geometry" />
+                    <mxGeometry x="60" y="300" width="300" height="30" as="geometry"/>
                 </mxCell>
                 <mxCell id="cb1" value="[ ] Gejala A" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#000000;align=left;spacingLeft=10;fontColor=#000000;" parent="1" vertex="1">
-                    <mxGeometry x="60" y="340" width="180" height="40" as="geometry" />
+                    <mxGeometry x="60" y="340" width="180" height="40" as="geometry"/>
                 </mxCell>
                 <mxCell id="cb2" value="[x] Gejala B" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#000000;align=left;spacingLeft=10;fontColor=#000000;" parent="1" vertex="1">
-                    <mxGeometry x="260" y="340" width="180" height="40" as="geometry" />
+                    <mxGeometry x="260" y="340" width="180" height="40" as="geometry"/>
                 </mxCell>
                 <mxCell id="step2" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#000000;fontColor=#000000;" parent="1" vertex="1">
-                    <mxGeometry x="40" y="600" width="450" height="250" as="geometry" />
+                    <mxGeometry x="40" y="600" width="450" height="250" as="geometry"/>
                 </mxCell>
                 <mxCell id="s2_t" value="&lt;b&gt;Langkah 2: Observasi Perilaku&lt;/b&gt;" style="text;html=1;strokeColor=#000000;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontColor=#000000;fontSize=16;" parent="1" vertex="1">
-                    <mxGeometry x="60" y="620" width="300" height="30" as="geometry" />
+                    <mxGeometry x="60" y="620" width="300" height="30" as="geometry"/>
                 </mxCell>
                 <mxCell id="btn_diag" value="Diagnosa Sekarang" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;fontColor=#000000;fontStyle=1;strokeColor=#000000;" parent="1" vertex="1">
-                    <mxGeometry x="310" y="880" width="180" height="50" as="geometry" />
+                    <mxGeometry x="310" y="880" width="180" height="50" as="geometry"/>
                 </mxCell>
                 <mxCell id="side_info" value="Informasi Diagnosa: Forward Chaining" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;borderLeft=4;strokeColor=#000000;fontColor=#000000;" parent="1" vertex="1">
-                    <mxGeometry x="520" y="180" width="240" height="200" as="geometry" />
+                    <mxGeometry x="520" y="180" width="240" height="200" as="geometry"/>
+                </mxCell>
+                <mxCell id="2" value="[ ] Gejala C" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#000000;align=left;spacingLeft=10;fontColor=#000000;" vertex="1" parent="1">
+                    <mxGeometry x="60" y="670" width="180" height="40" as="geometry"/>
                 </mxCell>
             </root>
         </mxGraphModel>
