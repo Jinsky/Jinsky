@@ -118,9 +118,9 @@ $penyakit_list = get_all_penyakit($pdo);
                             </div>
                         </div>
                         <div class="flex justify-end lg:w-40">
-                            <button onclick="alert('Gejala: <?= $r['gejala_terpilih'] ?>')" class="text-primary text-sm font-bold flex items-center gap-1 hover:gap-2 transition-all group">
+                            <a href="detail_riwayat.php?id=<?= $r['id'] ?>" class="text-primary text-sm font-bold flex items-center gap-1 hover:gap-2 transition-all group">
                                 Lihat Detail <span class="material-symbols-outlined text-lg">chevron_right</span>
-                            </button>
+                            </a>
                         </div>
                     </div>
                     <?php endforeach; ?>
