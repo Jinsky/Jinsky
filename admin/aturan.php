@@ -10,7 +10,7 @@ if (isset($_POST['add_rule'])) {
     if ($pdo) {
         try {
             $pdo->beginTransaction();
-            $stmt = $pdo->prepare("INSERT INTO aturan (id, id_penyakit) VALUES (?, ?)");
+            $stmt = $pdo->prepare("INSERT INTO aturan (id_aturan, id_penyakit) VALUES (?, ?)");
             $stmt->execute([$_POST['id'], $_POST['id_penyakit']]);
             $pdo->commit();
             $message = "Aturan berhasil dibuat.";
@@ -22,7 +22,7 @@ if (isset($_POST['edit_rule'])) {
     if ($pdo) {
         try {
             $pdo->beginTransaction();
-            $stmt = $pdo->prepare("UPDATE aturan SET id = ?, id_penyakit = ? WHERE id = ?");
+            $stmt = $pdo->prepare("UPDATE aturan SET id_aturan = ?, id_penyakit = ? WHERE id_aturan = ?");
             $stmt->execute([$_POST['id'], $_POST['id_penyakit'], $_POST['old_id']]);
             $pdo->commit();
             $message = "Aturan berhasil diperbarui.";
@@ -60,11 +60,11 @@ if (isset($_POST['delete_detail'])) {
 
 if ($pdo) {
     $stmt = $pdo->query("
-        SELECT a.id, a.id_penyakit, p.nama as penyakit, COUNT(ad.id_gejala) as total_gejala
+        SELECT a.id_aturan, a.id_penyakit, p.nama as penyakit, COUNT(ad.id_gejala) as total_gejala
         FROM aturan a
-        LEFT JOIN penyakit p ON a.id_penyakit = p.id
-        LEFT JOIN aturan_detail ad ON a.id = ad.id_aturan
-        GROUP BY a.id, a.id_penyakit
+        LEFT JOIN penyakit p ON a.id_penyakit = p.id_penyakit
+        LEFT JOIN aturan_detail ad ON a.id_aturan = ad.id_aturan
+        GROUP BY a.id_aturan, a.id_penyakit
     ");
     $aturan_list = $stmt->fetchAll();
 
@@ -93,6 +93,9 @@ if ($pdo) {
             <a href="penyakit.php" class="block p-3 rounded hover:bg-white/10 transition">Kelola Penyakit</a>
             <a href="aturan.php" class="block p-3 rounded bg-cyan-800 transition">Kelola Aturan</a>
         </nav>
+        <div class="p-6 border-t border-white/10">
+            <a href="login.php?logout=1" class="text-sm text-slate-400">Logout</a>
+        </div>
     </aside>
 
     <main class="flex-1 p-10 overflow-auto">
@@ -116,11 +119,11 @@ if ($pdo) {
                     <div class="flex items-start gap-4">
                         <div>
                             <h3 class="text-xl font-bold text-slate-800"><?= $a['penyakit'] ?></h3>
-                            <p class="text-sm font-mono text-cyan-700 uppercase tracking-widest mt-1">ID Aturan: <?= $a['id'] ?></p>
+                            <p class="text-sm font-mono text-cyan-700 uppercase tracking-widest mt-1">ID Aturan: <?= $a['id_aturan'] ?></p>
                         </div>
-                        <button onclick='openEditRuleModal(<?= json_encode(["id" => $a['id'], "id_penyakit" => $a['id_penyakit']]) ?>)' class="mt-1 text-slate-400 hover:text-cyan-700 transition material-symbols-outlined">edit</button>
+                        <button onclick='openEditRuleModal(<?= json_encode(["id_aturan" => $a['id_aturan'], "id_penyakit" => $a['id_penyakit']]) ?>)' class="mt-1 text-slate-400 hover:text-cyan-700 transition material-symbols-outlined">edit</button>
                     </div>
-                    <button onclick="openDetailModal('<?= $a['id'] ?>')" class="bg-slate-100 text-slate-700 px-4 py-2 rounded-lg text-sm font-bold hover:bg-slate-200 transition">
+                    <button onclick="openDetailModal('<?= $a['id_aturan'] ?>')" class="bg-slate-100 text-slate-700 px-4 py-2 rounded-lg text-sm font-bold hover:bg-slate-200 transition">
                         + Tambah Gejala
                     </button>
                 </div>
@@ -141,10 +144,10 @@ if ($pdo) {
                                 $stmt = $pdo->prepare("
                                     SELECT ad.*, g.nama
                                     FROM aturan_detail ad
-                                    JOIN gejala g ON ad.id_gejala = g.id
+                                    JOIN gejala g ON ad.id_gejala = g.id_gejala
                                     WHERE ad.id_aturan = ?
                                 ");
-                                $stmt->execute([$a['id']]);
+                                $stmt->execute([$a['id_aturan']]);
                                 $details = $stmt->fetchAll();
                                 foreach($details as $d):
                                 ?>
@@ -155,7 +158,7 @@ if ($pdo) {
                                     <td class="p-4 text-right flex justify-end gap-3">
                                         <button onclick='openEditDetailModal(<?= htmlspecialchars(json_encode($d), ENT_QUOTES, 'UTF-8') ?>)' class="text-amber-500 hover:text-amber-600 material-symbols-outlined text-sm">edit</button>
                                         <form method="POST" class="inline" onsubmit="return confirm('Hapus gejala ini dari aturan?')">
-                                            <input type="hidden" name="id_aturan" value="<?= $a['id'] ?>">
+                                            <input type="hidden" name="id_aturan" value="<?= $a['id_aturan'] ?>">
                                             <input type="hidden" name="id_gejala" value="<?= $d['id_gejala'] ?>">
                                             <button name="delete_detail" class="text-red-400 hover:text-red-600 material-symbols-outlined text-sm">close</button>
                                         </form>
@@ -177,13 +180,13 @@ if ($pdo) {
             <form method="POST" class="space-y-4">
                 <div>
                     <label class="block text-sm font-bold mb-1">ID Aturan (Contoh: R31)</label>
-                    <input type="text" name="id" required class="w-full border p-3 rounded-xl">
+                    <input type="text" name="id" required maxlength="5" class="w-full border p-3 rounded-xl">
                 </div>
                 <div>
                     <label class="block text-sm font-bold mb-1">Pilih Penyakit</label>
                     <select name="id_penyakit" class="w-full border p-3 rounded-xl">
                         <?php foreach($penyakit_all as $p): ?>
-                        <option value="<?= $p['id'] ?>"><?= $p['nama'] ?></option>
+                        <option value="<?= $p['id_penyakit'] ?>"><?= $p['nama'] ?></option>
                         <?php endforeach; ?>
                     </select>
                 </div>
@@ -202,13 +205,13 @@ if ($pdo) {
                 <input type="hidden" name="old_id" id="edit_rule_old_id">
                 <div>
                     <label class="block text-sm font-bold mb-1">ID Aturan (Contoh: R01)</label>
-                    <input type="text" name="id" id="edit_rule_id" required class="w-full border p-3 rounded-xl">
+                    <input type="text" name="id" id="edit_rule_id" required maxlength="5" class="w-full border p-3 rounded-xl">
                 </div>
                 <div>
                     <label class="block text-sm font-bold mb-1">Pilih Penyakit</label>
                     <select name="id_penyakit" id="edit_rule_penyakit" class="w-full border p-3 rounded-xl">
                         <?php foreach($penyakit_all as $p): ?>
-                        <option value="<?= $p['id'] ?>"><?= $p['nama'] ?></option>
+                        <option value="<?= $p['id_penyakit'] ?>"><?= $p['nama'] ?></option>
                         <?php endforeach; ?>
                     </select>
                 </div>
@@ -229,7 +232,7 @@ if ($pdo) {
                     <label class="block text-sm font-bold mb-1">Pilih Gejala</label>
                     <select name="id_gejala" class="w-full border p-3 rounded-xl">
                         <?php foreach($gejala_all as $g): ?>
-                        <option value="<?= $g['id'] ?>"><?= $g['id'] ?> - <?= $g['nama'] ?></option>
+                        <option value="<?= $g['id_gejala'] ?>"><?= $g['id_gejala'] ?> - <?= $g['nama'] ?></option>
                         <?php endforeach; ?>
                     </select>
                 </div>
@@ -255,7 +258,7 @@ if ($pdo) {
                     <label class="block text-sm font-bold mb-1">Pilih Gejala</label>
                     <select name="id_gejala" id="edit_detail_id_gejala" class="w-full border p-3 rounded-xl">
                         <?php foreach($gejala_all as $g): ?>
-                        <option value="<?= $g['id'] ?>"><?= $g['id'] ?> - <?= $g['nama'] ?></option>
+                        <option value="<?= $g['id_gejala'] ?>"><?= $g['id_gejala'] ?> - <?= $g['nama'] ?></option>
                         <?php endforeach; ?>
                     </select>
                 </div>
@@ -273,8 +276,8 @@ if ($pdo) {
 
     <script>
         function openEditRuleModal(data) {
-            document.getElementById('edit_rule_old_id').value = data.id;
-            document.getElementById('edit_rule_id').value = data.id;
+            document.getElementById('edit_rule_old_id').value = data.id_aturan;
+            document.getElementById('edit_rule_id').value = data.id_aturan;
             document.getElementById('edit_rule_penyakit').value = data.id_penyakit;
             document.getElementById('editRuleModal').classList.remove('hidden');
         }

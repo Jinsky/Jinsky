@@ -1,4 +1,7 @@
 <?php
+require_once 'includes/functions.php';
+increment_visitor($pdo);
+
 $page_title = "Beranda";
 include 'includes/header.php';
 ?>
