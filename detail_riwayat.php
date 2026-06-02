@@ -1,180 +1,141 @@
 <?php
 require_once 'includes/functions.php';
-
-$id = $_GET['id'] ?? null;
-if (!$id) {
-    header('Location: riwayat.php');
-    exit;
-}
-
-// Fetch history record
-$record = get_diagnosa_by_id($pdo, $id);
-
-if (!$record) {
-    header('Location: riwayat.php');
-    exit;
-}
-
-$nama_merpati = $record['nama_merpati'];
-$selected_gejala = explode(',', $record['gejala_terpilih']);
-
-// Re-run diagnostic engine to get full details (descriptions, other matches)
-$diagnoses = get_diagnosa($pdo, $selected_gejala);
-$diagnosis = !empty($diagnoses) ? $diagnoses[0] : null;
-
 $page_title = "Detail Riwayat Diagnosa";
 include 'includes/header.php';
+
+$id = $_GET['id'] ?? 0;
+$riwayat = get_diagnosa_by_id($pdo, $id);
+
+if (!$riwayat) {
+    header("Location: riwayat.php");
+    exit;
+}
+
+$disease_ids = explode(',', $riwayat['id_penyakit']);
+$primary_disease = get_penyakit_by_id($pdo, $disease_ids[0]);
+
+$other_matches = [];
+for ($i = 1; $i < count($disease_ids); $i++) {
+    $p = get_penyakit_by_id($pdo, $disease_ids[$i]);
+    if ($p) $other_matches[] = $p;
+}
+
+$all_gejala = get_all_gejala($pdo);
+$selected_gejala_ids = explode(',', $riwayat['gejala_terpilih']);
+$gejala_names = [];
+foreach ($all_gejala as $g) {
+    if (in_array($g['id_gejala'], $selected_gejala_ids)) {
+        $gejala_names[] = $g['nama'];
+    }
+}
 ?>
 
-<main class="pt-32 pb-20 px-8 max-w-7xl mx-auto w-full">
-    <!-- Header Section -->
-    <div class="mb-16">
-        <span class="bg-secondary-container text-on-secondary-container px-4 py-1.5 rounded-full text-sm font-bold tracking-wider uppercase mb-6 inline-block">
-            Arsip Diagnosa #<?= htmlspecialchars($id) ?>
-        </span>
-        <h1 class="font-headline text-5xl md:text-6xl text-primary font-bold tracking-tight mb-6">Detail Hasil Analisis</h1>
-        <p class="text-on-surface-variant text-xl max-w-2xl leading-relaxed">
-            Nama Pemilik: <span class="font-bold text-on-surface"><?= htmlspecialchars($nama_merpati) ?></span>.
-            Pemeriksaan dilakukan pada <span class="font-bold text-on-surface"><?= date('d M Y, H:i', strtotime($record['tanggal'])) ?> WIB</span>.
-        </p>
-    </div>
+<main class="pt-24 min-h-screen bg-surface-container-lowest">
+    <div class="max-w-5xl mx-auto px-8 pb-20">
+        <a href="riwayat.php" class="inline-flex items-center gap-2 text-primary font-bold mb-10 hover:gap-4 transition-all">
+            <span class="material-symbols-outlined">arrow_back</span>
+            Kembali ke Riwayat
+        </a>
 
-    <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
-        <?php if ($diagnosis): ?>
-            <!-- Results & Insights Area -->
-            <div class="lg:col-span-7 space-y-8">
-                <div class="bg-surface-container border-l-4 border-primary p-8 rounded-r-xl relative overflow-hidden">
-                    <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-6 mb-8">
-                        <div>
-                            <h2 class="font-headline text-3xl text-primary font-bold mb-2"><?= $diagnosis['nama'] ?></h2>
-                            <span class="bg-primary-container text-on-primary-container px-3 py-1 rounded-full text-xs font-bold uppercase tracking-widest">Kecocokan Pola Terkonfirmasi</span>
-                        </div>
-                        <div class="text-center bg-surface-container-lowest p-6 rounded-2xl shadow-sm border border-outline-variant/10 min-w-[140px]">
-                            <p class="text-5xl font-headline font-black text-primary leading-none"><?= $record['confidence'] ?>%</p>
-                            <p class="text-[10px] font-bold text-on-surface-variant uppercase tracking-widest mt-2">tingkat kecocokan</p>
-                        </div>
-                    </div>
-
-                    <div class="bg-surface-container-lowest p-6 rounded-xl mb-8 border border-outline-variant/10">
-                        <h3 class="font-bold text-on-surface mb-3 flex items-center gap-2">
-                            <span class="material-symbols-outlined text-primary text-lg">info</span>
-                            Deskripsi Klinis
-                        </h3>
-                        <p class="text-on-surface-variant text-sm leading-relaxed">
-                            <?= nl2br($diagnosis['deskripsi']) ?>
-                        </p>
-                    </div>
-
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                        <div class="p-6 bg-surface-container-lowest rounded-xl border border-outline-variant/10">
-                            <h4 class="font-bold text-primary mb-4 flex items-center gap-2">
-                                <span class="material-symbols-outlined text-sm">security</span>
-                                Langkah Penanganan
-                            </h4>
-                            <div class="text-xs text-on-surface-variant space-y-2 leading-relaxed">
-                                <?= nl2br($diagnosis['solusi']) ?>
-                            </div>
-                        </div>
-                        <div class="p-6 bg-surface-container-lowest rounded-xl border border-outline-variant/10">
-                            <h4 class="font-bold text-secondary mb-4 flex items-center gap-2">
-                                <span class="material-symbols-outlined text-sm">vaccines</span>
-                                Tips Pencegahan
-                            </h4>
-                            <div class="text-xs text-on-surface-variant space-y-2 leading-relaxed">
-                                <?= nl2br($diagnosis['pencegahan']) ?>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <?php if (count($diagnoses) > 1): ?>
-                    <!-- Other Possible Diseases -->
-                    <div class="bg-surface-container-low p-8 rounded-xl">
-                        <h3 class="font-headline text-2xl text-primary font-bold mb-6 flex items-center gap-2">
-                            <span class="material-symbols-outlined">account_tree</span>
-                            Kemungkinan Penyakit Lain
-                        </h3>
-                        <div class="space-y-4">
-                            <?php for ($i = 1; $i < count($diagnoses); $i++): $d = $diagnoses[$i]; ?>
-                                <div class="bg-surface-container-lowest p-5 rounded-xl border border-outline-variant/10 flex justify-between items-center transition-hover hover:shadow-md">
-                                    <div>
-                                        <h4 class="font-bold text-on-surface"><?= $d['nama'] ?></h4>
-                                        <p class="text-xs text-on-surface-variant mt-1 line-clamp-1"><?= strip_tags($d['deskripsi']) ?></p>
-                                    </div>
-                                    <div class="text-right">
-                                        <span class="text-lg font-headline font-bold text-secondary"><?= $d['confidence'] ?>%</span>
-                                        <p class="text-[10px] font-bold text-on-surface-variant uppercase tracking-widest">Kecocokan</p>
-                                    </div>
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            <div class="lg:col-span-2 space-y-8">
+                <!-- Main Result Card -->
+                <div class="bg-white rounded-[3rem] shadow-xl shadow-primary/5 overflow-hidden border border-outline-variant/30">
+                    <div class="bg-primary p-10 text-on-primary">
+                        <div class="flex justify-between items-start mb-8">
+                            <div class="flex items-center gap-4">
+                                <span class="material-symbols-outlined text-4xl">history</span>
+                                <div>
+                                    <span class="font-bold font-label uppercase tracking-widest text-xs opacity-80 block">Hasil Diagnosa</span>
+                                    <span class="text-sm opacity-70"><?= date('d F Y, H:i', strtotime($riwayat['tanggal'])) ?> WIB</span>
                                 </div>
-                            <?php endfor; ?>
+                            </div>
+                            <div class="text-right">
+                                <span class="text-xs font-label opacity-60 uppercase tracking-widest block mb-1">Pemilik</span>
+                                <span class="font-bold text-lg"><?= $riwayat['nama_merpati'] ?></span>
+                            </div>
                         </div>
-                    </div>
-                <?php endif; ?>
 
-                <div class="bg-error-container/20 p-6 rounded-xl border border-error/10">
-                    <div class="flex gap-4">
-                        <span class="material-symbols-outlined text-error">warning</span>
+                        <h2 class="text-4xl font-bold font-headline mb-4"><?= $primary_disease['nama'] ?? 'Tidak Terdeteksi' ?></h2>
+                        <div class="flex items-center gap-2">
+                            <div class="flex-1 h-3 bg-white/20 rounded-full overflow-hidden">
+                                <div class="h-full bg-secondary shadow-[0_0_12px_rgba(18,106,99,0.8)]" style="width: <?= $riwayat['confidence'] ?>%"></div>
+                            </div>
+                            <span class="font-bold text-xl font-label"><?= $riwayat['confidence'] ?>%</span>
+                        </div>
+                        <p class="text-xs uppercase tracking-[0.2em] font-bold mt-2 opacity-70">Tingkat Kecocokan</p>
+                    </div>
+
+                    <div class="p-10 space-y-8">
                         <div>
-                            <h4 class="font-bold text-on-error-container">Catatan Historis</h4>
-                            <p class="text-sm text-on-error-container opacity-80 mt-1 leading-relaxed">
-                                Hasil ini adalah catatan permanen dari diagnosa sistem pakar pada tanggal tersebut. Untuk kondisi kesehatan terkini, selalu lakukan konsultasi ulang jika muncul gejala baru.
-                            </p>
+                            <h3 class="text-xl font-bold text-primary font-headline mb-4 flex items-center gap-3">
+                                <span class="material-symbols-outlined text-secondary">info</span>
+                                Deskripsi Klinis
+                            </h3>
+                            <p class="text-on-surface-variant font-body leading-relaxed"><?= $primary_disease['deskripsi'] ?? 'N/A' ?></p>
                         </div>
-                    </div>
-                </div>
-            </div>
 
-            <!-- Sidebar / Details -->
-            <div class="lg:col-span-5 space-y-8 sticky top-28">
-                <div class="bg-surface-container-low p-8 rounded-xl">
-                    <h3 class="font-headline text-xl text-primary mb-6">Gejala yang Dilaporkan</h3>
-                    <div class="flex flex-wrap gap-2 mb-8">
-                        <?php
-                        $gejala_all = get_all_gejala($pdo);
-                        foreach ($gejala_all as $g):
-                            if (in_array($g['id'], $selected_gejala)):
-                        ?>
-                                <span class="bg-secondary-container text-on-secondary-container px-3 py-1.5 rounded-full text-xs font-medium flex items-center gap-1">
-                                    <span class="material-symbols-outlined text-sm">check</span> <?= $g['nama'] ?>
-                                </span>
-                        <?php
-                            endif;
-                        endforeach;
-                        ?>
-                    </div>
-                    <div class="p-6 bg-surface-container-lowest rounded-xl border border-outline-variant/5">
-                        <p class="text-[10px] font-bold text-on-surface-variant uppercase tracking-widest mb-4">Informasi Tambahan</p>
-                        <div class="space-y-4">
-                            <div class="flex justify-between items-center text-sm">
-                                <span class="text-on-surface-variant">Metode</span>
-                                <span class="font-bold">Forward Chaining</span>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 pt-8 border-t border-outline-variant/20">
+                            <div>
+                                <h4 class="text-lg font-bold text-primary font-headline mb-4 flex items-center gap-2">
+                                    <span class="material-symbols-outlined text-primary text-sm">medical_services</span>
+                                    Langkah Pengobatan
+                                </h4>
+                                <div class="text-sm text-on-surface-variant font-body leading-relaxed space-y-2">
+                                    <?= isset($primary_disease['solusi']) ? nl2br($primary_disease['solusi']) : 'N/A' ?>
+                                </div>
                             </div>
-                            <div class="flex justify-between items-center text-sm">
-                                <span class="text-on-surface-variant">ID Diagnosa</span>
-                                <span class="font-bold">#<?= $id ?></span>
+                            <div>
+                                <h4 class="text-lg font-bold text-primary font-headline mb-4 flex items-center gap-2">
+                                    <span class="material-symbols-outlined text-tertiary text-sm">shield</span>
+                                    Pencegahan
+                                </h4>
+                                <div class="text-sm text-on-surface-variant font-body leading-relaxed space-y-2">
+                                    <?= isset($primary_disease['pencegahan']) ? nl2br($primary_disease['pencegahan']) : 'N/A' ?>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
 
-                <a href="riwayat.php" class="w-full bg-primary text-on-primary py-4 rounded-xl font-bold flex items-center justify-center gap-2 hover:bg-primary-dim transition-all shadow-lg text-center">
-                    <span class="material-symbols-outlined">arrow_back</span>
-                    Kembali ke Riwayat
-                </a>
+                <!-- Secondary Matches -->
+                <?php if (!empty($other_matches)): ?>
+                <div class="bg-surface-container-low p-10 rounded-[3rem] border border-outline-variant/30">
+                    <h3 class="text-xl font-bold text-primary font-headline mb-6">Kemungkinan Penyakit Lain</h3>
+                    <div class="space-y-4">
+                        <?php foreach($other_matches as $other): ?>
+                        <div class="bg-white p-6 rounded-2xl border border-outline-variant/30 flex items-center justify-between group hover:border-primary/30 transition-all">
+                            <div class="flex items-center gap-4">
+                                <div class="w-10 h-10 rounded-full bg-primary/5 flex items-center justify-center text-primary">
+                                    <span class="material-symbols-outlined">clinical_notes</span>
+                                </div>
+                                <span class="font-bold text-primary"><?= $other['nama'] ?></span>
+                            </div>
+                            <a href="detail_penyakit.php?id=<?= $other['id_penyakit'] ?>" class="text-xs font-bold text-on-surface-variant group-hover:text-primary transition-colors flex items-center gap-1">
+                                Lihat Detail <span class="material-symbols-outlined text-sm">chevron_right</span>
+                            </a>
+                        </div>
+                        <?php endforeach; ?>
+                    </div>
+                </div>
+                <?php endif; ?>
             </div>
 
-        <?php else: ?>
-            <div class="lg:col-span-12 bg-surface-container-low p-16 rounded-3xl text-center">
-                <span class="material-symbols-outlined text-7xl text-on-surface-variant/20 mb-8">search_off</span>
-                <h2 class="text-3xl font-bold text-on-surface mb-4 font-headline">Data Tidak Lengkap</h2>
-                <p class="text-on-surface-variant max-w-lg mx-auto mb-10 text-lg">
-                    Maaf, data penyakit terkait riwayat ini tidak dapat ditemukan dalam basis pengetahuan saat ini.
-                </p>
-                <a href="riwayat.php" class="inline-flex items-center gap-2 px-8 py-4 bg-primary text-on-primary rounded-xl font-bold hover:bg-primary-dim transition-all">
-                    <span class="material-symbols-outlined">arrow_back</span> Kembali
-                </a>
+            <!-- Summary Sidebar -->
+            <div class="space-y-8">
+                <div class="bg-white p-8 rounded-[2.5rem] shadow-xl shadow-primary/5 border border-outline-variant/30">
+                    <h3 class="text-lg font-bold text-primary font-headline mb-6 flex items-center gap-3">
+                        <span class="material-symbols-outlined">list_alt</span>
+                        Gejala Teramati
+                    </h3>
+                    <div class="flex flex-wrap gap-2">
+                        <?php foreach($gejala_names as $name): ?>
+                            <span class="px-4 py-2 rounded-xl bg-surface-container text-primary text-sm font-bold font-body"><?= $name ?></span>
+                        <?php endforeach; ?>
+                    </div>
+                </div>
             </div>
-        <?php endif; ?>
+        </div>
     </div>
 </main>
 

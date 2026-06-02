@@ -12,6 +12,8 @@ if ($pdo) {
     $total_riwayat = 0;
     $total_aturan = 0;
 }
+
+$visitor_count = get_visitor_count($pdo);
 ?>
 <!DOCTYPE html>
 <html lang="id">
@@ -74,7 +76,13 @@ if ($pdo) {
             <div class="relative z-10">
                 <h2 class="text-3xl font-bold mb-4">Butuh Bantuan?</h2>
                 <p class="max-w-xl opacity-80 mb-8 text-lg">Gunakan panel navigasi di samping untuk mengelola basis pengetahuan. Anda dapat menambah gejala baru, penyakit, atau mengatur ulang bobot aturan diagnosa.</p>
-                <a href="../index.php" class="bg-white text-cyan-950 px-8 py-3 rounded-xl font-bold hover:bg-slate-100 transition inline-block">Lihat Situs Depan</a>
+                <div class="flex items-center justify-between">
+                    <a href="../index.php" class="bg-white text-cyan-950 px-8 py-3 rounded-xl font-bold hover:bg-slate-100 transition inline-block">Lihat Situs Depan</a>
+                    <div class="text-right">
+                        <p class="text-xs uppercase tracking-widest opacity-60">Jumlah Pengunjung</p>
+                        <p class="text-3xl font-bold"><?= number_format($visitor_count) ?></p>
+                    </div>
+                </div>
             </div>
             <span class="material-symbols-outlined absolute -right-10 -bottom-10 text-[15rem] opacity-10">clinical_notes</span>
         </div>
