@@ -184,6 +184,26 @@ function get_riwayat($pdo, $search = '', $id_penyakit = '') {
 }
 
 /**
+ * Get specific diagnosis by ID
+ */
+function get_diagnosa_by_id($pdo, $id) {
+    if (!$pdo) {
+        // Fallback for mock data (ignoring search/filter for simplicity here)
+        $mock_data = [
+            ['id' => 1, 'nama_merpati' => 'Merpati Pos A', 'nama_penyakit' => 'Newcastle Disease', 'id_penyakit' => 'P01', 'confidence' => 100, 'tanggal' => date('Y-m-d H:i:s'), 'gejala_terpilih' => 'G14,G15,G16'],
+            ['id' => 2, 'nama_merpati' => 'Budi', 'nama_penyakit' => 'Trichomoniasis', 'id_penyakit' => 'P02', 'confidence' => 66.67, 'tanggal' => date('Y-m-d H:i:s'), 'gejala_terpilih' => 'G19,G21']
+        ];
+        foreach ($mock_data as $r) {
+            if ($r['id'] == $id) return $r;
+        }
+        return null;
+    }
+    $stmt = $pdo->prepare("SELECT * FROM diagnosa WHERE id = ?");
+    $stmt->execute([$id]);
+    return $stmt->fetch();
+}
+
+/**
  * Get all diseases for catalog
  */
 function get_all_penyakit($pdo) {

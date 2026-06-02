@@ -18,12 +18,34 @@ if (isset($_POST['add_rule'])) {
     }
 }
 
+if (isset($_POST['edit_rule'])) {
+    if ($pdo) {
+        try {
+            $pdo->beginTransaction();
+            $stmt = $pdo->prepare("UPDATE aturan SET id = ?, id_penyakit = ? WHERE id = ?");
+            $stmt->execute([$_POST['id'], $_POST['id_penyakit'], $_POST['old_id']]);
+            $pdo->commit();
+            $message = "Aturan berhasil diperbarui.";
+        } catch (Exception $e) { $pdo->rollBack(); $error = "Gagal: " . $e->getMessage(); }
+    }
+}
+
 if (isset($_POST['add_detail'])) {
     if ($pdo) {
         try {
             $stmt = $pdo->prepare("INSERT INTO aturan_detail (id_aturan, id_gejala, bobot) VALUES (?, ?, ?)");
             $stmt->execute([$_POST['id_aturan'], $_POST['id_gejala'], $_POST['bobot']]);
             $message = "Gejala ditambahkan ke aturan.";
+        } catch (Exception $e) { $error = "Gagal: " . $e->getMessage(); }
+    }
+}
+
+if (isset($_POST['edit_detail'])) {
+    if ($pdo) {
+        try {
+            $stmt = $pdo->prepare("UPDATE aturan_detail SET id_gejala = ?, bobot = ? WHERE id_aturan = ? AND id_gejala = ?");
+            $stmt->execute([$_POST['id_gejala'], $_POST['bobot'], $_POST['id_aturan'], $_POST['old_id_gejala']]);
+            $message = "Detail aturan berhasil diperbarui.";
         } catch (Exception $e) { $error = "Gagal: " . $e->getMessage(); }
     }
 }
@@ -38,11 +60,11 @@ if (isset($_POST['delete_detail'])) {
 
 if ($pdo) {
     $stmt = $pdo->query("
-        SELECT a.id, p.nama as penyakit, COUNT(ad.id_gejala) as total_gejala
+        SELECT a.id, a.id_penyakit, p.nama as penyakit, COUNT(ad.id_gejala) as total_gejala
         FROM aturan a
         LEFT JOIN penyakit p ON a.id_penyakit = p.id
         LEFT JOIN aturan_detail ad ON a.id = ad.id_aturan
-        GROUP BY a.id
+        GROUP BY a.id, a.id_penyakit
     ");
     $aturan_list = $stmt->fetchAll();
 
@@ -91,9 +113,12 @@ if ($pdo) {
             <?php foreach($aturan_list as $a): ?>
             <div class="bg-white rounded-2xl shadow-sm border border-slate-200 p-8">
                 <div class="flex justify-between items-start mb-6">
-                    <div>
-                        <h3 class="text-xl font-bold text-slate-800"><?= $a['penyakit'] ?></h3>
-                        <p class="text-sm font-mono text-cyan-700 uppercase tracking-widest mt-1">ID Aturan: <?= $a['id'] ?></p>
+                    <div class="flex items-start gap-4">
+                        <div>
+                            <h3 class="text-xl font-bold text-slate-800"><?= $a['penyakit'] ?></h3>
+                            <p class="text-sm font-mono text-cyan-700 uppercase tracking-widest mt-1">ID Aturan: <?= $a['id'] ?></p>
+                        </div>
+                        <button onclick='openEditRuleModal(<?= json_encode(["id" => $a['id'], "id_penyakit" => $a['id_penyakit']]) ?>)' class="mt-1 text-slate-400 hover:text-cyan-700 transition material-symbols-outlined">edit</button>
                     </div>
                     <button onclick="openDetailModal('<?= $a['id'] ?>')" class="bg-slate-100 text-slate-700 px-4 py-2 rounded-lg text-sm font-bold hover:bg-slate-200 transition">
                         + Tambah Gejala
@@ -127,8 +152,9 @@ if ($pdo) {
                                     <td class="p-4 font-mono font-bold text-cyan-600"><?= $d['id_gejala'] ?></td>
                                     <td class="p-4 text-slate-700"><?= $d['nama'] ?></td>
                                     <td class="p-4 text-center font-bold"><?= $d['bobot'] ?>%</td>
-                                    <td class="p-4 text-right">
-                                        <form method="POST" class="inline">
+                                    <td class="p-4 text-right flex justify-end gap-3">
+                                        <button onclick='openEditDetailModal(<?= htmlspecialchars(json_encode($d), ENT_QUOTES, 'UTF-8') ?>)' class="text-amber-500 hover:text-amber-600 material-symbols-outlined text-sm">edit</button>
+                                        <form method="POST" class="inline" onsubmit="return confirm('Hapus gejala ini dari aturan?')">
                                             <input type="hidden" name="id_aturan" value="<?= $a['id'] ?>">
                                             <input type="hidden" name="id_gejala" value="<?= $d['id_gejala'] ?>">
                                             <button name="delete_detail" class="text-red-400 hover:text-red-600 material-symbols-outlined text-sm">close</button>
@@ -169,6 +195,31 @@ if ($pdo) {
         </div>
     </div>
 
+    <div id="editRuleModal" class="fixed inset-0 bg-slate-900/50 hidden flex items-center justify-center p-4 z-50">
+        <div class="bg-white rounded-2xl p-8 max-w-md w-full">
+            <h2 class="text-2xl font-bold mb-6">Edit Aturan</h2>
+            <form method="POST" class="space-y-4">
+                <input type="hidden" name="old_id" id="edit_rule_old_id">
+                <div>
+                    <label class="block text-sm font-bold mb-1">ID Aturan (Contoh: R01)</label>
+                    <input type="text" name="id" id="edit_rule_id" required class="w-full border p-3 rounded-xl">
+                </div>
+                <div>
+                    <label class="block text-sm font-bold mb-1">Pilih Penyakit</label>
+                    <select name="id_penyakit" id="edit_rule_penyakit" class="w-full border p-3 rounded-xl">
+                        <?php foreach($penyakit_all as $p): ?>
+                        <option value="<?= $p['id'] ?>"><?= $p['nama'] ?></option>
+                        <?php endforeach; ?>
+                    </select>
+                </div>
+                <div class="flex gap-4 pt-4">
+                    <button type="button" onclick="document.getElementById('editRuleModal').classList.add('hidden')" class="flex-1 py-3 border rounded-xl">Batal</button>
+                    <button type="submit" name="edit_rule" class="flex-1 py-3 bg-cyan-900 text-white rounded-xl font-bold">Simpan</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
     <div id="addDetailModal" class="fixed inset-0 bg-slate-900/50 hidden flex items-center justify-center p-4 z-50">
         <div class="bg-white rounded-2xl p-8 max-w-md w-full">
             <h2 class="text-2xl font-bold mb-6">Tambah Gejala ke Aturan</h2>
@@ -194,10 +245,51 @@ if ($pdo) {
         </div>
     </div>
 
+    <div id="editDetailModal" class="fixed inset-0 bg-slate-900/50 hidden flex items-center justify-center p-4 z-50">
+        <div class="bg-white rounded-2xl p-8 max-w-md w-full">
+            <h2 class="text-2xl font-bold mb-6">Edit Detail Aturan</h2>
+            <form method="POST" class="space-y-4">
+                <input type="hidden" name="id_aturan" id="edit_detail_id_aturan">
+                <input type="hidden" name="old_id_gejala" id="edit_detail_old_id_gejala">
+                <div>
+                    <label class="block text-sm font-bold mb-1">Pilih Gejala</label>
+                    <select name="id_gejala" id="edit_detail_id_gejala" class="w-full border p-3 rounded-xl">
+                        <?php foreach($gejala_all as $g): ?>
+                        <option value="<?= $g['id'] ?>"><?= $g['id'] ?> - <?= $g['nama'] ?></option>
+                        <?php endforeach; ?>
+                    </select>
+                </div>
+                <div>
+                    <label class="block text-sm font-bold mb-1">Bobot Persentase (1-100)</label>
+                    <input type="number" name="bobot" id="edit_detail_bobot" min="1" max="100" required class="w-full border p-3 rounded-xl">
+                </div>
+                <div class="flex gap-4 pt-4">
+                    <button type="button" onclick="document.getElementById('editDetailModal').classList.add('hidden')" class="flex-1 py-3 border rounded-xl">Batal</button>
+                    <button type="submit" name="edit_detail" class="flex-1 py-3 bg-cyan-900 text-white rounded-xl font-bold">Simpan</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
     <script>
+        function openEditRuleModal(data) {
+            document.getElementById('edit_rule_old_id').value = data.id;
+            document.getElementById('edit_rule_id').value = data.id;
+            document.getElementById('edit_rule_penyakit').value = data.id_penyakit;
+            document.getElementById('editRuleModal').classList.remove('hidden');
+        }
+
         function openDetailModal(idAturan) {
             document.getElementById('modal_id_aturan').value = idAturan;
             document.getElementById('addDetailModal').classList.remove('hidden');
+        }
+
+        function openEditDetailModal(data) {
+            document.getElementById('edit_detail_id_aturan').value = data.id_aturan;
+            document.getElementById('edit_detail_old_id_gejala').value = data.id_gejala;
+            document.getElementById('edit_detail_id_gejala').value = data.id_gejala;
+            document.getElementById('edit_detail_bobot').value = data.bobot;
+            document.getElementById('editDetailModal').classList.remove('hidden');
         }
     </script>
 </body>
