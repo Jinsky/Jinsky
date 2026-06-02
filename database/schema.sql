@@ -45,6 +45,14 @@ CREATE TABLE admin (
     password VARCHAR(255) NOT NULL
 );
 
+CREATE TABLE pengunjung (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    total INT DEFAULT 0
+);
+
+-- Seed visitor count
+INSERT INTO pengunjung (total) VALUES (0);
+
 -- Default admin: admin / admin123
 INSERT INTO admin (username, password) VALUES ('admin', '$2y$10$8W3n.yQvRkH.LqY6mR.eueGZ1v1o/vHlKkYjQz.aFvXhZ9IqKxX3O');
 

@@ -1,0 +1,31 @@
+<mxfile host="65bd71144e">
+    <diagram id="pengunjung_design" name="Design">
+        <mxGraphModel dx="800" dy="600" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+            <root>
+                <mxCell id="0"/>
+                <mxCell id="1" parent="0"/>
+                <mxCell id="card" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#000000;arcSize=10;" parent="1" vertex="1">
+                    <mxGeometry x="100" y="100" width="600" height="150" as="geometry"/>
+                </mxCell>
+                <mxCell id="title" value="Jumlah Pengunjung" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=24;fontStyle=1" parent="1" vertex="1">
+                    <mxGeometry x="130" y="130" width="300" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="desc" value="Total statistik pengunjung yang telah mengakses situs depan." style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=14;fontColor=#666666" parent="1" vertex="1">
+                    <mxGeometry x="130" y="170" width="400" height="20" as="geometry"/>
+                </mxCell>
+                <mxCell id="icon_box" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f0f0f0;strokeColor=#cccccc;" parent="1" vertex="1">
+                    <mxGeometry x="540" y="135" width="60" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="icon_text" value="Group" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=12;" parent="1" vertex="1">
+                    <mxGeometry x="540" y="135" width="60" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="label" value="Total Visit" style="text;html=1;strokeColor=none;fillColor=none;align=right;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=12;fontStyle=1;fontColor=#999999" parent="1" vertex="1">
+                    <mxGeometry x="610" y="140" width="60" height="20" as="geometry"/>
+                </mxCell>
+                <mxCell id="count" value="1.234" style="text;html=1;strokeColor=none;fillColor=none;align=right;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=36;fontStyle=1" parent="1" vertex="1">
+                    <mxGeometry x="610" y="160" width="60" height="40" as="geometry"/>
+                </mxCell>
+            </root>
+        </mxGraphModel>
+    </diagram>
+</mxfile>

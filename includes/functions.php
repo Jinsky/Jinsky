@@ -227,4 +227,21 @@ function get_penyakit_by_id($pdo, $id) {
     $stmt->execute([$id]);
     return $stmt->fetch();
 }
+
+/**
+ * Increment the visitor counter in the database
+ */
+function track_visitor($pdo) {
+    if (!$pdo) return false;
+    // Simple logic: increment total column in the first record
+    return $pdo->query("UPDATE pengunjung SET total = total + 1 WHERE id = 1");
+}
+
+/**
+ * Get total visitor count from the database
+ */
+function get_total_visitors($pdo) {
+    if (!$pdo) return 0;
+    return $pdo->query("SELECT total FROM pengunjung WHERE id = 1")->fetchColumn();
+}
 ?>

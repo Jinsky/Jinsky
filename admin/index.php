@@ -8,9 +8,11 @@ $total_penyakit = count(get_all_penyakit($pdo));
 if ($pdo) {
     $total_riwayat = $pdo->query("SELECT COUNT(*) FROM diagnosa")->fetchColumn();
     $total_aturan = $pdo->query("SELECT COUNT(*) FROM aturan")->fetchColumn();
+    $total_pengunjung = get_total_visitors($pdo);
 } else {
     $total_riwayat = 0;
     $total_aturan = 0;
+    $total_pengunjung = 0;
 }
 ?>
 <!DOCTYPE html>
@@ -77,6 +79,22 @@ if ($pdo) {
                 <a href="../index.php" class="bg-white text-cyan-950 px-8 py-3 rounded-xl font-bold hover:bg-slate-100 transition inline-block">Lihat Situs Depan</a>
             </div>
             <span class="material-symbols-outlined absolute -right-10 -bottom-10 text-[15rem] opacity-10">clinical_notes</span>
+        </div>
+
+        <div class="mt-12 bg-white p-10 rounded-[2.5rem] shadow-sm border border-slate-200 flex items-center justify-between">
+            <div>
+                <h2 class="text-3xl font-bold text-slate-800 mb-2">Jumlah Pengunjung</h2>
+                <p class="text-slate-500">Total statistik pengunjung yang telah mengakses situs depan.</p>
+            </div>
+            <div class="flex items-center gap-6">
+                <div class="w-16 h-16 bg-blue-100 text-blue-600 rounded-2xl flex items-center justify-center">
+                    <span class="material-symbols-outlined text-4xl">group</span>
+                </div>
+                <div class="text-right">
+                    <p class="text-sm font-bold text-slate-400 uppercase tracking-widest">Total Visit</p>
+                    <p class="text-5xl font-bold text-slate-800"><?= number_format($total_pengunjung, 0, ',', '.') ?></p>
+                </div>
+            </div>
         </div>
     </main>
 </body>
