@@ -36,7 +36,7 @@ function test_get_diagnosa_mock($selected_gejala) {
             $best_penyakit_id = $rule['id_penyakit'];
         }
     }
-    return ['id_penyakit' => $best_penyakit_id, 'confidence' => round($max_score, 2)];
+    return ['id' => $best_penyakit_id, 'confidence' => round($max_score, 2)];
 }
 
 // Test Case 1: 1 symptom (G14)

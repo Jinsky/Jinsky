@@ -2,12 +2,12 @@ CREATE DATABASE IF NOT EXISTS pigeon_expert_system;
 USE pigeon_expert_system;
 
 CREATE TABLE gejala (
-    id_gejala VARCHAR(5) PRIMARY KEY,
+    id VARCHAR(5) PRIMARY KEY,
     nama VARCHAR(255) NOT NULL
 );
 
 CREATE TABLE penyakit (
-    id_penyakit VARCHAR(5) PRIMARY KEY,
+    id VARCHAR(5) PRIMARY KEY,
     nama VARCHAR(255) NOT NULL,
     deskripsi TEXT,
     solusi TEXT,
@@ -15,9 +15,9 @@ CREATE TABLE penyakit (
 );
 
 CREATE TABLE aturan (
-    id_aturan VARCHAR(5) PRIMARY KEY,
+    id VARCHAR(5) PRIMARY KEY,
     id_penyakit VARCHAR(5),
-    FOREIGN KEY (id_penyakit) REFERENCES penyakit(id_penyakit)
+    FOREIGN KEY (id_penyakit) REFERENCES penyakit(id)
 );
 
 CREATE TABLE aturan_detail (
@@ -25,38 +25,31 @@ CREATE TABLE aturan_detail (
     id_gejala VARCHAR(5),
     bobot DECIMAL(5,2) DEFAULT 0,
     PRIMARY KEY (id_aturan, id_gejala),
-    FOREIGN KEY (id_aturan) REFERENCES aturan(id_aturan),
-    FOREIGN KEY (id_gejala) REFERENCES gejala(id_gejala)
+    FOREIGN KEY (id_aturan) REFERENCES aturan(id),
+    FOREIGN KEY (id_gejala) REFERENCES gejala(id)
 );
 
 CREATE TABLE diagnosa (
-    id_diagnosa INT(5) AUTO_INCREMENT PRIMARY KEY,
+    id INT AUTO_INCREMENT PRIMARY KEY,
     nama_merpati VARCHAR(255) NOT NULL,
-    id_penyakit TEXT, -- Updated to TEXT to support multiple IDs if needed, but previously was VARCHAR(5)
+    id_penyakit VARCHAR(5),
     gejala_terpilih TEXT,
     confidence FLOAT,
-    tanggal TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+    tanggal TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (id_penyakit) REFERENCES penyakit(id)
 );
 
 CREATE TABLE admin (
-    id_admin INT(5) AUTO_INCREMENT PRIMARY KEY,
+    id INT AUTO_INCREMENT PRIMARY KEY,
     username VARCHAR(50) NOT NULL,
     password VARCHAR(255) NOT NULL
 );
-
-CREATE TABLE pengunjung (
-    id_pengunjung INT(5) AUTO_INCREMENT PRIMARY KEY,
-    hits INT DEFAULT 0
-);
-
--- Initialize visitor counter
-INSERT INTO pengunjung (hits) VALUES (0);
 
 -- Default admin: admin / admin123
 INSERT INTO admin (username, password) VALUES ('admin', '$2y$10$8W3n.yQvRkH.LqY6mR.eueGZ1v1o/vHlKkYjQz.aFvXhZ9IqKxX3O');
 
 -- Insert Gejala
-INSERT INTO gejala (id_gejala, nama) VALUES
+INSERT INTO gejala (id, nama) VALUES
 ('G01', 'Nafsu makan menurun'),
 ('G02', 'Burung terlihat lesu'),
 ('G03', 'Diare'),
@@ -88,8 +81,8 @@ INSERT INTO gejala (id_gejala, nama) VALUES
 ('G29', 'Aktivitas menurun'),
 ('G30', 'Kondisi tubuh kurus');
 
--- Insert Penyakit
-INSERT INTO penyakit (id_penyakit, nama, deskripsi, solusi, pencegahan) VALUES
+-- Insert Penyakit with detailed solutions and prevention tips
+INSERT INTO penyakit (id, nama, deskripsi, solusi, pencegahan) VALUES
 ('P01', 'Newcastle Disease',
 'Penyakit Newcastle (ND) atau yang dikenal dengan nama Tetelo adalah penyakit viral yang sangat menular pada unggas, termasuk merpati. Penyakit ini disebabkan oleh virus Newcastle Disease (NDV), yaitu Avian Paramyxovirus-1 (APMV-1). Gejala yang paling khas adalah gangguan saraf seperti leher berputar (tortikolis) dan kelumpuhan.',
 '1. Isolasi segera burung yang menunjukkan gejala saraf untuk mencegah penyebaran ke seluruh koloni.\n2. Berikan dukungan vitamin terutama Vitamin B Kompleks dosis tinggi untuk membantu pemulihan sistem saraf.\n3. Berikan pakan yang mudah dicerna dan bantu burung makan/minum secara manual jika kondisinya sangat lemah.\n4. Gunakan desinfektan virucidal (pembunuh virus) untuk membersihkan seluruh area kandang secara menyeluruh.\n5. Tidak ada pengobatan spesifik untuk virus ND, namun pemberian antibiotik spektrum luas dapat dilakukan untuk mencegah infeksi sekunder bakteri.\n6. Berikan elektrolit dalam air minum untuk mencegah dehidrasi.',
@@ -102,7 +95,7 @@ INSERT INTO penyakit (id_penyakit, nama, deskripsi, solusi, pencegahan) VALUES
 
 ('P03', 'Coccidiosis',
 'Coccidiosis adalah penyakit parasit usus yang disebabkan oleh protozoa genus Eimeria. Penyakit ini menyebabkan kerusakan pada dinding usus, mengakibatkan diare (terkadang berdarah) dan penurunan berat badan yang drastis.',
-'1. Berikan obat anti-koksidia seperti Toltrazuril, Amprolium, atau Sulfa-based medications.\n2. Pastikan kandang dalam kondisi kering karena kelembapan tinggi mempercepat perkembangan kista koksidia (ookista).\n3. Ganti alas kandang (litter) secara rutin and pastikan tidak ada kebocoran air di area kandang.\n4. Berikan suplemen vitamin A dan K untuk membantu regenerasi epitel usus dan mencegah perdarahan internal.\n5. Berikan probiotik setelah masa pengobatan selesai untuk memulihkan mikroflora usus yang sehat.',
+'1. Berikan obat anti-koksidia seperti Toltrazuril, Amprolium, atau Sulfa-based medications.\n2. Pastikan kandang dalam kondisi kering karena kelembapan tinggi mempercepat perkembangan kista koksidia (ookista).\n3. Ganti alas kandang (litter) secara rutin dan pastikan tidak ada kebocoran air di area kandang.\n4. Berikan suplemen vitamin A dan K untuk membantu regenerasi epitel usus dan mencegah perdarahan internal.\n5. Berikan probiotik setelah masa pengobatan selesai untuk memulihkan mikroflora usus yang sehat.',
 '1. Jaga agar alas kandang selalu kering dan tidak lembap.\n2. Hindari kontaminasi pakan dan air minum oleh kotoran burung.\n3. Pastikan ventilasi kandang baik agar sirkulasi udara lancar dan kelembapan terjaga.\n4. Bersihkan peralatan kandang secara rutin menggunakan desinfektan yang efektif terhadap ookista.\n5. Hindari kepadatan burung yang terlalu tinggi dalam satu ruangan.'),
 
 ('P04', 'Salmonellosis',
@@ -140,8 +133,8 @@ INSERT INTO penyakit (id_penyakit, nama, deskripsi, solusi, pencegahan) VALUES
 '1. Berikan antibiotik yang sensitif terhadap bakteri gram negatif seperti Oxytetracycline, Erythromycin, atau Enrofloxacin.\n2. Bersihkan cairan yang keluar dari hidung dan mata secara rutin menggunakan kapas basah hangat.\n3. Lakukan uap panas (vapor therapy) sederhana untuk membantu burung melegakan pernapasan.\n4. Isolasi burung sakit agar tidak menulari burung lain melalui kontak langsung atau air minum.\n5. Tambahkan vitamin ke dalam air minum untuk membantu proses pemulihan daya tahan tubuh.',
 '1. Jaga agar kondisi kandang tetap kering dan tidak lembap, terutama saat musim hujan.\n2. Hindari arus angin yang bertiup kencang langsung ke arah burung (draft) di malam hari.\n3. Pastikan ventilasi udara lancar sehingga tidak terjadi penumpukan gas amonia dari kotoran.\n4. Berikan pakan tambahan dan vitamin secara rutin untuk menjaga stamina burung.\n5. Jangan mencampur burung dari berbagai usia dalam satu kandang yang sempit.');
 
--- Insert Aturan and Aturan Detail
-INSERT INTO aturan (id_aturan, id_penyakit) VALUES
+-- Insert Aturan and Aturan Detail with Percentages
+INSERT INTO aturan (id, id_penyakit) VALUES
 ('R01', 'P01'), ('R02', 'P01'), ('R03', 'P01'),
 ('R04', 'P02'), ('R05', 'P02'), ('R06', 'P02'),
 ('R07', 'P03'), ('R08', 'P03'), ('R09', 'P03'),

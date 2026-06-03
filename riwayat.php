@@ -1,129 +1,165 @@
 <?php
 require_once 'includes/functions.php';
+$hide_top_nav = true;
 $page_title = "Riwayat Diagnosa";
 include 'includes/header.php';
 
 $search = $_GET['search'] ?? '';
-$id_penyakit_filter = $_GET['id_penyakit'] ?? '';
+$id_penyakit = $_GET['penyakit'] ?? '';
 
-$riwayat_list = get_riwayat($pdo, $search, $id_penyakit_filter);
-$penyakit_all = get_all_penyakit($pdo);
+$riwayat = get_riwayat($pdo, $search, $id_penyakit);
+$total_diagnosa = count($riwayat);
+$penyakit_list = get_all_penyakit($pdo);
 ?>
 
-<main class="pt-24 min-h-screen bg-surface-container-lowest">
-    <div class="max-w-7xl mx-auto px-8 pb-20">
-        <!-- Dashboard Header -->
-        <div class="flex flex-col md:flex-row md:items-end justify-between gap-8 mb-12">
-            <div>
-                <h1 class="text-5xl font-bold text-primary font-headline mb-4">Arsip Diagnosa</h1>
-                <p class="text-xl text-on-surface-variant font-body">Rekaman riwayat pemeriksaan kesehatan merpati Anda.</p>
+<div class="bg-surface text-on-surface min-h-screen flex w-full">
+    <!-- Sidebar -->
+    <aside class="hidden md:flex flex-col h-screen w-64 bg-[#eaeef2] dark:bg-[#171c1f] sticky top-0 py-8">
+        <div class="px-8 mb-10 flex items-center gap-3">
+            <div class="w-10 h-10 rounded-full bg-primary flex items-center justify-center text-on-primary">
+                <span class="material-symbols-outlined">clinical_notes</span>
             </div>
-
-            <div class="flex items-center gap-4">
-                <div class="text-right">
-                    <p class="text-xs font-bold text-secondary uppercase tracking-[0.2em] font-label">Total Pemeriksaan</p>
-                    <p class="text-4xl font-bold text-primary"><?= count($riwayat_list) ?></p>
+            <div>
+                <p class="font-headline font-bold text-primary tracking-tight leading-none">Klinik Merpati</p>
+                <p class="text-[10px] text-primary/60 uppercase tracking-widest font-bold mt-1">Avian Atelier</p>
+            </div>
+        </div>
+        <nav class="flex-1 space-y-1">
+            <a class="flex items-center bg-[#ffffff] dark:bg-[#2a6069] text-[#005C97] dark:text-white rounded-l-full ml-4 pl-4 py-3 shadow-sm font-manrope text-sm font-medium translate-x-1 duration-200" href="riwayat.php">
+                <span class="material-symbols-outlined mr-3">history</span> Riwayat
+            </a>
+        </nav>
+        <div class="px-8 mt-auto pt-6 border-t border-outline-variant/10">
+            <div class="flex items-center gap-3">
+                <div class="w-10 h-10 rounded-xl overflow-hidden bg-surface-container">
+                    <img alt="Dr. Merpati" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDGqtDDBuS7lzEngXy9IeeaaKGr7hfKdjj4UBf2cIffBXY76U_pLzxCHMTHG7MbeypMyXoKgpzam_F5cEh4MWB5YLchwTTZlIy3Oj8UxMdeoZD2EMeEhEI13I6-43kGCFnWs6MPfhDxACmHzzIGyKFsP5WgiYrasHtxenqDBhuTIa5MtBQRjbvRBlAuHaciEhfkAUp9rPzAzIc8K1b3sEJpUOqGOH5qDyz_A-8bayhY3oZoFhZwl_2TgjrTjCHyLL1R6tyqfiVWqKl0"/>
                 </div>
-                <div class="w-16 h-16 rounded-2xl bg-secondary-container flex items-center justify-center text-secondary">
-                    <span class="material-symbols-outlined text-4xl">history</span>
+                <div class="overflow-hidden">
+                    <p class="text-sm font-bold truncate">Dr. Merpati</p>
+                    <p class="text-xs text-on-surface-variant">Spesialis Avian</p>
                 </div>
             </div>
         </div>
+    </aside>
 
-        <!-- Filter Bar -->
-        <div class="bg-white rounded-[2rem] shadow-xl shadow-primary/5 p-8 mb-12 border border-outline-variant/30">
-            <form method="GET" class="grid grid-cols-1 md:grid-cols-12 gap-6 items-end">
-                <div class="md:col-span-5">
-                    <label class="block text-sm font-bold text-on-surface-variant font-label uppercase tracking-widest mb-3 ml-4">Cari Pemilik</label>
-                    <div class="relative">
-                        <span class="material-symbols-outlined absolute left-6 top-1/2 -translate-y-1/2 text-on-surface-variant">search</span>
-                        <input type="text" name="search" value="<?= htmlspecialchars($search) ?>" placeholder="Nama pemilik..." class="w-full pl-16 pr-8 py-4 bg-surface-container rounded-2xl border-none outline-none focus:ring-2 focus:ring-primary/20 font-body">
-                    </div>
+    <!-- Main Content -->
+    <main class="flex-1 overflow-x-hidden relative">
+        <header class="fixed top-0 right-0 left-0 md:left-64 z-50 px-8 py-4 bg-[#f6fafe]/80 dark:bg-[#171c1f]/80 backdrop-blur-xl flex justify-between items-center shadow-sm shadow-[#171c1f]/5">
+            <h1 class="font-headline text-2xl font-bold tracking-tight text-primary">Riwayat Diagnosa</h1>
+            <div class="flex items-center gap-6">
+                <form action="" method="GET" class="relative hidden lg:block">
+                    <span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline scale-75">search</span>
+                    <input name="search" value="<?= htmlspecialchars($search) ?>" class="bg-surface-container-low border-none rounded-full py-2 pl-10 pr-4 text-sm w-64 focus:ring-2 focus:ring-primary/20" placeholder="Cari diagnosa atau pasien..." type="text"/>
+                    <?php if (!empty($id_penyakit)): ?>
+                        <input type="hidden" name="penyakit" value="<?= htmlspecialchars($id_penyakit) ?>">
+                    <?php endif; ?>
+                </form>
+                <div class="flex items-center gap-4 text-primary">
+                    <button class="scale-95 active:opacity-80 transition-all material-symbols-outlined">notifications</button>
+                    <button class="scale-95 active:opacity-80 transition-all material-symbols-outlined">account_circle</button>
                 </div>
+            </div>
+        </header>
 
-                <div class="md:col-span-5">
-                    <label class="block text-sm font-bold text-on-surface-variant font-label uppercase tracking-widest mb-3 ml-4">Filter Penyakit</label>
-                    <div class="relative">
-                        <span class="material-symbols-outlined absolute left-6 top-1/2 -translate-y-1/2 text-on-surface-variant">category</span>
-                        <select name="id_penyakit" class="w-full pl-16 pr-8 py-4 bg-surface-container rounded-2xl border-none outline-none focus:ring-2 focus:ring-primary/20 font-body appearance-none">
+        <div class="pt-24 px-8 pb-12">
+            <div class="mb-10 flex flex-col md:flex-row md:items-end justify-between gap-6">
+                <div class="max-w-2xl">
+                    <p class="text-on-surface-variant font-medium mb-2 uppercase tracking-widest text-[10px]">Arsip Laboratorium</p>
+                    <h2 class="text-4xl font-headline text-primary mb-4 leading-tight">Pantau perkembangan kesehatan populasi avian Anda.</h2>
+                    <p class="text-on-surface-variant text-sm leading-relaxed">Berikut adalah catatan komprehensif dari penilaian kesehatan yang dilakukan. Gunakan filter untuk meninjau kasus spesifik atau unduh laporan untuk keperluan medis lebih lanjut.</p>
+                </div>
+                <div class="flex gap-2">
+                    <form action="" method="GET" class="flex gap-2">
+                        <?php if (!empty($search)): ?>
+                            <input type="hidden" name="search" value="<?= htmlspecialchars($search) ?>">
+                        <?php endif; ?>
+                        <select name="penyakit" onchange="this.form.submit()" class="px-6 py-2.5 rounded-xl bg-secondary-container text-on-secondary-container text-sm font-bold flex items-center gap-2 hover:opacity-90 transition-all shadow-sm border-none focus:ring-0">
                             <option value="">Semua Penyakit</option>
-                            <?php foreach($penyakit_all as $p): ?>
-                                <option value="<?= $p['id_penyakit'] ?>" <?= $id_penyakit_filter == $p['id_penyakit'] ? 'selected' : '' ?>><?= $p['nama'] ?></option>
+                            <?php foreach ($penyakit_list as $p): ?>
+                                <option value="<?= $p['id'] ?>" <?= $id_penyakit == $p['id'] ? 'selected' : '' ?>><?= $p['nama'] ?></option>
                             <?php endforeach; ?>
                         </select>
+                    </form>
+                    <a href="konsultasi.php" class="px-6 py-2.5 rounded-xl bg-primary text-on-primary text-sm font-bold flex items-center gap-2 hover:opacity-90 transition-all shadow-sm">
+                        <span class="material-symbols-outlined text-lg">add</span> Diagnosa Baru
+                    </a>
+                </div>
+            </div>
+
+            <div class="space-y-4">
+                <?php if (empty($riwayat)): ?>
+                <div class="bg-surface-container-lowest rounded-xl p-12 text-center text-on-surface-variant">
+                    <span class="material-symbols-outlined text-4xl mb-4 block">folder_open</span>
+                    Belum ada data riwayat diagnosa.
+                </div>
+                <?php else: ?>
+                    <?php foreach ($riwayat as $r): ?>
+                    <div class="bg-surface-container-lowest rounded-xl p-6 flex flex-col lg:flex-row lg:items-center gap-6 transition-all hover:bg-surface-container-low/50 relative overflow-hidden">
+                        <div class="absolute left-0 top-0 bottom-0 w-1 <?= $r['id_penyakit'] ? 'bg-tertiary' : 'bg-secondary' ?>"></div>
+                        <div class="lg:w-48">
+                            <p class="text-[10px] text-on-surface-variant font-bold uppercase tracking-tighter mb-1">Tanggal Pemeriksaan</p>
+                            <p class="text-on-surface font-bold"><?= date('d M Y', strtotime($r['tanggal'])) ?></p>
+                            <p class="text-xs text-on-surface-variant"><?= date('H:i', strtotime($r['tanggal'])) ?> WIB</p>
+                        </div>
+                        <div class="flex-1">
+                            <p class="text-[10px] text-on-surface-variant font-bold uppercase tracking-tighter mb-2">Nama Pemilik</p>
+                            <div class="flex items-center gap-3">
+                                <div class="w-8 h-8 rounded-full bg-primary-container flex items-center justify-center text-primary font-bold text-xs">
+                                    <?= strtoupper(substr($r['nama_merpati'], 0, 1)) ?>
+                                </div>
+                                <span class="font-bold text-on-surface"><?= htmlspecialchars($r['nama_merpati']) ?></span>
+                            </div>
+                        </div>
+                        <div class="lg:w-64">
+                            <p class="text-[10px] text-on-surface-variant font-bold uppercase tracking-tighter mb-1">Hasil Diagnosa</p>
+                            <div class="flex items-center gap-3">
+                                <span class="text-lg font-headline font-bold text-primary"><?= $r['nama_penyakit'] ?? 'Tidak Terdeteksi' ?></span>
+                                <span class="bg-<?= $r['id_penyakit'] ? 'error' : 'secondary' ?>-container text-on-<?= $r['id_penyakit'] ? 'error' : 'secondary' ?>-container text-[10px] font-bold px-2 py-0.5 rounded-full"><?= $r['confidence'] ?>% Cocok</span>
+                            </div>
+                        </div>
+                        <div class="flex justify-end lg:w-40">
+                            <a href="detail_riwayat.php?id=<?= $r['id'] ?>" class="text-primary text-sm font-bold flex items-center gap-1 hover:gap-2 transition-all group">
+                                Lihat Detail <span class="material-symbols-outlined text-lg">chevron_right</span>
+                            </a>
+                        </div>
                     </div>
+                    <?php endforeach; ?>
+                <?php endif; ?>
+            </div>
+
+            <div class="mt-12 grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div class="bg-primary p-8 rounded-2xl text-on-primary flex flex-col justify-between h-48 relative overflow-hidden shadow-xl">
+                    <span class="material-symbols-outlined absolute -right-4 -bottom-4 text-9xl opacity-10">biotech</span>
+                    <p class="text-xs font-bold uppercase tracking-widest opacity-80">Total Diagnosa</p>
+                    <p class="text-5xl font-headline font-bold"><?= $total_diagnosa ?></p>
+                    <p class="text-sm opacity-70">+12% dari bulan lalu</p>
                 </div>
-
-                <div class="md:col-span-2">
-                    <button type="submit" class="w-full bg-primary text-white py-4 rounded-2xl font-bold hover:shadow-lg hover:shadow-primary/20 transition-all">Filter</button>
+                <div class="bg-tertiary-container p-8 rounded-2xl text-on-tertiary-container flex flex-col justify-between h-48 relative overflow-hidden shadow-xl">
+                    <span class="material-symbols-outlined absolute -right-4 -bottom-4 text-9xl opacity-10">warning</span>
+                    <p class="text-xs font-bold uppercase tracking-widest opacity-80">Kasus Kritikal</p>
+                    <p class="text-5xl font-headline font-bold text-on-tertiary">08</p>
+                    <p class="text-sm opacity-70">Memerlukan atensi segera</p>
                 </div>
-            </form>
-        </div>
-
-        <!-- History Table -->
-        <div class="bg-white rounded-[2.5rem] shadow-xl shadow-primary/5 border border-outline-variant/30 overflow-hidden">
-            <div class="overflow-x-auto">
-                <table class="w-full text-left">
-                    <thead>
-                        <tr class="bg-surface-container-low border-b border-outline-variant/30">
-                            <th class="p-8 font-bold text-primary font-headline">Waktu Diagnosa</th>
-                            <th class="p-8 font-bold text-primary font-headline">Nama Pemilik</th>
-                            <th class="p-8 font-bold text-primary font-headline">Hasil Analisis</th>
-                            <th class="p-8 font-bold text-primary font-headline">Kecocokan</th>
-                            <th class="p-8 text-right"></th>
-                        </tr>
-                    </thead>
-                    <tbody class="divide-y divide-outline-variant/20">
-                        <?php if (empty($riwayat_list)): ?>
-                            <tr>
-                                <td colspan="5" class="p-20 text-center">
-                                    <span class="material-symbols-outlined text-6xl text-outline-variant mb-4">folder_open</span>
-                                    <p class="text-xl text-on-surface-variant font-body">Belum ada riwayat diagnosa yang tercatat.</p>
-                                </td>
-                            </tr>
-                        <?php endif; ?>
-
-                        <?php foreach ($riwayat_list as $r): ?>
-                            <tr class="group hover:bg-surface-container-lowest transition-colors">
-                                <td class="p-8">
-                                    <p class="font-bold text-primary font-body"><?= date('d M Y', strtotime($r['tanggal'])) ?></p>
-                                    <p class="text-xs text-on-surface-variant font-label"><?= date('H:i', strtotime($r['tanggal'])) ?> WIB</p>
-                                </td>
-                                <td class="p-8">
-                                    <span class="font-bold text-on-surface-variant font-body"><?= $r['nama_merpati'] ?></span>
-                                </td>
-                                <td class="p-8">
-                                    <div class="flex items-center gap-3">
-                                        <div class="w-8 h-8 rounded-full bg-primary-container flex items-center justify-center text-primary">
-                                            <span class="material-symbols-outlined text-sm">clinical_notes</span>
-                                        </div>
-                                        <span class="font-bold text-primary font-headline"><?= $r['nama_penyakit'] ?></span>
-                                    </div>
-                                </td>
-                                <td class="p-8">
-                                    <div class="flex flex-col gap-1 w-32">
-                                        <div class="flex justify-between items-end mb-1">
-                                            <span class="text-[10px] font-bold text-secondary font-label uppercase tracking-wider">Kecocokan</span>
-                                            <span class="text-xs font-bold text-primary"><?= $r['confidence'] ?>%</span>
-                                        </div>
-                                        <div class="w-full h-1.5 bg-surface-container rounded-full overflow-hidden">
-                                            <div class="h-full bg-secondary" style="width: <?= $r['confidence'] ?>%"></div>
-                                        </div>
-                                    </div>
-                                </td>
-                                <td class="p-8 text-right">
-                                    <a href="detail_riwayat.php?id=<?= $r['id_diagnosa'] ?>" class="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-surface-container hover:bg-primary hover:text-white transition-all font-bold text-sm">
-                                        Detail
-                                        <span class="material-symbols-outlined text-sm">arrow_forward</span>
-                                    </a>
-                                </td>
-                            </tr>
-                        <?php endforeach; ?>
-                    </tbody>
-                </table>
+                <div class="bg-secondary p-8 rounded-2xl text-on-secondary flex flex-col justify-between h-48 relative overflow-hidden shadow-xl">
+                    <span class="material-symbols-outlined absolute -right-4 -bottom-4 text-9xl opacity-10">health_and_safety</span>
+                    <p class="text-xs font-bold uppercase tracking-widest opacity-80">Rasio Kesembuhan</p>
+                    <p class="text-5xl font-headline font-bold">89%</p>
+                    <p class="text-sm opacity-70">Program preventif efektif</p>
+                </div>
             </div>
         </div>
-    </div>
-</main>
+    </main>
 
-<?php include 'includes/footer.php'; ?>
+    <!-- Mobile Nav -->
+    <div class="md:hidden fixed bottom-0 left-0 right-0 h-16 bg-[#f6fafe]/90 backdrop-blur-xl flex justify-around items-center border-t border-outline-variant/10 z-[100]">
+        <a href="riwayat.php" class="flex flex-col items-center gap-1 text-primary">
+            <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">history</span>
+        </a>
+    </div>
+</div>
+
+<?php
+// No footer needed as it has its own layout, but we need to close tags
+?>
+</body>
+</html>
