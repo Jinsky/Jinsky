@@ -2,12 +2,12 @@ CREATE DATABASE IF NOT EXISTS pigeon_expert_system;
 USE pigeon_expert_system;
 
 CREATE TABLE gejala (
-    id VARCHAR(5) PRIMARY KEY,
+    id_gejala VARCHAR(5) PRIMARY KEY,
     nama VARCHAR(255) NOT NULL
 );
 
 CREATE TABLE penyakit (
-    id VARCHAR(5) PRIMARY KEY,
+    id_penyakit VARCHAR(5) PRIMARY KEY,
     nama VARCHAR(255) NOT NULL,
     deskripsi TEXT,
     solusi TEXT,
@@ -15,9 +15,9 @@ CREATE TABLE penyakit (
 );
 
 CREATE TABLE aturan (
-    id VARCHAR(5) PRIMARY KEY,
+    id_aturan VARCHAR(5) PRIMARY KEY,
     id_penyakit VARCHAR(5),
-    FOREIGN KEY (id_penyakit) REFERENCES penyakit(id)
+    FOREIGN KEY (id_penyakit) REFERENCES penyakit(id_penyakit)
 );
 
 CREATE TABLE aturan_detail (
@@ -25,31 +25,39 @@ CREATE TABLE aturan_detail (
     id_gejala VARCHAR(5),
     bobot DECIMAL(5,2) DEFAULT 0,
     PRIMARY KEY (id_aturan, id_gejala),
-    FOREIGN KEY (id_aturan) REFERENCES aturan(id),
-    FOREIGN KEY (id_gejala) REFERENCES gejala(id)
+    FOREIGN KEY (id_aturan) REFERENCES aturan(id_aturan),
+    FOREIGN KEY (id_gejala) REFERENCES gejala(id_gejala)
 );
 
 CREATE TABLE diagnosa (
-    id INT AUTO_INCREMENT PRIMARY KEY,
+    id_diagnosa INT AUTO_INCREMENT PRIMARY KEY,
     nama_merpati VARCHAR(255) NOT NULL,
     id_penyakit VARCHAR(5),
     gejala_terpilih TEXT,
     confidence FLOAT,
     tanggal TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    FOREIGN KEY (id_penyakit) REFERENCES penyakit(id)
+    FOREIGN KEY (id_penyakit) REFERENCES penyakit(id_penyakit)
 );
 
 CREATE TABLE admin (
-    id INT AUTO_INCREMENT PRIMARY KEY,
+    id_admin INT AUTO_INCREMENT PRIMARY KEY,
     username VARCHAR(50) NOT NULL,
     password VARCHAR(255) NOT NULL
 );
+
+CREATE TABLE pengunjung (
+    id_pengunjung INT AUTO_INCREMENT PRIMARY KEY,
+    total INT DEFAULT 0
+);
+
+-- Default visitor count
+INSERT INTO pengunjung (total) VALUES (0);
 
 -- Default admin: admin / admin123
 INSERT INTO admin (username, password) VALUES ('admin', '$2y$10$8W3n.yQvRkH.LqY6mR.eueGZ1v1o/vHlKkYjQz.aFvXhZ9IqKxX3O');
 
 -- Insert Gejala
-INSERT INTO gejala (id, nama) VALUES
+INSERT INTO gejala (id_gejala, nama) VALUES
 ('G01', 'Nafsu makan menurun'),
 ('G02', 'Burung terlihat lesu'),
 ('G03', 'Diare'),
@@ -82,7 +90,7 @@ INSERT INTO gejala (id, nama) VALUES
 ('G30', 'Kondisi tubuh kurus');
 
 -- Insert Penyakit with detailed solutions and prevention tips
-INSERT INTO penyakit (id, nama, deskripsi, solusi, pencegahan) VALUES
+INSERT INTO penyakit (id_penyakit, nama, deskripsi, solusi, pencegahan) VALUES
 ('P01', 'Newcastle Disease',
 'Penyakit Newcastle (ND) atau yang dikenal dengan nama Tetelo adalah penyakit viral yang sangat menular pada unggas, termasuk merpati. Penyakit ini disebabkan oleh virus Newcastle Disease (NDV), yaitu Avian Paramyxovirus-1 (APMV-1). Gejala yang paling khas adalah gangguan saraf seperti leher berputar (tortikolis) dan kelumpuhan.',
 '1. Isolasi segera burung yang menunjukkan gejala saraf untuk mencegah penyebaran ke seluruh koloni.\n2. Berikan dukungan vitamin terutama Vitamin B Kompleks dosis tinggi untuk membantu pemulihan sistem saraf.\n3. Berikan pakan yang mudah dicerna dan bantu burung makan/minum secara manual jika kondisinya sangat lemah.\n4. Gunakan desinfektan virucidal (pembunuh virus) untuk membersihkan seluruh area kandang secara menyeluruh.\n5. Tidak ada pengobatan spesifik untuk virus ND, namun pemberian antibiotik spektrum luas dapat dilakukan untuk mencegah infeksi sekunder bakteri.\n6. Berikan elektrolit dalam air minum untuk mencegah dehidrasi.',
@@ -134,7 +142,7 @@ INSERT INTO penyakit (id, nama, deskripsi, solusi, pencegahan) VALUES
 '1. Jaga agar kondisi kandang tetap kering dan tidak lembap, terutama saat musim hujan.\n2. Hindari arus angin yang bertiup kencang langsung ke arah burung (draft) di malam hari.\n3. Pastikan ventilasi udara lancar sehingga tidak terjadi penumpukan gas amonia dari kotoran.\n4. Berikan pakan tambahan dan vitamin secara rutin untuk menjaga stamina burung.\n5. Jangan mencampur burung dari berbagai usia dalam satu kandang yang sempit.');
 
 -- Insert Aturan and Aturan Detail with Percentages
-INSERT INTO aturan (id, id_penyakit) VALUES
+INSERT INTO aturan (id_aturan, id_penyakit) VALUES
 ('R01', 'P01'), ('R02', 'P01'), ('R03', 'P01'),
 ('R04', 'P02'), ('R05', 'P02'), ('R06', 'P02'),
 ('R07', 'P03'), ('R08', 'P03'), ('R09', 'P03'),

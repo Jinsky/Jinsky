@@ -29,7 +29,7 @@ $gejala_list = get_all_gejala($pdo);
     </header>
 
     <!-- Main Content: Disease Catalog -->
-    <main class="px-8 pb-24 max-w-7xl mx-auto">
+    <section class="px-8 pb-24 max-w-7xl mx-auto">
         <!-- Filter Tabs -->
         <div class="flex gap-4 mb-12 overflow-x-auto no-scrollbar pb-2">
             <button id="btnInfoPenyakit" class="px-6 py-2 bg-primary text-on-primary rounded-full text-sm font-semibold whitespace-nowrap transition-all shadow-sm">Info Penyakit</button>
@@ -51,7 +51,7 @@ $gejala_list = get_all_gejala($pdo);
                 </p>
 
                 <div class="mt-auto">
-                    <a href="detail_penyakit.php?id=<?= $p['id'] ?>" class="flex items-center gap-2 text-primary font-bold text-sm group-hover:gap-4 transition-all">
+                    <a href="detail_penyakit.php?id=<?= $p['id_penyakit'] ?>" class="flex items-center gap-2 text-primary font-bold text-sm group-hover:gap-4 transition-all">
                         Baca Selengkapnya
                         <span class="material-symbols-outlined text-sm">arrow_forward</span>
                     </a>
@@ -66,14 +66,14 @@ $gejala_list = get_all_gejala($pdo);
             <div class="symptom-card bg-surface-container-lowest p-6 rounded-xl border border-outline-variant/10 shadow-sm hover:shadow-md hover:-translate-y-1 hover:border-primary/30 transition-all group" data-name="<?= strtolower($g['nama']) ?>">
                 <div class="flex items-center gap-4">
                     <div class="w-10 h-10 rounded-lg bg-primary-container flex items-center justify-center text-on-primary-container font-bold text-sm group-hover:bg-primary group-hover:text-on-primary transition-colors">
-                        <?= $g['id'] ?>
+                        <?= $g['id_gejala'] ?>
                     </div>
                     <span class="font-medium text-on-surface text-sm"><?= $g['nama'] ?></span>
                 </div>
             </div>
             <?php endforeach; ?>
         </div>
-    </div>
+    </section>
 </main>
 
 <script>

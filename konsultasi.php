@@ -9,8 +9,8 @@ $gejala_list = get_all_gejala($pdo);
 $step1_ids = ['G01', 'G03', 'G04', 'G05', 'G06', 'G07', 'G08', 'G09', 'G10', 'G11', 'G12', 'G13', 'G14', 'G15', 'G21', 'G22', 'G25', 'G28', 'G30'];
 $step2_ids = ['G02', 'G16', 'G17', 'G18', 'G19', 'G20', 'G23', 'G24', 'G26', 'G27', 'G29'];
 
-$step1_gejala = array_filter($gejala_list, function($g) use ($step1_ids) { return in_array($g['id'], $step1_ids); });
-$step2_gejala = array_filter($gejala_list, function($g) use ($step2_ids) { return in_array($g['id'], $step2_ids); });
+$step1_gejala = array_filter($gejala_list, function($g) use ($step1_ids) { return in_array($g['id_gejala'], $step1_ids); });
+$step2_gejala = array_filter($gejala_list, function($g) use ($step2_ids) { return in_array($g['id_gejala'], $step2_ids); });
 ?>
 
 <main class="pt-32 pb-20 px-8 max-w-7xl mx-auto">
@@ -38,9 +38,9 @@ $step2_gejala = array_filter($gejala_list, function($g) use ($step2_ids) { retur
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <?php foreach ($step1_gejala as $g): ?>
                     <label class="relative flex items-start p-4 bg-surface-container-lowest rounded-xl cursor-pointer hover:bg-primary-fixed transition-colors group border-2 border-transparent has-[:checked]:border-primary has-[:checked]:bg-primary-fixed/30">
-                        <input name="gejala[]" value="<?= $g['id'] ?>" class="mt-1 w-5 h-5 rounded border-outline-variant text-primary focus:ring-primary" type="checkbox"/>
+                        <input name="gejala[]" value="<?= $g['id_gejala'] ?>" class="mt-1 w-5 h-5 rounded border-outline-variant text-primary focus:ring-primary" type="checkbox"/>
                         <div class="ml-4">
-                            <span class="block font-bold text-on-surface"><?= $g['id'] ?> - <?= $g['nama'] ?></span>
+                            <span class="block font-bold text-on-surface"><?= $g['id_gejala'] ?> - <?= $g['nama'] ?></span>
                             <span class="text-sm text-on-surface-variant">Teramati pada kondisi fisik luar.</span>
                         </div>
                     </label>
@@ -56,9 +56,9 @@ $step2_gejala = array_filter($gejala_list, function($g) use ($step2_ids) { retur
                 <div class="space-y-4">
                     <?php foreach ($step2_gejala as $g): ?>
                     <label class="relative flex items-center p-4 bg-surface-container-lowest rounded-xl cursor-pointer hover:bg-primary-fixed transition-colors border-2 border-transparent has-[:checked]:border-primary has-[:checked]:bg-primary-fixed/30">
-                        <input name="gejala[]" value="<?= $g['id'] ?>" class="w-5 h-5 rounded border-outline-variant text-primary focus:ring-primary" type="checkbox"/>
+                        <input name="gejala[]" value="<?= $g['id_gejala'] ?>" class="w-5 h-5 rounded border-outline-variant text-primary focus:ring-primary" type="checkbox"/>
                         <div class="ml-4">
-                            <span class="block font-bold text-on-surface"><?= $g['id'] ?> - <?= $g['nama'] ?></span>
+                            <span class="block font-bold text-on-surface"><?= $g['id_gejala'] ?> - <?= $g['nama'] ?></span>
                             <span class="text-sm text-on-surface-variant">Perubahan pada perilaku atau gejala sistemik.</span>
                         </div>
                     </label>
