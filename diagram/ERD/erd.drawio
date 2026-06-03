@@ -7,7 +7,7 @@
                 <mxCell id="gejala" value="gejala" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=1;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" parent="1" vertex="1">
                     <mxGeometry x="40" y="100" width="200" height="70" as="geometry"/>
                 </mxCell>
-                <mxCell id="gejala_col_0" value="PK: id&amp;nbsp; &amp;nbsp; varchar(5)" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" parent="gejala" vertex="1">
+                <mxCell id="gejala_col_0" value="PK: id_gejala&amp;nbsp; &amp;nbsp; varchar(5)" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" parent="gejala" vertex="1">
                     <mxGeometry y="30" width="200" height="20" as="geometry"/>
                 </mxCell>
                 <mxCell id="gejala_col_1" value="nama&amp;nbsp; &amp;nbsp; &amp;nbsp;varchar (255)" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" parent="gejala" vertex="1">
@@ -16,7 +16,7 @@
                 <mxCell id="penyakit" value="penyakit" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=1;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" parent="1" vertex="1">
                     <mxGeometry x="50" y="240" width="200" height="130" as="geometry"/>
                 </mxCell>
-                <mxCell id="penyakit_col_0" value="PK: id&amp;nbsp; varchar (5)" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" parent="penyakit" vertex="1">
+                <mxCell id="penyakit_col_0" value="PK: id_penyakit&amp;nbsp; varchar (5)" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" parent="penyakit" vertex="1">
                     <mxGeometry y="30" width="200" height="20" as="geometry"/>
                 </mxCell>
                 <mxCell id="penyakit_col_1" value="nama&amp;nbsp; &amp;nbsp;varchar (255)" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" parent="penyakit" vertex="1">
@@ -36,7 +36,7 @@
                         <mxRectangle x="314" y="240" width="70" height="30" as="alternateBounds"/>
                     </mxGeometry>
                 </mxCell>
-                <mxCell id="aturan_col_0" value="PK: id&amp;nbsp; &amp;nbsp; &amp;nbsp;varchar (5)" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" parent="aturan" vertex="1">
+                <mxCell id="aturan_col_0" value="PK: id_aturan&amp;nbsp; &amp;nbsp; &amp;nbsp;varchar (5)" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" parent="aturan" vertex="1">
                     <mxGeometry y="30" width="200" height="20" as="geometry"/>
                 </mxCell>
                 <mxCell id="aturan_col_1" value="FK: id_penyakit&amp;nbsp; varchar (5)" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" parent="aturan" vertex="1">
@@ -57,7 +57,7 @@
                 <mxCell id="diagnosa" value="diagnosa" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=1;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" parent="1" vertex="1">
                     <mxGeometry x="313" y="320" width="200" height="150" as="geometry"/>
                 </mxCell>
-                <mxCell id="diagnosa_col_0" value="PK: id&amp;nbsp; &amp;nbsp; int (11)" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" parent="diagnosa" vertex="1">
+                <mxCell id="diagnosa_col_0" value="PK: id_diagnosa&amp;nbsp; &amp;nbsp; int (11)" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" parent="diagnosa" vertex="1">
                     <mxGeometry y="30" width="200" height="20" as="geometry"/>
                 </mxCell>
                 <mxCell id="diagnosa_col_1" value="nama_pemilik&amp;nbsp; varchar (255)" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" parent="diagnosa" vertex="1">
@@ -78,7 +78,7 @@
                 <mxCell id="admin" value="admin" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=1;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" parent="1" vertex="1">
                     <mxGeometry x="560" y="290" width="200" height="90" as="geometry"/>
                 </mxCell>
-                <mxCell id="admin_col_0" value="PK: id&amp;nbsp; &amp;nbsp;int (11)" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" parent="admin" vertex="1">
+                <mxCell id="admin_col_0" value="PK: id_admin&amp;nbsp; &amp;nbsp;int (11)" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" parent="admin" vertex="1">
                     <mxGeometry y="30" width="200" height="20" as="geometry"/>
                 </mxCell>
                 <mxCell id="admin_col_1" value="username&amp;nbsp; &amp;nbsp;varchar (50)" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" parent="admin" vertex="1">
