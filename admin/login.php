@@ -2,6 +2,13 @@
 session_start();
 require_once '../includes/db.php';
 
+// Logout logic
+if (isset($_GET['logout'])) {
+    session_destroy();
+    header('Location: login.php');
+    exit;
+}
+
 $error = '';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -14,7 +21,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $admin = $stmt->fetch();
 
         if ($admin && password_verify($password, $admin['password'])) {
-            $_SESSION['admin_id'] = $admin['id'];
+            $_SESSION['admin_id'] = $admin['id_admin'];
             $_SESSION['admin_username'] = $admin['username'];
             header('Location: index.php');
             exit;
