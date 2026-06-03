@@ -2,6 +2,13 @@
 session_start();
 require_once '../includes/db.php';
 
+// Logout logic
+if (isset($_GET['logout'])) {
+    session_destroy();
+    header('Location: login.php');
+    exit;
+}
+
 $error = '';
 
 // HAPUS atau KOMENTAR bagian ini untuk sementara
