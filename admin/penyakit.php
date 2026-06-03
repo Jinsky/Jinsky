@@ -9,7 +9,7 @@ $error = '';
 if (isset($_POST['add'])) {
     if ($pdo) {
         try {
-            $stmt = $pdo->prepare("INSERT INTO penyakit (id, nama, deskripsi, solusi, pencegahan) VALUES (?, ?, ?, ?, ?)");
+            $stmt = $pdo->prepare("INSERT INTO penyakit (id_penyakit, nama, deskripsi, solusi, pencegahan) VALUES (?, ?, ?, ?, ?)");
             $stmt->execute([$_POST['id'], $_POST['nama'], $_POST['deskripsi'], $_POST['solusi'], $_POST['pencegahan']]);
             $message = "Penyakit berhasil ditambahkan.";
         } catch (Exception $e) { $error = "Gagal: " . $e->getMessage(); }
@@ -19,7 +19,7 @@ if (isset($_POST['add'])) {
 if (isset($_POST['edit'])) {
     if ($pdo) {
         try {
-            $stmt = $pdo->prepare("UPDATE penyakit SET id = ?, nama = ?, deskripsi = ?, solusi = ?, pencegahan = ? WHERE id = ?");
+            $stmt = $pdo->prepare("UPDATE penyakit SET id_penyakit = ?, nama = ?, deskripsi = ?, solusi = ?, pencegahan = ? WHERE id_penyakit = ?");
             $stmt->execute([$_POST['id'], $_POST['nama'], $_POST['deskripsi'], $_POST['solusi'], $_POST['pencegahan'], $_POST['old_id']]);
             $message = "Penyakit berhasil diperbarui.";
         } catch (Exception $e) { $error = "Gagal: " . $e->getMessage(); }
@@ -28,7 +28,7 @@ if (isset($_POST['edit'])) {
 
 if (isset($_POST['delete'])) {
     if ($pdo) {
-        $stmt = $pdo->prepare("DELETE FROM penyakit WHERE id = ?");
+        $stmt = $pdo->prepare("DELETE FROM penyakit WHERE id_penyakit = ?");
         $stmt->execute([$_POST['id']]);
         $message = "Penyakit berhasil dihapus.";
     }
@@ -81,13 +81,13 @@ $penyakit_list = get_all_penyakit($pdo);
                 <tbody class="divide-y divide-slate-100">
                     <?php foreach($penyakit_list as $p): ?>
                     <tr>
-                        <td class="p-6 font-mono text-cyan-700 font-bold"><?= $p['id'] ?></td>
+                        <td class="p-6 font-mono text-cyan-700 font-bold"><?= $p['id_penyakit'] ?></td>
                         <td class="p-6 font-bold text-slate-800"><?= $p['nama'] ?></td>
                         <td class="p-6 text-slate-500 text-sm max-w-xs truncate"><?= $p['deskripsi'] ?></td>
                         <td class="p-6 text-right flex justify-end gap-2">
                             <button onclick='openEditModal(<?= htmlspecialchars(json_encode($p), ENT_QUOTES, 'UTF-8') ?>)' class="text-amber-500 hover:text-amber-600 transition material-symbols-outlined">edit</button>
                             <form method="POST" onsubmit="return confirm('Hapus penyakit ini?')">
-                                <input type="hidden" name="id" value="<?= $p['id'] ?>">
+                                <input type="hidden" name="id" value="<?= $p['id_penyakit'] ?>">
                                 <button name="delete" class="text-red-400 hover:text-red-600 transition material-symbols-outlined">delete</button>
                             </form>
                         </td>
@@ -169,8 +169,8 @@ $penyakit_list = get_all_penyakit($pdo);
 
     <script>
         function openEditModal(penyakit) {
-            document.getElementById('edit_old_id').value = penyakit.id;
-            document.getElementById('edit_id').value = penyakit.id;
+            document.getElementById('edit_old_id').value = penyakit.id_penyakit;
+            document.getElementById('edit_id').value = penyakit.id_penyakit;
             document.getElementById('edit_nama').value = penyakit.nama;
             document.getElementById('edit_deskripsi').value = penyakit.deskripsi;
             document.getElementById('edit_solusi').value = penyakit.solusi;

@@ -1,5 +1,7 @@
 <?php
 $page_title = "Beranda";
+require_once 'includes/functions.php';
+track_visitor($pdo);
 include 'includes/header.php';
 ?>
 

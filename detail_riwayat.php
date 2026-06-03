@@ -132,7 +132,7 @@ include 'includes/header.php';
                         <?php
                         $gejala_all = get_all_gejala($pdo);
                         foreach ($gejala_all as $g):
-                            if (in_array($g['id'], $selected_gejala)):
+                            if (in_array($g['id_gejala'], $selected_gejala)):
                         ?>
                                 <span class="bg-secondary-container text-on-secondary-container px-3 py-1.5 rounded-full text-xs font-medium flex items-center gap-1">
                                     <span class="material-symbols-outlined text-sm">check</span> <?= $g['nama'] ?>

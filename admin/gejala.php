@@ -11,7 +11,7 @@ if (isset($_POST['add'])) {
     $nama = $_POST['nama'];
     if ($pdo) {
         try {
-            $stmt = $pdo->prepare("INSERT INTO gejala (id, nama) VALUES (?, ?)");
+            $stmt = $pdo->prepare("INSERT INTO gejala (id_gejala, nama) VALUES (?, ?)");
             $stmt->execute([$id, $nama]);
             $message = "Gejala berhasil ditambahkan.";
         } catch (Exception $e) { $error = "Gagal: " . $e->getMessage(); }
@@ -24,7 +24,7 @@ if (isset($_POST['edit'])) {
     $old_id = $_POST['old_id'];
     if ($pdo) {
         try {
-            $stmt = $pdo->prepare("UPDATE gejala SET id = ?, nama = ? WHERE id = ?");
+            $stmt = $pdo->prepare("UPDATE gejala SET id_gejala = ?, nama = ? WHERE id_gejala = ?");
             $stmt->execute([$id, $nama, $old_id]);
             $message = "Gejala berhasil diperbarui.";
         } catch (Exception $e) { $error = "Gagal: " . $e->getMessage(); }
@@ -34,7 +34,7 @@ if (isset($_POST['edit'])) {
 if (isset($_POST['delete'])) {
     $id = $_POST['id'];
     if ($pdo) {
-        $stmt = $pdo->prepare("DELETE FROM gejala WHERE id = ?");
+        $stmt = $pdo->prepare("DELETE FROM gejala WHERE id_gejala = ?");
         $stmt->execute([$id]);
         $message = "Gejala berhasil dihapus.";
     }
@@ -90,12 +90,12 @@ $gejala_list = get_all_gejala($pdo);
                 <tbody class="divide-y divide-slate-100">
                     <?php foreach($gejala_list as $g): ?>
                     <tr>
-                        <td class="p-6 font-mono text-cyan-700 font-bold"><?= $g['id'] ?></td>
+                        <td class="p-6 font-mono text-cyan-700 font-bold"><?= $g['id_gejala'] ?></td>
                         <td class="p-6 text-slate-700"><?= $g['nama'] ?></td>
                         <td class="p-6 text-right flex justify-end gap-2">
                             <button onclick='openEditModal(<?= htmlspecialchars(json_encode($g), ENT_QUOTES, 'UTF-8') ?>)' class="text-amber-500 hover:text-amber-600 transition material-symbols-outlined">edit</button>
                             <form method="POST" onsubmit="return confirm('Hapus gejala ini?')">
-                                <input type="hidden" name="id" value="<?= $g['id'] ?>">
+                                <input type="hidden" name="id" value="<?= $g['id_gejala'] ?>">
                                 <button name="delete" class="text-red-400 hover:text-red-600 transition material-symbols-outlined">delete</button>
                             </form>
                         </td>
@@ -149,8 +149,8 @@ $gejala_list = get_all_gejala($pdo);
 
     <script>
         function openEditModal(gejala) {
-            document.getElementById('edit_old_id').value = gejala.id;
-            document.getElementById('edit_id').value = gejala.id;
+            document.getElementById('edit_old_id').value = gejala.id_gejala;
+            document.getElementById('edit_id').value = gejala.id_gejala;
             document.getElementById('edit_nama').value = gejala.nama;
             document.getElementById('editModal').classList.remove('hidden');
         }

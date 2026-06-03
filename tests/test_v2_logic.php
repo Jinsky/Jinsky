@@ -12,7 +12,7 @@ echo "Test 1 (0 symptoms, expected empty array): " . (empty($res) ? "PASS" : "FA
 
 // Test 2: Match P01 in mock (Note: mock currently returns fixed array if $pdo is null)
 $res = get_diagnosa($pdo, ['G14', 'G15']);
-echo "Test 2 (G14, G15, expected P01 as top match): " . (!empty($res) && $res[0]['id'] === 'P01' ? "PASS" : "FAIL") . "\n";
+echo "Test 2 (G14, G15, expected P01 as top match): " . (!empty($res) && $res[0]['id_penyakit'] === 'P01' ? "PASS" : "FAIL") . "\n";
 if (!empty($res)) {
     echo "Top Match: " . $res[0]['nama'] . " (Confidence: " . $res[0]['confidence'] . "%)\n";
 }
@@ -40,7 +40,7 @@ function simulate_diagnosa($rules_raw, $selected_gejala) {
     foreach ($disease_matches as $pid => $matched) {
         $count = count($matched);
         $confidence = ($count >= 3) ? 100 : round(($count / 3) * 100, 2);
-        $results[] = ['id' => $pid, 'confidence' => $confidence];
+        $results[] = ['id_penyakit' => $pid, 'confidence' => $confidence];
     }
 
     usort($results, function($a, $b) {
@@ -60,9 +60,9 @@ $rules = [
 
 // Case A: Higher P02 (2 symptoms vs 1)
 $res = simulate_diagnosa($rules, ['G01', 'G03', 'G04']);
-echo "Case A (G01+G03+G04): Top P02=" . (!empty($res) && $res[0]['id'] === 'P02' ? "PASS" : "FAIL") . " (Confidence: " . $res[0]['confidence'] . "%)\n";
+echo "Case A (G01+G03+G04): Top P02=" . (!empty($res) && $res[0]['id_penyakit'] === 'P02' ? "PASS" : "FAIL") . " (Confidence: " . $res[0]['confidence'] . "%)\n";
 
 // Case B: P01 match
 $res = simulate_diagnosa($rules, ['G01', 'G02']);
-echo "Case B (G01+G02): Top P01=" . (!empty($res) && $res[0]['id'] === 'P01' ? "PASS" : "FAIL") . " (Confidence: " . $res[0]['confidence'] . "%)\n";
+echo "Case B (G01+G02): Top P01=" . (!empty($res) && $res[0]['id_penyakit'] === 'P01' ? "PASS" : "FAIL") . " (Confidence: " . $res[0]['confidence'] . "%)\n";
 ?>

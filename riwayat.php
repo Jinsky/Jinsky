@@ -76,7 +76,7 @@ $penyakit_list = get_all_penyakit($pdo);
                         <select name="penyakit" onchange="this.form.submit()" class="px-6 py-2.5 rounded-xl bg-secondary-container text-on-secondary-container text-sm font-bold flex items-center gap-2 hover:opacity-90 transition-all shadow-sm border-none focus:ring-0">
                             <option value="">Semua Penyakit</option>
                             <?php foreach ($penyakit_list as $p): ?>
-                                <option value="<?= $p['id'] ?>" <?= $id_penyakit == $p['id'] ? 'selected' : '' ?>><?= $p['nama'] ?></option>
+                                <option value="<?= $p['id_penyakit'] ?>" <?= $id_penyakit == $p['id_penyakit'] ? 'selected' : '' ?>><?= $p['nama'] ?></option>
                             <?php endforeach; ?>
                         </select>
                     </form>
@@ -118,7 +118,7 @@ $penyakit_list = get_all_penyakit($pdo);
                             </div>
                         </div>
                         <div class="flex justify-end lg:w-40">
-                            <a href="detail_riwayat.php?id=<?= $r['id'] ?>" class="text-primary text-sm font-bold flex items-center gap-1 hover:gap-2 transition-all group">
+                            <a href="detail_riwayat.php?id=<?= $r['id_diagnosa'] ?>" class="text-primary text-sm font-bold flex items-center gap-1 hover:gap-2 transition-all group">
                                 Lihat Detail <span class="material-symbols-outlined text-lg">chevron_right</span>
                             </a>
                         </div>
