@@ -65,7 +65,7 @@ INSERT INTO gejala (id_gejala, nama) VALUES
 ('G05', 'Gangguan pernapasan / Napas tersengal-sengal'),
 ('G06', 'Penurunan / Kehilangan berat badan'),
 ('G07', 'Kematian'),
-('G08', 'Lemah / Lesu / Kelemahan (umum & otot)'),
+('G08', 'Lemah / Lesu / Kelemahan'),
 ('G09', 'Bulu kusam'),
 ('G10', 'Penurunan kondisi fisik'),
 ('G11', 'Bersin-bersin'),
@@ -81,7 +81,7 @@ INSERT INTO gejala (id_gejala, nama) VALUES
 INSERT INTO penyakit (id_penyakit, nama, deskripsi, solusi, pencegahan) VALUES
 ('A01', 'Kolera Burung', 'Penyakit infeksi bakteri yang menyerang sistem pencernaan dan pernapasan.', 'Pemberian antibiotik dan perbaikan sanitasi.', 'Vaksinasi kolera dan menjaga kebersihan kandang.'),
 ('A02', 'Paratifus Burung', 'Penyakit bakteri yang menyebabkan gangguan pencernaan parah.', 'Antibiotik sesuai petunjuk dokter hewan.', 'Pemberian pakan bersih dan karantina burung baru.'),
-('A03', 'Cacingan', 'Infeksi cacing parasit di dalam saluran pencernaan.', 'Pemberian obat cacing secara rutin.', 'Menjaga kebersihan lantai kandang.'),
+('A03', 'Cacingan (Cacing Usus)', 'Infeksi cacing parasit di dalam saluran pencernaan.', 'Pemberian obat cacing secara rutin.', 'Menjaga kebersihan lantai kandang.'),
 ('A04', 'Koksidiosis', 'Penyakit parasit protozoa yang menyerang usus.', 'Pemberian obat antikoksidia.', 'Menjaga kondisi kandang tetap kering.'),
 ('A05', 'Snot (Rhinotracheitis)', 'Penyakit pernapasan menular pada unggas.', 'Antibiotik dan vitamin untuk meningkatkan daya tahan.', 'Menghindari kelembapan tinggi dan sirkulasi udara buruk.'),
 ('A06', 'Batuk Burung', 'Gangguan pernapasan yang ditandai dengan batuk dan bersin.', 'Obat pernapasan dan lingkungan yang hangat.', 'Menghindari debu dan polusi udara di sekitar kandang.'),
@@ -89,34 +89,33 @@ INSERT INTO penyakit (id_penyakit, nama, deskripsi, solusi, pencegahan) VALUES
 
 -- Insert Aturan
 INSERT INTO aturan (id_aturan, id_penyakit) VALUES
-('R01', 'A01'), ('R02', 'A01'), ('R03', 'A01'),
-('R04', 'A02'), ('R05', 'A02'), ('R06', 'A02'),
-('R07', 'A03'), ('R08', 'A03'), ('R09', 'A03'),
-('R10', 'A04'), ('R11', 'A04'), ('R12', 'A04'),
-('R13', 'A05'), ('R14', 'A05'), ('R15', 'A05'),
-('R16', 'A06'), ('R17', 'A06'), ('R18', 'A06'),
-('R19', 'A07'), ('R20', 'A07'), ('R21', 'A07');
+('R01', 'A01'),
+('R02', 'A02'),
+('R03a', 'A03'),
+('R03b', 'A04'),
+('R04a', 'A03'),
+('R04b', 'A04'),
+('R05', 'A05'),
+('R06', 'A06'),
+('R07', 'A07');
 
 -- Insert Aturan Detail
 INSERT INTO aturan_detail (id_aturan, id_gejala, bobot) VALUES
-('R01', 'G01', 33.33), ('R01', 'G02', 33.33), ('R01', 'G04', 33.34),
-('R02', 'G01', 33.33), ('R02', 'G05', 33.33), ('R02', 'G06', 33.34),
-('R03', 'G02', 33.33), ('R03', 'G05', 33.33), ('R03', 'G07', 33.34),
-('R04', 'G01', 33.33), ('R04', 'G02', 33.33), ('R04', 'G06', 33.34),
-('R05', 'G02', 33.33), ('R05', 'G07', 33.33), ('R05', 'G08', 33.34),
-('R06', 'G06', 33.33), ('R06', 'G08', 33.33), ('R06', 'G09', 33.34),
-('R07', 'G01', 33.33), ('R07', 'G02', 33.33), ('R07', 'G06', 33.34),
-('R08', 'G02', 33.33), ('R08', 'G06', 33.33), ('R08', 'G09', 33.34),
-('R09', 'G06', 33.33), ('R09', 'G09', 33.33), ('R09', 'G10', 33.34),
-('R10', 'G01', 33.33), ('R10', 'G03', 33.33), ('R10', 'G06', 33.34),
-('R11', 'G03', 33.33), ('R11', 'G07', 33.33), ('R11', 'G08', 33.34),
-('R12', 'G01', 33.33), ('R12', 'G06', 33.33), ('R12', 'G08', 33.34),
-('R13', 'G01', 33.33), ('R13', 'G08', 33.33), ('R13', 'G11', 33.34),
-('R14', 'G11', 33.33), ('R14', 'G12', 33.33), ('R14', 'G13', 33.34),
-('R15', 'G08', 33.33), ('R15', 'G13', 33.33), ('R15', 'G14', 33.34),
-('R16', 'G10', 33.33), ('R16', 'G11', 33.33), ('R16', 'G13', 33.34),
-('R17', 'G13', 33.33), ('R17', 'G14', 33.33), ('R17', 'G15', 33.34),
-('R18', 'G11', 33.33), ('R18', 'G15', 33.33), ('R18', 'G16', 33.34),
-('R19', 'G05', 33.33), ('R19', 'G06', 33.33), ('R19', 'G07', 33.34),
-('R20', 'G06', 33.33), ('R20', 'G08', 33.33), ('R20', 'G17', 33.34),
-('R21', 'G07', 33.33), ('R21', 'G17', 33.33), ('R21', 'G18', 33.34);
+-- R01: A01 (6 symptoms)
+('R01', 'G01', 16.67), ('R01', 'G02', 16.67), ('R01', 'G04', 16.67), ('R01', 'G05', 16.67), ('R01', 'G06', 16.67), ('R01', 'G07', 16.65),
+-- R02: A02 (6 symptoms)
+('R02', 'G01', 16.67), ('R02', 'G02', 16.67), ('R02', 'G06', 16.67), ('R02', 'G07', 16.67), ('R02', 'G08', 16.67), ('R02', 'G09', 16.65),
+-- R03a: A03 (5 symptoms)
+('R03a', 'G01', 20.00), ('R03a', 'G02', 20.00), ('R03a', 'G06', 20.00), ('R03a', 'G09', 20.00), ('R03a', 'G10', 20.00),
+-- R03b: A04 (5 symptoms)
+('R03b', 'G01', 20.00), ('R03b', 'G02', 20.00), ('R03b', 'G06', 20.00), ('R03b', 'G09', 20.00), ('R03b', 'G10', 20.00),
+-- R04a: A03 (5 symptoms)
+('R04a', 'G01', 20.00), ('R04a', 'G03', 20.00), ('R04a', 'G06', 20.00), ('R04a', 'G07', 20.00), ('R04a', 'G08', 20.00),
+-- R04b: A04 (5 symptoms)
+('R04b', 'G01', 20.00), ('R04b', 'G03', 20.00), ('R04b', 'G06', 20.00), ('R04b', 'G07', 20.00), ('R04b', 'G08', 20.00),
+-- R05: A05 (6 symptoms)
+('R05', 'G01', 16.67), ('R05', 'G08', 16.67), ('R05', 'G11', 16.67), ('R05', 'G12', 16.67), ('R05', 'G13', 16.67), ('R05', 'G14', 16.65),
+-- R06: A06 (6 symptoms)
+('R06', 'G10', 16.67), ('R06', 'G11', 16.67), ('R06', 'G13', 16.67), ('R06', 'G14', 16.67), ('R06', 'G15', 16.67), ('R06', 'G16', 16.65),
+-- R07: A07 (6 symptoms)
+('R07', 'G05', 16.67), ('R07', 'G06', 16.67), ('R07', 'G07', 16.67), ('R07', 'G08', 16.67), ('R07', 'G17', 16.67), ('R07', 'G18', 16.65);
