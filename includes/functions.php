@@ -61,15 +61,27 @@ function get_diagnosa($pdo, $selected_gejala) {
     $rules_raw = [];
     if (!$pdo) {
         $rules_raw = [
-            ['id_aturan' => 'R01', 'id_penyakit' => 'A01', 'id_gejala' => 'G01'], ['id_aturan' => 'R01', 'id_penyakit' => 'A01', 'id_gejala' => 'G02'], ['id_aturan' => 'R01', 'id_penyakit' => 'A01', 'id_gejala' => 'G04'], ['id_aturan' => 'R01', 'id_penyakit' => 'A01', 'id_gejala' => 'G05'], ['id_aturan' => 'R01', 'id_penyakit' => 'A01', 'id_gejala' => 'G06'], ['id_aturan' => 'R01', 'id_penyakit' => 'A01', 'id_gejala' => 'G07'],
-            ['id_aturan' => 'R02', 'id_penyakit' => 'A02', 'id_gejala' => 'G01'], ['id_aturan' => 'R02', 'id_penyakit' => 'A02', 'id_gejala' => 'G02'], ['id_aturan' => 'R02', 'id_penyakit' => 'A02', 'id_gejala' => 'G06'], ['id_aturan' => 'R02', 'id_penyakit' => 'A02', 'id_gejala' => 'G07'], ['id_aturan' => 'R02', 'id_penyakit' => 'A02', 'id_gejala' => 'G08'], ['id_aturan' => 'R02', 'id_penyakit' => 'A02', 'id_gejala' => 'G09'],
-            ['id_aturan' => 'R03a', 'id_penyakit' => 'A03', 'id_gejala' => 'G01'], ['id_aturan' => 'R03a', 'id_penyakit' => 'A03', 'id_gejala' => 'G02'], ['id_aturan' => 'R03a', 'id_penyakit' => 'A03', 'id_gejala' => 'G06'], ['id_aturan' => 'R03a', 'id_penyakit' => 'A03', 'id_gejala' => 'G09'], ['id_aturan' => 'R03a', 'id_penyakit' => 'A03', 'id_gejala' => 'G10'],
-            ['id_aturan' => 'R03b', 'id_penyakit' => 'A04', 'id_gejala' => 'G01'], ['id_aturan' => 'R03b', 'id_penyakit' => 'A04', 'id_gejala' => 'G02'], ['id_aturan' => 'R03b', 'id_penyakit' => 'A04', 'id_gejala' => 'G06'], ['id_aturan' => 'R03b', 'id_penyakit' => 'A04', 'id_gejala' => 'G09'], ['id_aturan' => 'R03b', 'id_penyakit' => 'A04', 'id_gejala' => 'G10'],
-            ['id_aturan' => 'R04a', 'id_penyakit' => 'A03', 'id_gejala' => 'G01'], ['id_aturan' => 'R04a', 'id_penyakit' => 'A03', 'id_gejala' => 'G03'], ['id_aturan' => 'R04a', 'id_penyakit' => 'A03', 'id_gejala' => 'G06'], ['id_aturan' => 'R04a', 'id_penyakit' => 'A03', 'id_gejala' => 'G07'], ['id_aturan' => 'R04a', 'id_penyakit' => 'A03', 'id_gejala' => 'G08'],
-            ['id_aturan' => 'R04b', 'id_penyakit' => 'A04', 'id_gejala' => 'G01'], ['id_aturan' => 'R04b', 'id_penyakit' => 'A04', 'id_gejala' => 'G03'], ['id_aturan' => 'R04b', 'id_penyakit' => 'A04', 'id_gejala' => 'G06'], ['id_aturan' => 'R04b', 'id_penyakit' => 'A04', 'id_gejala' => 'G07'], ['id_aturan' => 'R04b', 'id_penyakit' => 'A04', 'id_gejala' => 'G08'],
-            ['id_aturan' => 'R05', 'id_penyakit' => 'A05', 'id_gejala' => 'G01'], ['id_aturan' => 'R05', 'id_penyakit' => 'A05', 'id_gejala' => 'G08'], ['id_aturan' => 'R05', 'id_penyakit' => 'A05', 'id_gejala' => 'G11'], ['id_aturan' => 'R05', 'id_penyakit' => 'A05', 'id_gejala' => 'G12'], ['id_aturan' => 'R05', 'id_penyakit' => 'A05', 'id_gejala' => 'G13'], ['id_aturan' => 'R05', 'id_penyakit' => 'A05', 'id_gejala' => 'G14'],
-            ['id_aturan' => 'R06', 'id_penyakit' => 'A06', 'id_gejala' => 'G10'], ['id_aturan' => 'R06', 'id_penyakit' => 'A06', 'id_gejala' => 'G11'], ['id_aturan' => 'R06', 'id_penyakit' => 'A06', 'id_gejala' => 'G13'], ['id_aturan' => 'R06', 'id_penyakit' => 'A06', 'id_gejala' => 'G14'], ['id_aturan' => 'R06', 'id_penyakit' => 'A06', 'id_gejala' => 'G15'], ['id_aturan' => 'R06', 'id_penyakit' => 'A06', 'id_gejala' => 'G16'],
-            ['id_aturan' => 'R07', 'id_penyakit' => 'A07', 'id_gejala' => 'G05'], ['id_aturan' => 'R07', 'id_penyakit' => 'A07', 'id_gejala' => 'G06'], ['id_aturan' => 'R07', 'id_penyakit' => 'A07', 'id_gejala' => 'G07'], ['id_aturan' => 'R07', 'id_penyakit' => 'A07', 'id_gejala' => 'G08'], ['id_aturan' => 'R07', 'id_penyakit' => 'A07', 'id_gejala' => 'G17'], ['id_aturan' => 'R07', 'id_penyakit' => 'A07', 'id_gejala' => 'G18']
+            ['id_penyakit' => 'A01', 'id_gejala' => 'G01'], ['id_penyakit' => 'A01', 'id_gejala' => 'G02'], ['id_penyakit' => 'A01', 'id_gejala' => 'G04'],
+            ['id_penyakit' => 'A01', 'id_gejala' => 'G01'], ['id_penyakit' => 'A01', 'id_gejala' => 'G05'], ['id_penyakit' => 'A01', 'id_gejala' => 'G06'],
+            ['id_penyakit' => 'A01', 'id_gejala' => 'G02'], ['id_penyakit' => 'A01', 'id_gejala' => 'G05'], ['id_penyakit' => 'A01', 'id_gejala' => 'G07'],
+            ['id_penyakit' => 'A02', 'id_gejala' => 'G01'], ['id_penyakit' => 'A02', 'id_gejala' => 'G02'], ['id_penyakit' => 'A02', 'id_gejala' => 'G06'],
+            ['id_penyakit' => 'A02', 'id_gejala' => 'G02'], ['id_penyakit' => 'A02', 'id_gejala' => 'G07'], ['id_penyakit' => 'A02', 'id_gejala' => 'G08'],
+            ['id_penyakit' => 'A02', 'id_gejala' => 'G06'], ['id_penyakit' => 'A02', 'id_gejala' => 'G08'], ['id_penyakit' => 'A02', 'id_gejala' => 'G09'],
+            ['id_penyakit' => 'A03', 'id_gejala' => 'G01'], ['id_penyakit' => 'A03', 'id_gejala' => 'G02'], ['id_penyakit' => 'A03', 'id_gejala' => 'G06'],
+            ['id_penyakit' => 'A03', 'id_gejala' => 'G02'], ['id_penyakit' => 'A03', 'id_gejala' => 'G06'], ['id_penyakit' => 'A03', 'id_gejala' => 'G09'],
+            ['id_penyakit' => 'A03', 'id_gejala' => 'G06'], ['id_penyakit' => 'A03', 'id_gejala' => 'G09'], ['id_penyakit' => 'A03', 'id_gejala' => 'G10'],
+            ['id_penyakit' => 'A04', 'id_gejala' => 'G01'], ['id_penyakit' => 'A04', 'id_gejala' => 'G03'], ['id_penyakit' => 'A04', 'id_gejala' => 'G06'],
+            ['id_penyakit' => 'A04', 'id_gejala' => 'G03',], ['id_penyakit' => 'A04', 'id_gejala' => 'G07'], ['id_penyakit' => 'A04', 'id_gejala' => 'G08'],
+            ['id_penyakit' => 'A04', 'id_gejala' => 'G01',], ['id_penyakit' => 'A04', 'id_gejala' => 'G06'], ['id_penyakit' => 'A04', 'id_gejala' => 'G08'],
+            ['id_penyakit' => 'A05', 'id_gejala' => 'G01',], ['id_penyakit' => 'A05', 'id_gejala' => 'G08'], ['id_penyakit' => 'A05', 'id_gejala' => 'G11'],
+            ['id_penyakit' => 'A05', 'id_gejala' => 'G11',], ['id_penyakit' => 'A05', 'id_gejala' => 'G12'], ['id_penyakit' => 'A05', 'id_gejala' => 'G13'],
+            ['id_penyakit' => 'A05', 'id_gejala' => 'G08',], ['id_penyakit' => 'A05', 'id_gejala' => 'G13'], ['id_penyakit' => 'A05', 'id_gejala' => 'G14'],
+            ['id_penyakit' => 'A06', 'id_gejala' => 'G10',], ['id_penyakit' => 'A06', 'id_gejala' => 'G11'], ['id_penyakit' => 'A06', 'id_gejala' => 'G13'],
+            ['id_penyakit' => 'A06', 'id_gejala' => 'G13',], ['id_penyakit' => 'A06', 'id_gejala' => 'G14'], ['id_penyakit' => 'A06', 'id_gejala' => 'G15'],
+            ['id_penyakit' => 'A06', 'id_gejala' => 'G11',], ['id_penyakit' => 'A06', 'id_gejala' => 'G15'], ['id_penyakit' => 'A06', 'id_gejala' => 'G16'],
+            ['id_penyakit' => 'A07', 'id_gejala' => 'G05',], ['id_penyakit' => 'A07', 'id_gejala' => 'G06'], ['id_penyakit' => 'A07', 'id_gejala' => 'G07'],
+            ['id_penyakit' => 'A07', 'id_gejala' => 'G06',], ['id_penyakit' => 'A07', 'id_gejala' => 'G08'], ['id_penyakit' => 'A07', 'id_gejala' => 'G17'],
+            ['id_penyakit' => 'A07', 'id_gejala' => 'G07',], ['id_penyakit' => 'A07', 'id_gejala' => 'G17'], ['id_penyakit' => 'A07', 'id_gejala' => 'G18']
         ];
     } else {
         $stmt = $pdo->query("
@@ -81,13 +93,23 @@ function get_diagnosa($pdo, $selected_gejala) {
     }
 
     $rules_processed = [];
-    $temp = [];
-    foreach ($rules_raw as $row) {
-        $temp[$row['id_aturan']]['id_penyakit'] = $row['id_penyakit'];
-        $temp[$row['id_aturan']]['gejala'][] = $row['id_gejala'];
-    }
-    foreach ($temp as $rid => $data) {
-        $rules_processed[] = $data;
+    if (!$pdo) {
+        $chunks = array_chunk($rules_raw, 3);
+        foreach ($chunks as $chunk) {
+            $rules_processed[] = [
+                'id_penyakit' => $chunk[0]['id_penyakit'],
+                'gejala' => array_column($chunk, 'id_gejala')
+            ];
+        }
+    } else {
+        $temp = [];
+        foreach ($rules_raw as $row) {
+            $temp[$row['id_aturan']]['id_penyakit'] = $row['id_penyakit'];
+            $temp[$row['id_aturan']]['gejala'][] = $row['id_gejala'];
+        }
+        foreach ($temp as $rid => $data) {
+            $rules_processed[] = $data;
+        }
     }
 
     $disease_max_matches = []; // [id_penyakit => max_match_count]
@@ -111,9 +133,6 @@ function get_diagnosa($pdo, $selected_gejala) {
         $penyakit = get_penyakit_by_id($pdo, $pid);
         if ($penyakit) {
             $penyakit['match_count'] = $match_count;
-            // The confidence calculation is not really used in UI as per new requirements,
-            // but we'll keep it for database storage, normalized to 100.
-            // Using 3 as baseline for legacy compatibility if needed, but 4 is now 'Tinggi'.
             $penyakit['confidence'] = round(($match_count / 3) * 100, 2);
             $results[] = $penyakit;
         }
@@ -215,7 +234,7 @@ function get_all_penyakit($pdo) {
         return [
             ['id_penyakit' => 'A01', 'nama' => 'Kolera Burung', 'deskripsi' => 'Penyakit infeksi bakteri yang menyerang sistem pencernaan dan pernapasan.', 'solusi' => 'Pemberian antibiotik dan perbaikan sanitasi.', 'pencegahan' => 'Vaksinasi kolera dan menjaga kebersihan kandang.'],
             ['id_penyakit' => 'A02', 'nama' => 'Paratifus Burung', 'deskripsi' => 'Penyakit bakteri yang menyebabkan gangguan pencernaan parah.', 'solusi' => 'Antibiotik sesuai petunjuk dokter hewan.', 'pencegahan' => 'Pemberian pakan bersih and karantina burung baru.'],
-            ['id_penyakit' => 'A03', 'nama' => 'Cacingan (Cacing Usus)', 'deskripsi' => 'Infeksi cacing parasit di dalam saluran pencernaan.', 'solusi' => 'Pemberian obat cacing secara rutin.', 'pencegahan' => 'Menjaga kebersihan lantai kandang.'],
+            ['id_penyakit' => 'A03', 'nama' => 'Cacingan', 'deskripsi' => 'Infeksi cacing parasit di dalam saluran pencernaan.', 'solusi' => 'Pemberian obat cacing secara rutin.', 'pencegahan' => 'Menjaga kebersihan lantai kandang.'],
             ['id_penyakit' => 'A04', 'nama' => 'Koksidiosis', 'deskripsi' => 'Penyakit parasit protozoa yang menyerang usus.', 'solusi' => 'Pemberian obat antikoksidia.', 'pencegahan' => 'Menjaga kondisi kandang tetap kering.'],
             ['id_penyakit' => 'A05', 'nama' => 'Snot (Rhinotracheitis)', 'deskripsi' => 'Penyakit pernapasan menular pada unggas.', 'solusi' => 'Antibiotik dan vitamin untuk meningkatkan daya tahan.', 'pencegahan' => 'Menghindari kelembapan tinggi and sirkulasi udara buruk.'],
             ['id_penyakit' => 'A06', 'nama' => 'Batuk Burung', 'deskripsi' => 'Gangguan pernapasan yang ditandai dengan batuk dan bersin.', 'solusi' => 'Obat pernapasan dan lingkungan yang hangat.', 'pencegahan' => 'Menghindari debu dan polusi udara di sekitar kandang.'],
@@ -240,14 +259,5 @@ function get_penyakit_by_id($pdo, $id) {
     $stmt = $pdo->prepare("SELECT * FROM penyakit WHERE id_penyakit = ?");
     $stmt->execute([$id]);
     return $stmt->fetch();
-}
-
-/**
- * Get match level text based on count
- */
-function getMatchLevel($count) {
-    if ($count >= 4) return 'Tinggi';
-    if ($count == 3) return 'Sedang';
-    return 'Rendah';
 }
 ?>
