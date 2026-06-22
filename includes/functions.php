@@ -27,24 +27,24 @@ function get_visitor_count($pdo) {
 function get_all_gejala($pdo) {
     if (!$pdo) {
         return [
-            ['id_gejala' => 'G01', 'nama' => 'Penurunan / Kehilangan nafsu makan'],
-            ['id_gejala' => 'G02', 'nama' => 'Diare (non-berdarah, semua warna)'],
-            ['id_gejala' => 'G03', 'nama' => 'Diare berdarah'],
-            ['id_gejala' => 'G04', 'nama' => 'Keluar air mata berlebihan'],
-            ['id_gejala' => 'G05', 'nama' => 'Gangguan pernapasan / Napas tersengal-sengal'],
-            ['id_gejala' => 'G06', 'nama' => 'Penurunan / Kehilangan berat badan'],
-            ['id_gejala' => 'G07', 'nama' => 'Kematian'],
-            ['id_gejala' => 'G08', 'nama' => 'Lemah / Lesu / Kelemahan (umum & otot)'],
-            ['id_gejala' => 'G09', 'nama' => 'Bulu kusam'],
-            ['id_gejala' => 'G10', 'nama' => 'Penurunan kondisi fisik'],
-            ['id_gejala' => 'G11', 'nama' => 'Bersin-bersin'],
-            ['id_gejala' => 'G12', 'nama' => 'Hidung berair'],
-            ['id_gejala' => 'G13', 'nama' => 'Batuk'],
-            ['id_gejala' => 'G14', 'nama' => 'Penurunan produksi telur'],
-            ['id_gejala' => 'G15', 'nama' => 'Napas cepat'],
-            ['id_gejala' => 'G16', 'nama' => 'Suara pernapasan serak'],
-            ['id_gejala' => 'G17', 'nama' => 'Kerutan di belakang leher'],
-            ['id_gejala' => 'G18', 'nama' => 'Kehilangan keseimbangan']
+            ['id_gejala' => 'G001', 'nama' => 'Penurunan / Kehilangan nafsu makan'],
+            ['id_gejala' => 'G002', 'nama' => 'Diare (non-berdarah, semua warna)'],
+            ['id_gejala' => 'G003', 'nama' => 'Diare berdarah'],
+            ['id_gejala' => 'G004', 'nama' => 'Keluar air mata berlebihan'],
+            ['id_gejala' => 'G005', 'nama' => 'Gangguan pernapasan / Napas tersengal-sengal'],
+            ['id_gejala' => 'G006', 'nama' => 'Penurunan / Kehilangan berat badan'],
+            ['id_gejala' => 'G007', 'nama' => 'Kematian'],
+            ['id_gejala' => 'G008', 'nama' => 'Lemah / Lesu / Kelemahan (umum & otot)'],
+            ['id_gejala' => 'G009', 'nama' => 'Bulu kusam'],
+            ['id_gejala' => 'G010', 'nama' => 'Penurunan kondisi fisik'],
+            ['id_gejala' => 'G011', 'nama' => 'Bersin-bersin'],
+            ['id_gejala' => 'G012', 'nama' => 'Hidung berair'],
+            ['id_gejala' => 'G013', 'nama' => 'Batuk'],
+            ['id_gejala' => 'G014', 'nama' => 'Penurunan produksi telur'],
+            ['id_gejala' => 'G015', 'nama' => 'Napas cepat'],
+            ['id_gejala' => 'G016', 'nama' => 'Suara pernapasan serak'],
+            ['id_gejala' => 'G017', 'nama' => 'Kerutan di belakang leher'],
+            ['id_gejala' => 'G018', 'nama' => 'Kehilangan keseimbangan']
         ];
     }
     $stmt = $pdo->query("SELECT * FROM gejala ORDER BY id_gejala ASC");
@@ -61,27 +61,27 @@ function get_diagnosa($pdo, $selected_gejala) {
     $rules_raw = [];
     if (!$pdo) {
         $rules_raw = [
-            ['id_penyakit' => 'A01', 'id_gejala' => 'G01'], ['id_penyakit' => 'A01', 'id_gejala' => 'G02'], ['id_penyakit' => 'A01', 'id_gejala' => 'G04'],
-            ['id_penyakit' => 'A01', 'id_gejala' => 'G01'], ['id_penyakit' => 'A01', 'id_gejala' => 'G05'], ['id_penyakit' => 'A01', 'id_gejala' => 'G06'],
-            ['id_penyakit' => 'A01', 'id_gejala' => 'G02'], ['id_penyakit' => 'A01', 'id_gejala' => 'G05'], ['id_penyakit' => 'A01', 'id_gejala' => 'G07'],
-            ['id_penyakit' => 'A02', 'id_gejala' => 'G01'], ['id_penyakit' => 'A02', 'id_gejala' => 'G02'], ['id_penyakit' => 'A02', 'id_gejala' => 'G06'],
-            ['id_penyakit' => 'A02', 'id_gejala' => 'G02'], ['id_penyakit' => 'A02', 'id_gejala' => 'G07'], ['id_penyakit' => 'A02', 'id_gejala' => 'G08'],
-            ['id_penyakit' => 'A02', 'id_gejala' => 'G06'], ['id_penyakit' => 'A02', 'id_gejala' => 'G08'], ['id_penyakit' => 'A02', 'id_gejala' => 'G09'],
-            ['id_penyakit' => 'A03', 'id_gejala' => 'G01'], ['id_penyakit' => 'A03', 'id_gejala' => 'G02'], ['id_penyakit' => 'A03', 'id_gejala' => 'G06'],
-            ['id_penyakit' => 'A03', 'id_gejala' => 'G02'], ['id_penyakit' => 'A03', 'id_gejala' => 'G06'], ['id_penyakit' => 'A03', 'id_gejala' => 'G09'],
-            ['id_penyakit' => 'A03', 'id_gejala' => 'G06'], ['id_penyakit' => 'A03', 'id_gejala' => 'G09'], ['id_penyakit' => 'A03', 'id_gejala' => 'G10'],
-            ['id_penyakit' => 'A04', 'id_gejala' => 'G01'], ['id_penyakit' => 'A04', 'id_gejala' => 'G03'], ['id_penyakit' => 'A04', 'id_gejala' => 'G06'],
-            ['id_penyakit' => 'A04', 'id_gejala' => 'G03',], ['id_penyakit' => 'A04', 'id_gejala' => 'G07'], ['id_penyakit' => 'A04', 'id_gejala' => 'G08'],
-            ['id_penyakit' => 'A04', 'id_gejala' => 'G01',], ['id_penyakit' => 'A04', 'id_gejala' => 'G06'], ['id_penyakit' => 'A04', 'id_gejala' => 'G08'],
-            ['id_penyakit' => 'A05', 'id_gejala' => 'G01',], ['id_penyakit' => 'A05', 'id_gejala' => 'G08'], ['id_penyakit' => 'A05', 'id_gejala' => 'G11'],
-            ['id_penyakit' => 'A05', 'id_gejala' => 'G11',], ['id_penyakit' => 'A05', 'id_gejala' => 'G12'], ['id_penyakit' => 'A05', 'id_gejala' => 'G13'],
-            ['id_penyakit' => 'A05', 'id_gejala' => 'G08',], ['id_penyakit' => 'A05', 'id_gejala' => 'G13'], ['id_penyakit' => 'A05', 'id_gejala' => 'G14'],
-            ['id_penyakit' => 'A06', 'id_gejala' => 'G10',], ['id_penyakit' => 'A06', 'id_gejala' => 'G11'], ['id_penyakit' => 'A06', 'id_gejala' => 'G13'],
-            ['id_penyakit' => 'A06', 'id_gejala' => 'G13',], ['id_penyakit' => 'A06', 'id_gejala' => 'G14'], ['id_penyakit' => 'A06', 'id_gejala' => 'G15'],
-            ['id_penyakit' => 'A06', 'id_gejala' => 'G11',], ['id_penyakit' => 'A06', 'id_gejala' => 'G15'], ['id_penyakit' => 'A06', 'id_gejala' => 'G16'],
-            ['id_penyakit' => 'A07', 'id_gejala' => 'G05',], ['id_penyakit' => 'A07', 'id_gejala' => 'G06'], ['id_penyakit' => 'A07', 'id_gejala' => 'G07'],
-            ['id_penyakit' => 'A07', 'id_gejala' => 'G06',], ['id_penyakit' => 'A07', 'id_gejala' => 'G08'], ['id_penyakit' => 'A07', 'id_gejala' => 'G17'],
-            ['id_penyakit' => 'A07', 'id_gejala' => 'G07',], ['id_penyakit' => 'A07', 'id_gejala' => 'G17'], ['id_penyakit' => 'A07', 'id_gejala' => 'G18']
+            ['id_penyakit' => 'A01', 'id_gejala' => 'G001'], ['id_penyakit' => 'A01', 'id_gejala' => 'G002'], ['id_penyakit' => 'A01', 'id_gejala' => 'G004'],
+            ['id_penyakit' => 'A01', 'id_gejala' => 'G001'], ['id_penyakit' => 'A01', 'id_gejala' => 'G005'], ['id_penyakit' => 'A01', 'id_gejala' => 'G006'],
+            ['id_penyakit' => 'A01', 'id_gejala' => 'G002'], ['id_penyakit' => 'A01', 'id_gejala' => 'G005'], ['id_penyakit' => 'A01', 'id_gejala' => 'G007'],
+            ['id_penyakit' => 'A02', 'id_gejala' => 'G001'], ['id_penyakit' => 'A02', 'id_gejala' => 'G002'], ['id_penyakit' => 'A02', 'id_gejala' => 'G006'],
+            ['id_penyakit' => 'A02', 'id_gejala' => 'G002'], ['id_penyakit' => 'A02', 'id_gejala' => 'G007'], ['id_penyakit' => 'A02', 'id_gejala' => 'G008'],
+            ['id_penyakit' => 'A02', 'id_gejala' => 'G006'], ['id_penyakit' => 'A02', 'id_gejala' => 'G008'], ['id_penyakit' => 'A02', 'id_gejala' => 'G009'],
+            ['id_penyakit' => 'A03', 'id_gejala' => 'G001'], ['id_penyakit' => 'A03', 'id_gejala' => 'G002'], ['id_penyakit' => 'A03', 'id_gejala' => 'G006'],
+            ['id_penyakit' => 'A03', 'id_gejala' => 'G002'], ['id_penyakit' => 'A03', 'id_gejala' => 'G006'], ['id_penyakit' => 'A03', 'id_gejala' => 'G009'],
+            ['id_penyakit' => 'A03', 'id_gejala' => 'G006'], ['id_penyakit' => 'A03', 'id_gejala' => 'G009'], ['id_penyakit' => 'A03', 'id_gejala' => 'G010'],
+            ['id_penyakit' => 'A04', 'id_gejala' => 'G001'], ['id_penyakit' => 'A04', 'id_gejala' => 'G003'], ['id_penyakit' => 'A04', 'id_gejala' => 'G006'],
+            ['id_penyakit' => 'A04', 'id_gejala' => 'G003',], ['id_penyakit' => 'A04', 'id_gejala' => 'G007'], ['id_penyakit' => 'A04', 'id_gejala' => 'G008'],
+            ['id_penyakit' => 'A04', 'id_gejala' => 'G001',], ['id_penyakit' => 'A04', 'id_gejala' => 'G006'], ['id_penyakit' => 'A04', 'id_gejala' => 'G008'],
+            ['id_penyakit' => 'A05', 'id_gejala' => 'G001',], ['id_penyakit' => 'A05', 'id_gejala' => 'G008'], ['id_penyakit' => 'A05', 'id_gejala' => 'G011'],
+            ['id_penyakit' => 'A05', 'id_gejala' => 'G011',], ['id_penyakit' => 'A05', 'id_gejala' => 'G012'], ['id_penyakit' => 'A05', 'id_gejala' => 'G013'],
+            ['id_penyakit' => 'A05', 'id_gejala' => 'G008',], ['id_penyakit' => 'A05', 'id_gejala' => 'G013'], ['id_penyakit' => 'A05', 'id_gejala' => 'G014'],
+            ['id_penyakit' => 'A06', 'id_gejala' => 'G010',], ['id_penyakit' => 'A06', 'id_gejala' => 'G011'], ['id_penyakit' => 'A06', 'id_gejala' => 'G013'],
+            ['id_penyakit' => 'A06', 'id_gejala' => 'G013',], ['id_penyakit' => 'A06', 'id_gejala' => 'G014'], ['id_penyakit' => 'A06', 'id_gejala' => 'G015'],
+            ['id_penyakit' => 'A06', 'id_gejala' => 'G011',], ['id_penyakit' => 'A06', 'id_gejala' => 'G015'], ['id_penyakit' => 'A06', 'id_gejala' => 'G016'],
+            ['id_penyakit' => 'A07', 'id_gejala' => 'G005',], ['id_penyakit' => 'A07', 'id_gejala' => 'G006'], ['id_penyakit' => 'A07', 'id_gejala' => 'G007'],
+            ['id_penyakit' => 'A07', 'id_gejala' => 'G006',], ['id_penyakit' => 'A07', 'id_gejala' => 'G008'], ['id_penyakit' => 'A07', 'id_gejala' => 'G017'],
+            ['id_penyakit' => 'A07', 'id_gejala' => 'G007',], ['id_penyakit' => 'A07', 'id_gejala' => 'G017'], ['id_penyakit' => 'A07', 'id_gejala' => 'G018']
         ];
     } else {
         $stmt = $pdo->query("
@@ -161,8 +161,8 @@ function save_diagnosa($pdo, $nama_merpati, $id_penyakit, $gejala_terpilih, $con
 function get_riwayat($pdo, $search = '', $id_penyakit = '') {
     if (!$pdo) {
         $mock_data = [
-            ['id_diagnosa' => 1, 'nama_merpati' => 'Budi', 'nama_penyakit' => 'Kolera Burung', 'id_penyakit' => 'A01', 'confidence' => 100, 'tanggal' => date('Y-m-d H:i:s'), 'gejala_terpilih' => 'G01,G02,G04'],
-            ['id_diagnosa' => 2, 'nama_merpati' => 'Ani', 'nama_penyakit' => 'Tetelo', 'id_penyakit' => 'A07', 'confidence' => 66.67, 'tanggal' => date('Y-m-d H:i:s'), 'gejala_terpilih' => 'G05,G06']
+            ['id_diagnosa' => 1, 'nama_merpati' => 'Budi', 'nama_penyakit' => 'Kolera Burung', 'id_penyakit' => 'A01', 'confidence' => 100, 'tanggal' => date('Y-m-d H:i:s'), 'gejala_terpilih' => 'G001,G002,G004'],
+            ['id_diagnosa' => 2, 'nama_merpati' => 'Ani', 'nama_penyakit' => 'Tetelo', 'id_penyakit' => 'A07', 'confidence' => 66.67, 'tanggal' => date('Y-m-d H:i:s'), 'gejala_terpilih' => 'G005,G006']
         ];
 
         if ($search) {
@@ -213,8 +213,8 @@ function get_riwayat($pdo, $search = '', $id_penyakit = '') {
 function get_diagnosa_by_id($pdo, $id) {
     if (!$pdo) {
         $mock_data = [
-            ['id_diagnosa' => 1, 'nama_merpati' => 'Budi', 'nama_penyakit' => 'Kolera Burung', 'id_penyakit' => 'A01', 'confidence' => 100, 'tanggal' => date('Y-m-d H:i:s'), 'gejala_terpilih' => 'G01,G02,G04'],
-            ['id_diagnosa' => 2, 'nama_merpati' => 'Ani', 'nama_penyakit' => 'Tetelo', 'id_penyakit' => 'A07', 'confidence' => 66.67, 'tanggal' => date('Y-m-d H:i:s'), 'gejala_terpilih' => 'G05,G06']
+            ['id_diagnosa' => 1, 'nama_merpati' => 'Budi', 'nama_penyakit' => 'Kolera Burung', 'id_penyakit' => 'A01', 'confidence' => 100, 'tanggal' => date('Y-m-d H:i:s'), 'gejala_terpilih' => 'G001,G002,G004'],
+            ['id_diagnosa' => 2, 'nama_merpati' => 'Ani', 'nama_penyakit' => 'Tetelo', 'id_penyakit' => 'A07', 'confidence' => 66.67, 'tanggal' => date('Y-m-d H:i:s'), 'gejala_terpilih' => 'G005,G006']
         ];
         foreach ($mock_data as $r) {
             if ($r['id_diagnosa'] == $id) return $r;
@@ -232,12 +232,12 @@ function get_diagnosa_by_id($pdo, $id) {
 function get_all_penyakit($pdo) {
     if (!$pdo) {
         return [
-            ['id_penyakit' => 'A01', 'nama' => 'Kolera Burung', 'deskripsi' => 'Penyakit infeksi bakteri yang menyerang sistem pencernaan dan pernapasan.', 'solusi' => 'Pemberian antibiotik dan perbaikan sanitasi.', 'pencegahan' => 'Vaksinasi kolera dan menjaga kebersihan kandang.'],
+            ['id_penyakit' => 'A01', 'nama' => 'Kolera Burung', 'deskripsi' => 'Penyakit infeksi bakteri yang menyerang sistem pencernaan and pernapasan.', 'solusi' => 'Pemberian antibiotik and perbaikan sanitasi.', 'pencegahan' => 'Vaksinasi kolera and menjaga kebersihan kandang.'],
             ['id_penyakit' => 'A02', 'nama' => 'Paratifus Burung', 'deskripsi' => 'Penyakit bakteri yang menyebabkan gangguan pencernaan parah.', 'solusi' => 'Antibiotik sesuai petunjuk dokter hewan.', 'pencegahan' => 'Pemberian pakan bersih and karantina burung baru.'],
             ['id_penyakit' => 'A03', 'nama' => 'Cacingan', 'deskripsi' => 'Infeksi cacing parasit di dalam saluran pencernaan.', 'solusi' => 'Pemberian obat cacing secara rutin.', 'pencegahan' => 'Menjaga kebersihan lantai kandang.'],
             ['id_penyakit' => 'A04', 'nama' => 'Koksidiosis', 'deskripsi' => 'Penyakit parasit protozoa yang menyerang usus.', 'solusi' => 'Pemberian obat antikoksidia.', 'pencegahan' => 'Menjaga kondisi kandang tetap kering.'],
-            ['id_penyakit' => 'A05', 'nama' => 'Snot (Rhinotracheitis)', 'deskripsi' => 'Penyakit pernapasan menular pada unggas.', 'solusi' => 'Antibiotik dan vitamin untuk meningkatkan daya tahan.', 'pencegahan' => 'Menghindari kelembapan tinggi and sirkulasi udara buruk.'],
-            ['id_penyakit' => 'A06', 'nama' => 'Batuk Burung', 'deskripsi' => 'Gangguan pernapasan yang ditandai dengan batuk dan bersin.', 'solusi' => 'Obat pernapasan dan lingkungan yang hangat.', 'pencegahan' => 'Menghindari debu dan polusi udara di sekitar kandang.'],
+            ['id_penyakit' => 'A05', 'nama' => 'Snot (Rhinotracheitis)', 'deskripsi' => 'Penyakit pernapasan menular pada unggas.', 'solusi' => 'Antibiotik and vitamin untuk meningkatkan daya tahan.', 'pencegahan' => 'Menghindari kelembapan tinggi and sirkulasi udara buruk.'],
+            ['id_penyakit' => 'A06', 'nama' => 'Batuk Burung', 'deskripsi' => 'Gangguan pernapasan yang ditandai dengan batuk and bersin.', 'solusi' => 'Obat pernapasan and lingkungan yang hangat.', 'pencegahan' => 'Menghindari debu and polusi udara di sekitar kandang.'],
             ['id_penyakit' => 'A07', 'nama' => 'Tetelo', 'deskripsi' => 'Penyakit viral saraf yang sangat menular.', 'solusi' => 'Dukungan vitamin and nutrisi, isolasi burung sakit.', 'pencegahan' => 'Vaksinasi rutin ND (Newcastle Disease).']
         ];
     }

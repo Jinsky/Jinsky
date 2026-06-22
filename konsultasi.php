@@ -5,9 +5,9 @@ include 'includes/header.php';
 
 $gejala_list = get_all_gejala($pdo);
 
-// Grouping for the 2-step UI: Step 1 (G01-G09), Step 2 (G10-G18)
-$step1_ids = ['G01', 'G02', 'G03', 'G04', 'G05', 'G06', 'G07', 'G08', 'G09'];
-$step2_ids = ['G10', 'G11', 'G12', 'G13', 'G14', 'G15', 'G16', 'G17', 'G18'];
+// Grouping for the 2-step UI: Step 1 (G001-G009), Step 2 (G010-G018)
+$step1_ids = ['G001', 'G002', 'G003', 'G004', 'G005', 'G006', 'G007', 'G008', 'G009'];
+$step2_ids = ['G010', 'G011', 'G012', 'G013', 'G014', 'G015', 'G016', 'G017', 'G018'];
 
 $step1_gejala = array_filter($gejala_list, function($g) use ($step1_ids) { return in_array($g['id_gejala'], $step1_ids); });
 $step2_gejala = array_filter($gejala_list, function($g) use ($step2_ids) { return in_array($g['id_gejala'], $step2_ids); });

@@ -58,34 +58,34 @@ INSERT INTO admin (username, password) VALUES ('admin', '$2y$10$8W3n.yQvRkH.LqY6
 
 -- Insert Gejala
 INSERT INTO gejala (id_gejala, nama) VALUES
-('G01', 'Penurunan / Kehilangan nafsu makan'),
-('G02', 'Diare (non-berdarah, semua warna)'),
-('G03', 'Diare berdarah'),
-('G04', 'Keluar air mata berlebihan'),
-('G05', 'Gangguan pernapasan / Napas tersengal-sengal'),
-('G06', 'Penurunan / Kehilangan berat badan'),
-('G07', 'Kematian'),
-('G08', 'Lemah / Lesu / Kelemahan (umum & otot)'),
-('G09', 'Bulu kusam'),
-('G10', 'Penurunan kondisi fisik'),
-('G11', 'Bersin-bersin'),
-('G12', 'Hidung berair'),
-('G13', 'Batuk'),
-('G14', 'Penurunan produksi telur'),
-('G15', 'Napas cepat'),
-('G16', 'Suara pernapasan serak'),
-('G17', 'Kerutan di belakang leher'),
-('G18', 'Kehilangan keseimbangan');
+('G001', 'Penurunan / Kehilangan nafsu makan'),
+('G002', 'Diare (non-berdarah, semua warna)'),
+('G003', 'Diare berdarah'),
+('G004', 'Keluar air mata berlebihan'),
+('G005', 'Gangguan pernapasan / Napas tersengal-sengal'),
+('G006', 'Penurunan / Kehilangan berat badan'),
+('G007', 'Kematian'),
+('G008', 'Lemah / Lesu / Kelemahan (umum & otot)'),
+('G009', 'Bulu kusam'),
+('G010', 'Penurunan kondisi fisik'),
+('G011', 'Bersin-bersin'),
+('G012', 'Hidung berair'),
+('G013', 'Batuk'),
+('G014', 'Penurunan produksi telur'),
+('G015', 'Napas cepat'),
+('G016', 'Suara pernapasan serak'),
+('G017', 'Kerutan di belakang leher'),
+('G018', 'Kehilangan keseimbangan');
 
 -- Insert Penyakit
 INSERT INTO penyakit (id_penyakit, nama, deskripsi, solusi, pencegahan) VALUES
-('A01', 'Kolera Burung', 'Penyakit infeksi bakteri yang menyerang sistem pencernaan dan pernapasan.', 'Pemberian antibiotik dan perbaikan sanitasi.', 'Vaksinasi kolera dan menjaga kebersihan kandang.'),
-('A02', 'Paratifus Burung', 'Penyakit bakteri yang menyebabkan gangguan pencernaan parah.', 'Antibiotik sesuai petunjuk dokter hewan.', 'Pemberian pakan bersih dan karantina burung baru.'),
+('A01', 'Kolera Burung', 'Penyakit infeksi bakteri yang menyerang sistem pencernaan and pernapasan.', 'Pemberian antibiotik and perbaikan sanitasi.', 'Vaksinasi kolera and menjaga kebersihan kandang.'),
+('A02', 'Paratifus Burung', 'Penyakit bakteri yang menyebabkan gangguan pencernaan parah.', 'Antibiotik sesuai petunjuk dokter hewan.', 'Pemberian pakan bersih and karantina burung baru.'),
 ('A03', 'Cacingan', 'Infeksi cacing parasit di dalam saluran pencernaan.', 'Pemberian obat cacing secara rutin.', 'Menjaga kebersihan lantai kandang.'),
 ('A04', 'Koksidiosis', 'Penyakit parasit protozoa yang menyerang usus.', 'Pemberian obat antikoksidia.', 'Menjaga kondisi kandang tetap kering.'),
-('A05', 'Snot (Rhinotracheitis)', 'Penyakit pernapasan menular pada unggas.', 'Antibiotik dan vitamin untuk meningkatkan daya tahan.', 'Menghindari kelembapan tinggi dan sirkulasi udara buruk.'),
-('A06', 'Batuk Burung', 'Gangguan pernapasan yang ditandai dengan batuk dan bersin.', 'Obat pernapasan dan lingkungan yang hangat.', 'Menghindari debu dan polusi udara di sekitar kandang.'),
-('A07', 'Tetelo', 'Penyakit viral saraf yang sangat menular.', 'Dukungan vitamin dan nutrisi, isolasi burung sakit.', 'Vaksinasi rutin ND (Newcastle Disease).');
+('A05', 'Snot (Rhinotracheitis)', 'Penyakit pernapasan menular pada unggas.', 'Antibiotik and vitamin untuk meningkatkan daya tahan.', 'Menghindari kelembapan tinggi and sirkulasi udara buruk.'),
+('A06', 'Batuk Burung', 'Gangguan pernapasan yang ditandai dengan batuk and bersin.', 'Obat pernapasan and lingkungan yang hangat.', 'Menghindari debu and polusi udara di sekitar kandang.'),
+('A07', 'Tetelo', 'Penyakit viral saraf yang sangat menular.', 'Dukungan vitamin and nutrisi, isolasi burung sakit.', 'Vaksinasi rutin ND (Newcastle Disease).');
 
 -- Insert Aturan
 INSERT INTO aturan (id_aturan, id_penyakit) VALUES
@@ -99,24 +99,24 @@ INSERT INTO aturan (id_aturan, id_penyakit) VALUES
 
 -- Insert Aturan Detail
 INSERT INTO aturan_detail (id_aturan, id_gejala, bobot) VALUES
-('R01', 'G01', 33.33), ('R01', 'G02', 33.33), ('R01', 'G04', 33.34),
-('R02', 'G01', 33.33), ('R02', 'G05', 33.33), ('R02', 'G06', 33.34),
-('R03', 'G02', 33.33), ('R03', 'G05', 33.33), ('R03', 'G07', 33.34),
-('R04', 'G01', 33.33), ('R04', 'G02', 33.33), ('R04', 'G06', 33.34),
-('R05', 'G02', 33.33), ('R05', 'G07', 33.33), ('R05', 'G08', 33.34),
-('R06', 'G06', 33.33), ('R06', 'G08', 33.33), ('R06', 'G09', 33.34),
-('R07', 'G01', 33.33), ('R07', 'G02', 33.33), ('R07', 'G06', 33.34),
-('R08', 'G02', 33.33), ('R08', 'G06', 33.33), ('R08', 'G09', 33.34),
-('R09', 'G06', 33.33), ('R09', 'G09', 33.33), ('R09', 'G10', 33.34),
-('R10', 'G01', 33.33), ('R10', 'G03', 33.33), ('R10', 'G06', 33.34),
-('R11', 'G03', 33.33), ('R11', 'G07', 33.33), ('R11', 'G08', 33.34),
-('R12', 'G01', 33.33), ('R12', 'G06', 33.33), ('R12', 'G08', 33.34),
-('R13', 'G01', 33.33), ('R13', 'G08', 33.33), ('R13', 'G11', 33.34),
-('R14', 'G11', 33.33), ('R14', 'G12', 33.33), ('R14', 'G13', 33.34),
-('R15', 'G08', 33.33), ('R15', 'G13', 33.33), ('R15', 'G14', 33.34),
-('R16', 'G10', 33.33), ('R16', 'G11', 33.33), ('R16', 'G13', 33.34),
-('R17', 'G13', 33.33), ('R17', 'G14', 33.33), ('R17', 'G15', 33.34),
-('R18', 'G11', 33.33), ('R18', 'G15', 33.33), ('R18', 'G16', 33.34),
-('R19', 'G05', 33.33), ('R19', 'G06', 33.33), ('R19', 'G07', 33.34),
-('R20', 'G06', 33.33), ('R20', 'G08', 33.33), ('R20', 'G17', 33.34),
-('R21', 'G07', 33.33), ('R21', 'G17', 33.33), ('R21', 'G18', 33.34);
+('R01', 'G001', 33.33), ('R01', 'G002', 33.33), ('R01', 'G004', 33.34),
+('R02', 'G001', 33.33), ('R02', 'G005', 33.33), ('R02', 'G006', 33.34),
+('R03', 'G002', 33.33), ('R03', 'G005', 33.33), ('R03', 'G007', 33.34),
+('R04', 'G001', 33.33), ('R04', 'G002', 33.33), ('R04', 'G006', 33.34),
+('R05', 'G002', 33.33), ('R05', 'G007', 33.33), ('R05', 'G008', 33.34),
+('R06', 'G006', 33.33), ('R06', 'G008', 33.33), ('R06', 'G009', 33.34),
+('R07', 'G001', 33.33), ('R07', 'G002', 33.33), ('R07', 'G006', 33.34),
+('R08', 'G002', 33.33), ('R08', 'G006', 33.33), ('R08', 'G009', 33.34),
+('R09', 'G006', 33.33), ('R09', 'G009', 33.33), ('R09', 'G010', 33.34),
+('R10', 'G001', 33.33), ('R10', 'G003', 33.33), ('R10', 'G006', 33.34),
+('R11', 'G003', 33.33), ('R11', 'G007', 33.33), ('R11', 'G008', 33.34),
+('R12', 'G001', 33.33), ('R12', 'G006', 33.33), ('R12', 'G008', 33.34),
+('R13', 'G001', 33.33), ('R13', 'G008', 33.33), ('R13', 'G011', 33.34),
+('R14', 'G011', 33.33), ('R14', 'G012', 33.33), ('R14', 'G013', 33.34),
+('R15', 'G008', 33.33), ('R15', 'G013', 33.33), ('R15', 'G014', 33.34),
+('R16', 'G010', 33.33), ('R16', 'G011', 33.33), ('R16', 'G013', 33.34),
+('R17', 'G013', 33.33), ('R17', 'G014', 33.33), ('R17', 'G015', 33.34),
+('R18', 'G011', 33.33), ('R18', 'G015', 33.33), ('R18', 'G016', 33.34),
+('R19', 'G005', 33.33), ('R19', 'G006', 33.33), ('R19', 'G007', 33.34),
+('R20', 'G006', 33.33), ('R20', 'G008', 33.33), ('R20', 'G017', 33.34),
+('R21', 'G007', 33.33), ('R21', 'G017', 33.33), ('R21', 'G018', 33.34);
