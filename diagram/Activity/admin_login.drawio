@@ -1,6 +1,6 @@
 <mxfile host="65bd71144e">
     <diagram id="page1" name="Page-1">
-        <mxGraphModel dx="827" dy="751" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+        <mxGraphModel dx="1139" dy="494" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
             <root>
                 <mxCell id="0"/>
                 <mxCell id="1" parent="0"/>
@@ -25,7 +25,7 @@
                 <mxCell id="tampil_form" value="tampil form login" style="rounded=1;whiteSpace=wrap;html=1;" parent="lane2" vertex="1">
                     <mxGeometry x="100" y="110" width="200" height="40" as="geometry"/>
                 </mxCell>
-                <mxCell id="4" value="" style="edgeStyle=orthogonalEdgeStyle;html=1;entryX=1;entryY=0.5;entryDx=0;entryDy=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;" edge="1" parent="lane2" source="validasi" target="tampil_form">
+                <mxCell id="4" value="" style="edgeStyle=orthogonalEdgeStyle;html=1;entryX=1;entryY=0.5;entryDx=0;entryDy=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;" parent="lane2" source="validasi" target="tampil_form" edge="1">
                     <mxGeometry relative="1" as="geometry">
                         <mxPoint x="360.0000000000002" y="220" as="targetPoint"/>
                         <Array as="points">
@@ -34,7 +34,7 @@
                         </Array>
                     </mxGeometry>
                 </mxCell>
-                <mxCell id="5" value="tidak" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="4">
+                <mxCell id="5" value="tidak" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" parent="4" vertex="1" connectable="0">
                     <mxGeometry x="-0.5333" relative="1" as="geometry">
                         <mxPoint as="offset"/>
                     </mxGeometry>
@@ -43,12 +43,12 @@
                     <mxGeometry x="160" y="180" width="80" height="80" as="geometry"/>
                 </mxCell>
                 <mxCell id="dashboard" value="masuk ke dashboard" style="rounded=1;whiteSpace=wrap;html=1;" parent="lane2" vertex="1">
-                    <mxGeometry x="100" y="360" width="200" height="40" as="geometry"/>
+                    <mxGeometry x="100" y="310" width="200" height="40" as="geometry"/>
                 </mxCell>
                 <mxCell id="end" value="" style="ellipse;html=1;shape=endState;fillColor=#000000;strokeColor=#000000;" parent="lane2" vertex="1">
-                    <mxGeometry x="185" y="450" width="30" height="30" as="geometry"/>
+                    <mxGeometry x="185" y="400" width="30" height="30" as="geometry"/>
                 </mxCell>
-                <mxCell id="2" value="" style="edgeStyle=orthogonalEdgeStyle;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="pool" source="tampil_form" target="input_auth">
+                <mxCell id="2" value="" style="edgeStyle=orthogonalEdgeStyle;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="pool" source="tampil_form" target="input_auth" edge="1">
                     <mxGeometry relative="1" as="geometry">
                         <Array as="points">
                             <mxPoint x="600" y="200"/>

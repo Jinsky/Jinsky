@@ -1,6 +1,6 @@
 <mxfile host="65bd71144e">
     <diagram id="page1" name="Page-1">
-        <mxGraphModel dx="620" dy="460" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+        <mxGraphModel dx="1139" dy="608" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
             <root>
                 <mxCell id="0"/>
                 <mxCell id="1" parent="0"/>
@@ -38,6 +38,9 @@
                         <mxPoint as="offset"/>
                     </mxGeometry>
                 </mxCell>
+                <mxCell id="31" value="" style="edgeStyle=none;html=1;" edge="1" parent="lane1" source="dec_edit" target="pilih_edit">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
                 <mxCell id="dec_edit" value="edit" style="rhombus;whiteSpace=wrap;html=1;" parent="lane1" vertex="1">
                     <mxGeometry x="50" y="410" width="80" height="80" as="geometry"/>
                 </mxCell>
@@ -49,6 +52,14 @@
                 </mxCell>
                 <mxCell id="dec_simpan_edit" value="simpan" style="rhombus;whiteSpace=wrap;html=1;" parent="lane1" vertex="1">
                     <mxGeometry x="200" y="550" width="80" height="80" as="geometry"/>
+                </mxCell>
+                <mxCell id="28" value="" style="edgeStyle=none;html=1;" edge="1" parent="lane1" source="dec_hapus" target="27">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="29" value="ya" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="28">
+                    <mxGeometry x="-0.0384" y="-2" relative="1" as="geometry">
+                        <mxPoint as="offset"/>
+                    </mxGeometry>
                 </mxCell>
                 <mxCell id="dec_hapus" value="hapus" style="rhombus;whiteSpace=wrap;html=1;" parent="lane1" vertex="1">
                     <mxGeometry x="50" y="660" width="80" height="80" as="geometry"/>
@@ -65,14 +76,8 @@
                 <mxCell id="pilih_edit" value="pilih penyakit yg ingin di edit" style="rounded=1;whiteSpace=wrap;html=1;" parent="lane1" vertex="1">
                     <mxGeometry x="150" y="430" width="180" height="40" as="geometry"/>
                 </mxCell>
-                <mxCell id="edge_10" value="iya" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" parent="lane1" source="dec_edit" target="pilih_edit" edge="1">
-                    <mxGeometry relative="1" as="geometry"/>
-                </mxCell>
-                <mxCell id="9" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" parent="lane1" source="dec_edit" target="pilih_edit" edge="1">
-                    <mxGeometry relative="1" as="geometry">
-                        <mxPoint x="130" y="450" as="sourcePoint"/>
-                        <mxPoint x="200" y="750" as="targetPoint"/>
-                    </mxGeometry>
+                <mxCell id="27" value="pilih penyakit yg ingin di hapus" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="lane1">
+                    <mxGeometry x="160" y="680" width="180" height="40" as="geometry"/>
                 </mxCell>
                 <mxCell id="lane2" value="Sistem" style="swimlane;html=1;startSize=30;whiteSpace=wrap;" parent="pool" vertex="1">
                     <mxGeometry x="400" y="30" width="400" height="950" as="geometry"/>
@@ -115,6 +120,11 @@
                 <mxCell id="edge_11" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" parent="pool" source="pilih_edit" target="tampil_edit" edge="1">
                     <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
+                <mxCell id="32" value="Ya" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="edge_11">
+                    <mxGeometry x="-0.5124" relative="1" as="geometry">
+                        <mxPoint as="offset"/>
+                    </mxGeometry>
+                </mxCell>
                 <mxCell id="11" value="" style="edgeStyle=orthogonalEdgeStyle;html=1;entryX=1;entryY=0.5;entryDx=0;entryDy=0;exitX=0.5;exitY=1;exitDx=0;exitDy=0;dashed=1;" parent="pool" source="dec_simpan_edit" target="tampil_hal" edge="1">
                     <mxGeometry relative="1" as="geometry">
                         <Array as="points">
@@ -136,6 +146,9 @@
                             <mxPoint x="720" y="160"/>
                         </Array>
                     </mxGeometry>
+                </mxCell>
+                <mxCell id="33" value="" style="edgeStyle=none;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="pool" source="27" target="hasil_hapus">
+                    <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
                 <mxCell id="edge_0" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" parent="1" source="start" target="pilih_menu" edge="1">
                     <mxGeometry relative="1" as="geometry"/>
@@ -174,9 +187,6 @@
                         </Array>
                         <mxPoint as="offset"/>
                     </mxGeometry>
-                </mxCell>
-                <mxCell id="edge_18" value="iya" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" parent="1" source="dec_hapus" target="hasil_hapus" edge="1">
-                    <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
                 <mxCell id="edge_20" value="tidak" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" parent="1" source="dec_hapus" target="cancel" edge="1">
                     <mxGeometry relative="1" as="geometry"/>

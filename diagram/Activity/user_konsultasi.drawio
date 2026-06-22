@@ -1,6 +1,6 @@
 <mxfile host="65bd71144e">
     <diagram id="page1" name="Page-1">
-        <mxGraphModel dx="590" dy="1607" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+        <mxGraphModel dx="1139" dy="1777" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
             <root>
                 <mxCell id="0"/>
                 <mxCell id="1" parent="0"/>
@@ -10,28 +10,25 @@
                 <mxCell id="lane1" value="&lt;font style=&quot;font-size: 18px;&quot;&gt;Pengguna&lt;/font&gt;" style="swimlane;html=1;startSize=30;whiteSpace=wrap;fontStyle=0" parent="pool" vertex="1">
                     <mxGeometry y="30" width="360" height="660" as="geometry"/>
                 </mxCell>
-                <mxCell id="start" value="" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;fillColor=#000000;fontStyle=0" parent="lane1" vertex="1">
-                    <mxGeometry x="185" y="40" width="30" height="30" as="geometry"/>
-                </mxCell>
                 <mxCell id="pilih_konsul" value="&lt;font style=&quot;font-size: 18px;&quot;&gt;&lt;span&gt;pilih menu konsultasi&lt;/span&gt;&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fontStyle=0" parent="lane1" vertex="1">
-                    <mxGeometry x="85" y="120" width="230" height="60" as="geometry"/>
+                    <mxGeometry x="77" y="100" width="230" height="60" as="geometry"/>
                 </mxCell>
                 <mxCell id="input_gejala" value="&lt;font style=&quot;font-size: 18px;&quot;&gt;&lt;span&gt;pilih gejala yang dialami&lt;/span&gt;&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fontStyle=0" parent="lane1" vertex="1">
-                    <mxGeometry x="85" y="200" width="230" height="60" as="geometry"/>
+                    <mxGeometry x="82.5" y="220" width="230" height="60" as="geometry"/>
                 </mxCell>
                 <mxCell id="klik_diagnosa" value="&lt;font style=&quot;font-size: 18px;&quot;&gt;&lt;span&gt;klik diagnosa&lt;/span&gt;&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fontStyle=0" parent="lane1" vertex="1">
-                    <mxGeometry x="87.5" y="290" width="225" height="60" as="geometry"/>
+                    <mxGeometry x="85" y="320" width="225" height="60" as="geometry"/>
                 </mxCell>
-                <mxCell id="5" value="" style="edgeStyle=none;html=1;" edge="1" parent="lane1" source="2" target="end">
+                <mxCell id="5" value="" style="edgeStyle=none;html=1;" parent="lane1" source="2" target="end" edge="1">
                     <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
-                <mxCell id="6" value="t" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="5">
+                <mxCell id="6" value="t" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" parent="5" vertex="1" connectable="0">
                     <mxGeometry x="-0.0365" relative="1" as="geometry">
                         <mxPoint as="offset"/>
                     </mxGeometry>
                 </mxCell>
-                <mxCell id="2" value="&lt;span style=&quot;font-size: 18px;&quot;&gt;diagnosa ulang&amp;nbsp;&lt;/span&gt;" style="rounded=1;whiteSpace=wrap;html=1;fontStyle=0" vertex="1" parent="lane1">
-                    <mxGeometry x="95" y="480" width="220" height="50" as="geometry"/>
+                <mxCell id="2" value="&lt;span style=&quot;font-size: 18px;&quot;&gt;diagnosa ulang&amp;nbsp;&lt;/span&gt;" style="rounded=1;whiteSpace=wrap;html=1;fontStyle=0" parent="lane1" vertex="1">
+                    <mxGeometry x="95" y="500" width="220" height="50" as="geometry"/>
                 </mxCell>
                 <mxCell id="end" value="" style="ellipse;html=1;shape=endState;fillColor=#000000;strokeColor=#000000;fontStyle=0" parent="lane1" vertex="1">
                     <mxGeometry x="190" y="590" width="30" height="30" as="geometry"/>
@@ -40,39 +37,38 @@
                     <mxGeometry x="360" y="30" width="400" height="660" as="geometry"/>
                 </mxCell>
                 <mxCell id="tampil_form" value="&lt;font style=&quot;font-size: 18px;&quot;&gt;&lt;span&gt;tampil form konsultasi&lt;/span&gt;&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fontStyle=0" parent="lane2" vertex="1">
-                    <mxGeometry x="100" y="120" width="220" height="60" as="geometry"/>
+                    <mxGeometry x="95" y="220" width="220" height="60" as="geometry"/>
                 </mxCell>
                 <mxCell id="inference" value="&lt;font style=&quot;font-size: 18px;&quot;&gt;&lt;span style=&quot;&quot;&gt;proses forward chaining&lt;/span&gt;&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fontStyle=0" parent="lane2" vertex="1">
-                    <mxGeometry x="90" y="290" width="230" height="60" as="geometry"/>
+                    <mxGeometry x="90" y="320" width="230" height="60" as="geometry"/>
                 </mxCell>
                 <mxCell id="simpan_hasil" value="&lt;span&gt;&lt;font style=&quot;font-size: 18px;&quot;&gt;simpan hasil diagnosa&lt;/font&gt;&lt;/span&gt;" style="rounded=1;whiteSpace=wrap;html=1;fontStyle=0" parent="lane2" vertex="1">
-                    <mxGeometry x="95" y="380" width="220" height="60" as="geometry"/>
+                    <mxGeometry x="95" y="410" width="220" height="60" as="geometry"/>
                 </mxCell>
                 <mxCell id="tampil_hasil" value="&lt;span&gt;&lt;font style=&quot;font-size: 18px;&quot;&gt;tampil hasil diagnosa&lt;/font&gt;&lt;/span&gt;" style="rounded=1;whiteSpace=wrap;html=1;fontStyle=0" parent="lane2" vertex="1">
-                    <mxGeometry x="95" y="480" width="220" height="50" as="geometry"/>
+                    <mxGeometry x="95" y="500" width="220" height="50" as="geometry"/>
                 </mxCell>
-                <mxCell id="3" value="" style="edgeStyle=none;html=1;entryX=1;entryY=0.5;entryDx=0;entryDy=0;exitX=0;exitY=0.5;exitDx=0;exitDy=0;" edge="1" parent="pool" source="tampil_hasil" target="2">
+                <mxCell id="10" value="" style="edgeStyle=none;html=1;" edge="1" parent="lane2" source="start" target="8">
                     <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
-                <mxCell id="4" value="" style="edgeStyle=orthogonalEdgeStyle;html=1;entryX=1;entryY=0.5;entryDx=0;entryDy=0;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" edge="1" parent="pool" source="2" target="tampil_form">
-                    <mxGeometry relative="1" as="geometry">
-                        <Array as="points">
-                            <mxPoint x="205" y="580"/>
-                            <mxPoint x="690" y="580"/>
-                            <mxPoint x="690" y="180"/>
-                        </Array>
-                    </mxGeometry>
+                <mxCell id="start" value="" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;fillColor=#000000;fontStyle=0" parent="lane2" vertex="1">
+                    <mxGeometry x="190" y="40" width="30" height="30" as="geometry"/>
                 </mxCell>
-                <mxCell id="7" value="y" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="4">
-                    <mxGeometry x="-0.7181" y="1" relative="1" as="geometry">
-                        <mxPoint as="offset"/>
-                    </mxGeometry>
+                <mxCell id="8" value="&lt;font style=&quot;font-size: 18px;&quot;&gt;&lt;span&gt;Tampil beranda&amp;nbsp;&lt;/span&gt;&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fontStyle=0" vertex="1" parent="lane2">
+                    <mxGeometry x="95" y="100" width="220" height="60" as="geometry"/>
                 </mxCell>
-                <mxCell id="edge_0" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;fontStyle=0" parent="1" source="start" target="pilih_konsul" edge="1">
+                <mxCell id="3" value="" style="edgeStyle=none;html=1;entryX=1;entryY=0.5;entryDx=0;entryDy=0;exitX=0;exitY=0.5;exitDx=0;exitDy=0;" parent="pool" source="tampil_hasil" target="2" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="9" value="" style="edgeStyle=none;html=1;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="pool" source="8" target="pilih_konsul">
                     <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
                 <mxCell id="edge_1" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;fontStyle=0" parent="1" source="pilih_konsul" target="tampil_form" edge="1">
-                    <mxGeometry relative="1" as="geometry"/>
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="598" y="190"/>
+                        </Array>
+                    </mxGeometry>
                 </mxCell>
                 <mxCell id="edge_2" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;fontStyle=0" parent="1" source="tampil_form" target="input_gejala" edge="1">
                     <mxGeometry relative="1" as="geometry">
