@@ -25,16 +25,10 @@ $diagnosis = !empty($diagnoses) ? $diagnoses[0] : null;
 $page_title = "Detail Riwayat Diagnosa";
 include 'includes/header.php';
 
-// Helper function to get match level text
-function getMatchLevel($count) {
-    if ($count >= 3) return 'Tinggi';
-    if ($count == 2) return 'Sedang';
-    return 'Rendah';
-}
-
 // In history, confidence might be stored as percentage.
 // We can estimate match_count from confidence for display if match_count is not stored.
-$stored_match_count = round(($record['confidence'] / 100) * 3);
+// Based on the rule with 6 symptoms, 100% = 6 matches.
+$stored_match_count = round(($record['confidence'] / 100) * 6);
 ?>
 
 <main class="pt-32 pb-20 px-8 max-w-7xl mx-auto w-full">
