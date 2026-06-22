@@ -10,23 +10,20 @@
                 <mxCell id="lane1" value="Admin" style="swimlane;html=1;startSize=30;whiteSpace=wrap;" parent="pool" vertex="1">
                     <mxGeometry y="30" width="400" height="950" as="geometry"/>
                 </mxCell>
-                <mxCell id="start" value="" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;fillColor=#000000;" parent="lane1" vertex="1">
-                    <mxGeometry x="185" y="40" width="30" height="30" as="geometry"/>
-                </mxCell>
                 <mxCell id="2" value="" style="edgeStyle=orthogonalEdgeStyle;html=1;" parent="lane1" source="pilih_menu" target="dec_tambah" edge="1">
                     <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
                 <mxCell id="pilih_menu" value="pilih menu penyakit" style="rounded=1;whiteSpace=wrap;html=1;" parent="lane1" vertex="1">
-                    <mxGeometry x="100" y="110" width="200" height="40" as="geometry"/>
+                    <mxGeometry x="100" y="100" width="200" height="40" as="geometry"/>
                 </mxCell>
                 <mxCell id="dec_tambah" value="tambah" style="rhombus;whiteSpace=wrap;html=1;" parent="lane1" vertex="1">
-                    <mxGeometry x="50" y="180" width="80" height="80" as="geometry"/>
+                    <mxGeometry x="50" y="250" width="80" height="80" as="geometry"/>
                 </mxCell>
                 <mxCell id="input_data" value="input kode,nama penyakit dll" style="rounded=1;whiteSpace=wrap;html=1;" parent="lane1" vertex="1">
-                    <mxGeometry x="150" y="260" width="200" height="40" as="geometry"/>
+                    <mxGeometry x="150" y="320" width="200" height="40" as="geometry"/>
                 </mxCell>
                 <mxCell id="dec_simpan" value="simpan" style="rhombus;whiteSpace=wrap;html=1;" parent="lane1" vertex="1">
-                    <mxGeometry x="210" y="320" width="80" height="80" as="geometry"/>
+                    <mxGeometry x="210" y="390" width="80" height="80" as="geometry"/>
                 </mxCell>
                 <mxCell id="14" value="" style="edgeStyle=none;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="lane1" source="dec_edit" target="dec_hapus" edge="1">
                     <mxGeometry relative="1" as="geometry">
@@ -42,16 +39,16 @@
                     <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
                 <mxCell id="dec_edit" value="edit" style="rhombus;whiteSpace=wrap;html=1;" parent="lane1" vertex="1">
-                    <mxGeometry x="50" y="410" width="80" height="80" as="geometry"/>
+                    <mxGeometry x="50" y="480" width="80" height="80" as="geometry"/>
                 </mxCell>
                 <mxCell id="10" value="" style="edgeStyle=none;html=1;" parent="lane1" source="edit_data" target="dec_simpan_edit" edge="1">
                     <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
                 <mxCell id="edit_data" value="edit data yng ingin di ubah" style="rounded=1;whiteSpace=wrap;html=1;" parent="lane1" vertex="1">
-                    <mxGeometry x="150" y="490" width="180" height="40" as="geometry"/>
+                    <mxGeometry x="150" y="560" width="180" height="40" as="geometry"/>
                 </mxCell>
                 <mxCell id="dec_simpan_edit" value="simpan" style="rhombus;whiteSpace=wrap;html=1;" parent="lane1" vertex="1">
-                    <mxGeometry x="200" y="550" width="80" height="80" as="geometry"/>
+                    <mxGeometry x="200" y="620" width="80" height="80" as="geometry"/>
                 </mxCell>
                 <mxCell id="28" value="" style="edgeStyle=none;html=1;" edge="1" parent="lane1" source="dec_hapus" target="27">
                     <mxGeometry relative="1" as="geometry"/>
@@ -62,57 +59,52 @@
                     </mxGeometry>
                 </mxCell>
                 <mxCell id="dec_hapus" value="hapus" style="rhombus;whiteSpace=wrap;html=1;" parent="lane1" vertex="1">
-                    <mxGeometry x="50" y="660" width="80" height="80" as="geometry"/>
+                    <mxGeometry x="50" y="700" width="80" height="80" as="geometry"/>
                 </mxCell>
                 <mxCell id="26" value="" style="edgeStyle=none;html=1;" parent="lane1" source="cancel" target="end" edge="1">
                     <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
                 <mxCell id="cancel" value="cancel" style="rounded=1;whiteSpace=wrap;html=1;arcSize=0;" parent="lane1" vertex="1">
-                    <mxGeometry x="170" y="740" width="120" height="40" as="geometry"/>
+                    <mxGeometry x="170" y="780" width="120" height="40" as="geometry"/>
                 </mxCell>
                 <mxCell id="end" value="" style="ellipse;html=1;shape=endState;fillColor=#000000;strokeColor=#000000;" parent="lane1" vertex="1">
-                    <mxGeometry x="215" y="830" width="30" height="30" as="geometry"/>
+                    <mxGeometry x="215" y="860" width="30" height="30" as="geometry"/>
                 </mxCell>
                 <mxCell id="pilih_edit" value="pilih penyakit yg ingin di edit" style="rounded=1;whiteSpace=wrap;html=1;" parent="lane1" vertex="1">
-                    <mxGeometry x="150" y="430" width="180" height="40" as="geometry"/>
+                    <mxGeometry x="150" y="505" width="180" height="40" as="geometry"/>
                 </mxCell>
                 <mxCell id="27" value="pilih penyakit yg ingin di hapus" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="lane1">
-                    <mxGeometry x="160" y="680" width="180" height="40" as="geometry"/>
+                    <mxGeometry x="160" y="720" width="180" height="40" as="geometry"/>
                 </mxCell>
                 <mxCell id="lane2" value="Sistem" style="swimlane;html=1;startSize=30;whiteSpace=wrap;" parent="pool" vertex="1">
                     <mxGeometry x="400" y="30" width="400" height="950" as="geometry"/>
                 </mxCell>
                 <mxCell id="tampil_hal" value="tampil halaman penyakit" style="rounded=1;whiteSpace=wrap;html=1;" parent="lane2" vertex="1">
-                    <mxGeometry x="90" y="110" width="200" height="40" as="geometry"/>
+                    <mxGeometry x="80" y="190" width="200" height="40" as="geometry"/>
                 </mxCell>
                 <mxCell id="tampil_tambah" value="tampil halaman tambah penyakit" style="rounded=1;whiteSpace=wrap;html=1;" parent="lane2" vertex="1">
-                    <mxGeometry x="90" y="200" width="200" height="40" as="geometry"/>
+                    <mxGeometry x="100" y="270" width="200" height="40" as="geometry"/>
                 </mxCell>
                 <mxCell id="hasil_simpan" value="data berhasil disimpan" style="rounded=1;whiteSpace=wrap;html=1;" parent="lane2" vertex="1">
-                    <mxGeometry x="100" y="340" width="200" height="40" as="geometry"/>
+                    <mxGeometry x="100" y="410" width="200" height="40" as="geometry"/>
                 </mxCell>
                 <mxCell id="tampil_edit" value="tampil halamn edit penyakit" style="rounded=1;whiteSpace=wrap;html=1;" parent="lane2" vertex="1">
-                    <mxGeometry x="100" y="430" width="200" height="40" as="geometry"/>
+                    <mxGeometry x="100" y="505" width="200" height="40" as="geometry"/>
                 </mxCell>
                 <mxCell id="hasil_edit" value="data berhasil di perbaharui" style="rounded=1;whiteSpace=wrap;html=1;" parent="lane2" vertex="1">
-                    <mxGeometry x="100" y="580" width="200" height="40" as="geometry"/>
+                    <mxGeometry x="100" y="640" width="200" height="40" as="geometry"/>
                 </mxCell>
                 <mxCell id="hasil_hapus" value="penyakit berhasil dihapus" style="rounded=1;whiteSpace=wrap;html=1;" parent="lane2" vertex="1">
-                    <mxGeometry x="110" y="680" width="200" height="40" as="geometry"/>
+                    <mxGeometry x="90" y="720" width="200" height="40" as="geometry"/>
                 </mxCell>
-                <mxCell id="5" value="" style="edgeStyle=orthogonalEdgeStyle;html=1;entryX=1;entryY=0.5;entryDx=0;entryDy=0;exitX=0.5;exitY=1;exitDx=0;exitDy=0;dashed=1;" parent="lane2" source="dec_simpan" target="tampil_hal" edge="1">
-                    <mxGeometry relative="1" as="geometry">
-                        <mxPoint x="-110" y="420" as="sourcePoint"/>
-                        <Array as="points">
-                            <mxPoint x="320" y="400"/>
-                            <mxPoint x="320" y="130"/>
-                        </Array>
-                    </mxGeometry>
+                <mxCell id="35" value="" style="edgeStyle=none;html=1;" edge="1" parent="lane2" source="start" target="34">
+                    <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
-                <mxCell id="8" value="tidak" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" parent="5" vertex="1" connectable="0">
-                    <mxGeometry x="-0.7297" y="2" relative="1" as="geometry">
-                        <mxPoint as="offset"/>
-                    </mxGeometry>
+                <mxCell id="start" value="" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;fillColor=#000000;" parent="lane2" vertex="1">
+                    <mxGeometry x="185" y="40" width="30" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="34" value="Tampil dashboard" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="lane2">
+                    <mxGeometry x="100" y="100" width="200" height="40" as="geometry"/>
                 </mxCell>
                 <mxCell id="4" value="" style="edgeStyle=orthogonalEdgeStyle;html=1;entryX=1;entryY=0.5;entryDx=0;entryDy=0;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" parent="pool" source="tampil_tambah" target="input_data" edge="1">
                     <mxGeometry relative="1" as="geometry"/>
@@ -125,13 +117,44 @@
                         <mxPoint as="offset"/>
                     </mxGeometry>
                 </mxCell>
+                <mxCell id="25" value="" style="edgeStyle=orthogonalEdgeStyle;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;dashed=1;" parent="pool" source="cancel" target="tampil_hal" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="720" y="830"/>
+                            <mxPoint x="720" y="240"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="33" value="" style="edgeStyle=none;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="pool" source="27" target="hasil_hapus">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="36" value="" style="edgeStyle=orthogonalEdgeStyle;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" edge="1" parent="pool" source="dec_simpan">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="680" y="240" as="targetPoint"/>
+                        <Array as="points">
+                            <mxPoint x="250" y="520"/>
+                            <mxPoint x="720" y="520"/>
+                            <mxPoint x="720" y="240"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="38" value="Tidak" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="36">
+                    <mxGeometry x="-0.64" y="-1" relative="1" as="geometry">
+                        <mxPoint as="offset"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="37" value="" style="edgeStyle=none;html=1;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="pool" source="34" target="pilih_menu">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
                 <mxCell id="11" value="" style="edgeStyle=orthogonalEdgeStyle;html=1;entryX=1;entryY=0.5;entryDx=0;entryDy=0;exitX=0.5;exitY=1;exitDx=0;exitDy=0;dashed=1;" parent="pool" source="dec_simpan_edit" target="tampil_hal" edge="1">
                     <mxGeometry relative="1" as="geometry">
                         <Array as="points">
-                            <mxPoint x="240" y="680"/>
-                            <mxPoint x="720" y="680"/>
-                            <mxPoint x="720" y="160"/>
+                            <mxPoint x="240" y="740"/>
+                            <mxPoint x="720" y="740"/>
+                            <mxPoint x="720" y="240"/>
                         </Array>
+                        <mxPoint x="240" y="700" as="sourcePoint"/>
+                        <mxPoint x="690" y="220" as="targetPoint"/>
                     </mxGeometry>
                 </mxCell>
                 <mxCell id="12" value="tidak" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" parent="11" vertex="1" connectable="0">
@@ -139,22 +162,12 @@
                         <mxPoint as="offset"/>
                     </mxGeometry>
                 </mxCell>
-                <mxCell id="25" value="" style="edgeStyle=orthogonalEdgeStyle;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;dashed=1;" parent="pool" source="cancel" target="tampil_hal" edge="1">
+                <mxCell id="edge_1" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" parent="1" source="pilih_menu" target="tampil_hal" edge="1">
                     <mxGeometry relative="1" as="geometry">
                         <Array as="points">
-                            <mxPoint x="720" y="790"/>
-                            <mxPoint x="720" y="160"/>
+                            <mxPoint x="240" y="290"/>
                         </Array>
                     </mxGeometry>
-                </mxCell>
-                <mxCell id="33" value="" style="edgeStyle=none;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="pool" source="27" target="hasil_hapus">
-                    <mxGeometry relative="1" as="geometry"/>
-                </mxCell>
-                <mxCell id="edge_0" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" parent="1" source="start" target="pilih_menu" edge="1">
-                    <mxGeometry relative="1" as="geometry"/>
-                </mxCell>
-                <mxCell id="edge_1" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" parent="1" source="pilih_menu" target="tampil_hal" edge="1">
-                    <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
                 <mxCell id="edge_3" value="iya" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" parent="1" source="dec_tambah" target="tampil_tambah" edge="1">
                     <mxGeometry relative="1" as="geometry"/>
@@ -182,8 +195,8 @@
                 <mxCell id="edge_14" value="iya" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" parent="1" source="dec_simpan_edit" target="hasil_edit" edge="1">
                     <mxGeometry x="-0.3995" relative="1" as="geometry">
                         <Array as="points">
-                            <mxPoint x="420" y="670"/>
-                            <mxPoint x="420" y="670"/>
+                            <mxPoint x="430" y="740"/>
+                            <mxPoint x="430" y="740"/>
                         </Array>
                         <mxPoint as="offset"/>
                     </mxGeometry>
