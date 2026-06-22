@@ -19,12 +19,6 @@ if ($diagnosis) {
 $page_title = "Hasil Diagnosa";
 include 'includes/header.php';
 
-// Helper function to get match level text
-function getMatchLevel($count) {
-    if ($count >= 3) return 'Tinggi';
-    if ($count == 2) return 'Sedang';
-    return 'Rendah';
-}
 ?>
 
 <main class="pt-32 pb-20 px-8 max-w-7xl mx-auto w-full">
