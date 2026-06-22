@@ -104,7 +104,7 @@ $penyakit_list = get_all_penyakit($pdo);
             <form method="POST" class="space-y-4">
                 <div class="grid grid-cols-2 gap-4">
                     <div>
-                        <label class="block text-sm font-bold mb-1">ID (Contoh: P11)</label>
+                        <label class="block text-sm font-bold mb-1">ID (Contoh: A01)</label>
                         <input type="text" name="id" required class="w-full border p-3 rounded-xl">
                     </div>
                     <div>
@@ -139,7 +139,7 @@ $penyakit_list = get_all_penyakit($pdo);
                 <input type="hidden" name="old_id" id="edit_old_id">
                 <div class="grid grid-cols-2 gap-4">
                     <div>
-                        <label class="block text-sm font-bold mb-1">ID (Contoh: P11)</label>
+                        <label class="block text-sm font-bold mb-1">ID (Contoh: A01)</label>
                         <input type="text" name="id" id="edit_id" required class="w-full border p-3 rounded-xl">
                     </div>
                     <div>

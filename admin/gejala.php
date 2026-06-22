@@ -111,7 +111,7 @@ $gejala_list = get_all_gejala($pdo);
             <h2 class="text-2xl font-bold mb-6">Tambah Gejala Baru</h2>
             <form method="POST" class="space-y-4">
                 <div>
-                    <label class="block text-sm font-bold mb-1">ID (Contoh: G31)</label>
+                    <label class="block text-sm font-bold mb-1">ID (Contoh: G01)</label>
                     <input type="text" name="id" required class="w-full border p-3 rounded-xl outline-none focus:ring-2 focus:ring-cyan-600">
                 </div>
                 <div>
@@ -132,7 +132,7 @@ $gejala_list = get_all_gejala($pdo);
             <form method="POST" class="space-y-4">
                 <input type="hidden" name="old_id" id="edit_old_id">
                 <div>
-                    <label class="block text-sm font-bold mb-1">ID (Contoh: G31)</label>
+                    <label class="block text-sm font-bold mb-1">ID (Contoh: G01)</label>
                     <input type="text" name="id" id="edit_id" required class="w-full border p-3 rounded-xl outline-none focus:ring-2 focus:ring-cyan-600">
                 </div>
                 <div>

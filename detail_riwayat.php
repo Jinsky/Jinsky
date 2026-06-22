@@ -24,6 +24,17 @@ $diagnosis = !empty($diagnoses) ? $diagnoses[0] : null;
 
 $page_title = "Detail Riwayat Diagnosa";
 include 'includes/header.php';
+
+// Helper function to get match level text
+function getMatchLevel($count) {
+    if ($count >= 3) return 'Tinggi';
+    if ($count == 2) return 'Sedang';
+    return 'Rendah';
+}
+
+// In history, confidence might be stored as percentage.
+// We can estimate match_count from confidence for display if match_count is not stored.
+$stored_match_count = round(($record['confidence'] / 100) * 3);
 ?>
 
 <main class="pt-32 pb-20 px-8 max-w-7xl mx-auto w-full">
@@ -46,12 +57,12 @@ include 'includes/header.php';
                 <div class="bg-surface-container border-l-4 border-primary p-8 rounded-r-xl relative overflow-hidden">
                     <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-6 mb-8">
                         <div>
-                            <h2 class="font-headline text-3xl text-primary font-bold mb-2"><?= $diagnosis['nama'] ?></h2>
+                            <h2 class="font-headline text-4xl text-primary font-bold mb-2"><?= $diagnosis['nama'] ?></h2>
                             <span class="bg-primary-container text-on-primary-container px-3 py-1 rounded-full text-xs font-bold uppercase tracking-widest">Kecocokan Pola Terkonfirmasi</span>
                         </div>
-                        <div class="text-center bg-surface-container-lowest p-6 rounded-2xl shadow-sm border border-outline-variant/10 min-w-[140px]">
-                            <p class="text-5xl font-headline font-black text-primary leading-none"><?= $record['confidence'] ?>%</p>
-                            <p class="text-[10px] font-bold text-on-surface-variant uppercase tracking-widest mt-2">tingkat kecocokan</p>
+                        <div class="text-center bg-surface-container-lowest p-6 rounded-2xl shadow-sm border border-outline-variant/10 min-w-[180px]">
+                            <p class="text-4xl font-headline font-black text-primary leading-none"><?= getMatchLevel($diagnosis['match_count'] ?? $stored_match_count) ?></p>
+                            <p class="text-[12px] font-bold text-on-surface-variant uppercase tracking-widest mt-2">tingkat kecocokan</p>
                         </div>
                     </div>
 
@@ -102,7 +113,7 @@ include 'includes/header.php';
                                         <p class="text-xs text-on-surface-variant mt-1 line-clamp-1"><?= strip_tags($d['deskripsi']) ?></p>
                                     </div>
                                     <div class="text-right">
-                                        <span class="text-lg font-headline font-bold text-secondary"><?= $d['confidence'] ?>%</span>
+                                        <span class="text-xl font-headline font-bold text-secondary"><?= getMatchLevel($d['match_count'] ?? 1) ?></span>
                                         <p class="text-[10px] font-bold text-on-surface-variant uppercase tracking-widest">Kecocokan</p>
                                     </div>
                                 </div>
