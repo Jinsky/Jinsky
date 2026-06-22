@@ -25,12 +25,6 @@ $diagnosis = !empty($diagnoses) ? $diagnoses[0] : null;
 $page_title = "Detail Riwayat Diagnosa";
 include 'includes/header.php';
 
-// Helper function to get match level text
-function getMatchLevel($count) {
-    if ($count >= 3) return 'Tinggi';
-    if ($count == 2) return 'Sedang';
-    return 'Rendah';
-}
 
 // In history, confidence might be stored as percentage.
 // We can estimate match_count from confidence for display if match_count is not stored.
