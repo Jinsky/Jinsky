@@ -75,7 +75,7 @@ if ($pdo) {
         <div class="mt-12 bg-cyan-900 text-white p-10 rounded-[2.5rem] relative overflow-hidden">
             <div class="relative z-10">
                 <h2 class="text-3xl font-bold mb-4">Butuh Bantuan?</h2>
-                <p class="max-w-xl opacity-80 mb-8 text-lg">Gunakan panel navigasi di samping untuk mengelola basis pengetahuan. Anda dapat menambah gejala baru, penyakit, atau mengatur ulang bobot aturan diagnosa.</p>
+                <p class="max-w-xl opacity-80 mb-8 text-lg">Gunakan panel navigasi di samping untuk mengelola basis pengetahuan. Anda dapat menambah gejala baru, penyakit, atau mengatur aturan diagnosa.</p>
                 <a href="../index.php" class="bg-white text-cyan-950 px-8 py-3 rounded-xl font-bold hover:bg-slate-100 transition inline-block">Lihat Situs Depan</a>
             </div>
             <span class="material-symbols-outlined absolute -right-10 -bottom-10 text-[15rem] opacity-10">clinical_notes</span>
