@@ -34,7 +34,7 @@ if (isset($_POST['add_detail'])) {
     if ($pdo) {
         try {
             $stmt = $pdo->prepare("INSERT INTO aturan_detail (id_aturan, id_gejala, bobot) VALUES (?, ?, ?)");
-            $stmt->execute([$_POST['id_aturan'], $_POST['id_gejala'], $_POST['bobot']]);
+            $stmt->execute([$_POST['id_aturan'], $_POST['id_gejala'], 0]);
             $message = "Gejala ditambahkan ke aturan.";
         } catch (Exception $e) { $error = "Gagal: " . $e->getMessage(); }
     }
@@ -44,7 +44,7 @@ if (isset($_POST['edit_detail'])) {
     if ($pdo) {
         try {
             $stmt = $pdo->prepare("UPDATE aturan_detail SET id_gejala = ?, bobot = ? WHERE id_aturan = ? AND id_gejala = ?");
-            $stmt->execute([$_POST['id_gejala'], $_POST['bobot'], $_POST['id_aturan'], $_POST['old_id_gejala']]);
+            $stmt->execute([$_POST['id_gejala'], 0, $_POST['id_aturan'], $_POST['old_id_gejala']]);
             $message = "Detail aturan berhasil diperbarui.";
         } catch (Exception $e) { $error = "Gagal: " . $e->getMessage(); }
     }
@@ -99,7 +99,7 @@ if ($pdo) {
         <div class="flex justify-between items-end mb-10">
             <div>
                 <h1 class="text-4xl font-bold text-slate-800">Kelola Aturan</h1>
-                <p class="text-slate-500 mt-2">Relasi antara Penyakit, Gejala, and Bobot Persentase.</p>
+                <p class="text-slate-500 mt-2">Relasi antara Penyakit dan Gejala.</p>
             </div>
             <button onclick="document.getElementById('addRuleModal').classList.remove('hidden')" class="bg-cyan-900 text-white px-6 py-3 rounded-xl font-bold shadow-lg">
                 + Aturan Baru
@@ -131,7 +131,6 @@ if ($pdo) {
                             <tr>
                                 <th class="p-4 font-bold text-slate-600">Kode</th>
                                 <th class="p-4 font-bold text-slate-600">Gejala</th>
-                                <th class="p-4 font-bold text-slate-600 text-center">Bobot (%)</th>
                                 <th class="p-4 font-bold text-slate-600 text-right">Aksi</th>
                             </tr>
                         </thead>
@@ -151,7 +150,6 @@ if ($pdo) {
                                 <tr>
                                     <td class="p-4 font-mono font-bold text-cyan-600"><?= $d['id_gejala'] ?></td>
                                     <td class="p-4 text-slate-700"><?= $d['nama'] ?></td>
-                                    <td class="p-4 text-center font-bold"><?= $d['bobot'] ?>%</td>
                                     <td class="p-4 text-right flex justify-end gap-3">
                                         <button onclick='openEditDetailModal(<?= htmlspecialchars(json_encode($d), ENT_QUOTES, 'UTF-8') ?>)' class="text-amber-500 hover:text-amber-600 material-symbols-outlined text-sm">edit</button>
                                         <form method="POST" class="inline" onsubmit="return confirm('Hapus gejala ini dari aturan?')">
@@ -233,10 +231,6 @@ if ($pdo) {
                         <?php endforeach; ?>
                     </select>
                 </div>
-                <div>
-                    <label class="block text-sm font-bold mb-1">Bobot Persentase (1-100)</label>
-                    <input type="number" name="bobot" min="1" max="100" required class="w-full border p-3 rounded-xl">
-                </div>
                 <div class="flex gap-4 pt-4">
                     <button type="button" onclick="document.getElementById('addDetailModal').classList.add('hidden')" class="flex-1 py-3 border rounded-xl">Batal</button>
                     <button type="submit" name="add_detail" class="flex-1 py-3 bg-cyan-900 text-white rounded-xl font-bold">Tambah</button>
@@ -258,10 +252,6 @@ if ($pdo) {
                         <option value="<?= $g['id_gejala'] ?>"><?= $g['id_gejala'] ?> - <?= $g['nama'] ?></option>
                         <?php endforeach; ?>
                     </select>
-                </div>
-                <div>
-                    <label class="block text-sm font-bold mb-1">Bobot Persentase (1-100)</label>
-                    <input type="number" name="bobot" id="edit_detail_bobot" min="1" max="100" required class="w-full border p-3 rounded-xl">
                 </div>
                 <div class="flex gap-4 pt-4">
                     <button type="button" onclick="document.getElementById('editDetailModal').classList.add('hidden')" class="flex-1 py-3 border rounded-xl">Batal</button>
@@ -288,7 +278,6 @@ if ($pdo) {
             document.getElementById('edit_detail_id_aturan').value = data.id_aturan;
             document.getElementById('edit_detail_old_id_gejala').value = data.id_gejala;
             document.getElementById('edit_detail_id_gejala').value = data.id_gejala;
-            document.getElementById('edit_detail_bobot').value = data.bobot;
             document.getElementById('editDetailModal').classList.remove('hidden');
         }
     </script>
