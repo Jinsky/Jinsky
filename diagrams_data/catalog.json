@@ -1,0 +1,26 @@
+{
+  "nodes": [
+    {"id": "start", "label": "Mulai", "shape": "start"},
+    {"id": "open", "label": "Buka Halaman Katalog", "shape": "process"},
+    {"id": "tab", "label": "Pilih Tab Informasi", "shape": "decision"},
+    {"id": "penyakit", "label": "Tampilkan Grid Penyakit", "shape": "display"},
+    {"id": "gejala", "label": "Tampilkan Grid Gejala", "shape": "display"},
+    {"id": "search_p", "label": "Cari Penyakit via Search Bar", "shape": "process"},
+    {"id": "search_g", "label": "Cari Gejala via Search Bar", "shape": "process"},
+    {"id": "click_detail", "label": "Klik 'Baca Selengkapnya'", "shape": "process"},
+    {"id": "show_detail", "label": "Tampilkan Halaman Detail Penyakit", "shape": "display"},
+    {"id": "end", "label": "Selesai", "shape": "end"}
+  ],
+  "edges": [
+    {"from": "start", "to": "open"},
+    {"from": "open", "to": "tab"},
+    {"from": "tab", "to": "penyakit", "label": "Penyakit"},
+    {"from": "tab", "to": "gejala", "label": "Gejala"},
+    {"from": "penyakit", "to": "search_p"},
+    {"from": "gejala", "to": "search_g"},
+    {"from": "search_p", "to": "click_detail"},
+    {"from": "click_detail", "to": "show_detail"},
+    {"from": "show_detail", "to": "end"},
+    {"from": "search_g", "to": "end"}
+  ]
+}

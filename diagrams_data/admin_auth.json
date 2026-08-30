@@ -1,0 +1,24 @@
+{
+  "nodes": [
+    {"id": "start", "label": "Mulai", "shape": "start"},
+    {"id": "open", "label": "Buka Halaman Login", "shape": "process"},
+    {"id": "input", "label": "Input Username & Password", "shape": "io"},
+    {"id": "submit", "label": "Klik Tombol Masuk", "shape": "process"},
+    {"id": "check", "label": "Cek Database / Mock", "shape": "decision"},
+    {"id": "valid", "label": "Set Session admin_id", "shape": "process"},
+    {"id": "invalid", "label": "Tampilkan Pesan Error", "shape": "display"},
+    {"id": "redirect", "label": "Redirect ke Dashboard", "shape": "process"},
+    {"id": "end", "label": "Selesai", "shape": "end"}
+  ],
+  "edges": [
+    {"from": "start", "to": "open"},
+    {"from": "open", "to": "input"},
+    {"from": "input", "to": "submit"},
+    {"from": "submit", "to": "check"},
+    {"from": "check", "to": "valid", "label": "Valid"},
+    {"from": "check", "to": "invalid", "label": "Gagal"},
+    {"from": "invalid", "to": "open"},
+    {"from": "valid", "to": "redirect"},
+    {"from": "redirect", "to": "end"}
+  ]
+}

@@ -1,0 +1,29 @@
+{
+  "nodes": [
+    {"id": "start", "label": "Mulai", "shape": "start"},
+    {"id": "open", "label": "Buka Halaman Riwayat", "shape": "process"},
+    {"id": "load", "label": "Sistem Load Data Riwayat", "shape": "process"},
+    {"id": "filter", "label": "Ingin Cari/Filter?", "shape": "decision"},
+    {"id": "search_name", "label": "Input Nama di Search", "shape": "io"},
+    {"id": "filter_dis", "label": "Pilih Penyakit di Dropdown", "shape": "io"},
+    {"id": "query", "label": "Sistem Jalankan Query LIKE", "shape": "process"},
+    {"id": "update", "label": "Update Tampilan List", "shape": "display"},
+    {"id": "click_detail", "label": "Klik Lihat Detail", "shape": "process"},
+    {"id": "show_alert", "label": "Tampilkan Alert Detail Gejala", "shape": "display"},
+    {"id": "end", "label": "Selesai", "shape": "end"}
+  ],
+  "edges": [
+    {"from": "start", "to": "open"},
+    {"from": "open", "to": "load"},
+    {"from": "load", "to": "filter"},
+    {"from": "filter", "to": "search_name", "label": "Nama"},
+    {"from": "filter", "to": "filter_dis", "label": "Penyakit"},
+    {"from": "filter", "to": "update", "label": "Tidak"},
+    {"from": "search_name", "to": "query"},
+    {"from": "filter_dis", "to": "query"},
+    {"from": "query", "to": "update"},
+    {"from": "update", "to": "click_detail"},
+    {"from": "click_detail", "to": "show_alert"},
+    {"from": "show_alert", "to": "end"}
+  ]
+}

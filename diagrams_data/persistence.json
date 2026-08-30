@@ -1,0 +1,23 @@
+{
+  "nodes": [
+    {"id": "form", "label": "Form konsultasi.php", "shape": "io"},
+    {"id": "post", "label": "POST Data ke hasil.php", "shape": "process"},
+    {"id": "call", "label": "Panggil get_diagnosa()", "shape": "process"},
+    {"id": "found", "label": "Hasil Ditemukan?", "shape": "decision"},
+    {"id": "top", "label": "Ambil Top Match", "shape": "process"},
+    {"id": "save", "label": "Panggil save_diagnosa()", "shape": "process"},
+    {"id": "db", "label": "INSERT INTO diagnosa", "shape": "process"},
+    {"id": "show", "label": "Tampilkan Hasil", "shape": "display"},
+    {"id": "none", "label": "Tampilkan 'Tidak Ditemukan'", "shape": "display"}
+  ],
+  "edges": [
+    {"from": "form", "to": "post"},
+    {"from": "post", "to": "call"},
+    {"from": "call", "to": "found"},
+    {"from": "found", "to": "top", "label": "Ya"},
+    {"from": "found", "to": "none", "label": "Tidak"},
+    {"from": "top", "to": "save"},
+    {"from": "save", "to": "db"},
+    {"from": "db", "to": "show"}
+  ]
+}
